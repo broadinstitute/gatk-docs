@@ -1,0 +1,5 @@
+## Happy holidays! Broad on vacation until Jan 2
+
+By Geraldine_VdAuwera
+
+<p>Heads up, people: our generous overlords at the Broad Institute are giving us all time off from December 23 until January 1st (included). So we will effectively be off-duty starting tomorrow evening (Friday Dec 20) for the entire Christmas and New Year period, only to return on January 2nd. During that time, we will all be busy stuffing ourselves with food and enjoying the company of our loved ones, and we hope many of you will have the opportunity to do the same, regardless of your cultural affiliations (I for one will be raising a glass of mulled wine in honor of my Gaul ancestors and the winter solstice). For those of you who will be working, I'm afraid no-one from the GATK team will be around to answer forum questions (unless one of us really needs an excuse to get away from the in-laws) so I encourage you to try to answer each other's questions in the meantime. To all, good luck, happy holidays and/or our deepest sympathy, as applicable. See you next year!</p>

@@ -1,0 +1,42 @@
+## Differences between GATK3 MuTect2 and GATK4 Mutect2
+
+By shlee
+
+<h3>Tool names are cased differently</h3>
+
+<p>The first thing to note is how the tool names are different. In GATK3 it's spelled <strong><em>MuTect2</em></strong> with an uppercase <strong><em>T</em></strong>, whereas in GATK it's spelled <strong><em>Mutect2</em></strong> with a lowercase <strong><em>t</em></strong>. Not only is the new tool name easier to type, it helps us distinguish which version of the tool a document refers to.</p>
+
+<p><a rel="nofollow" href="https://us.v-cdn.net/5019796/uploads/editor/7z/2c989rlk2kwd.png"><div style="text-align: center;"><img src="https://us.v-cdn.net/5019796/uploads/editor/7z/2c989rlk2kwd.png" width="450" alt="image" style="text-align: ;" class="embedImage-img importedEmbed-img"></img></div></a></p>
+
+<hr></hr><h3>The two Mutects differ in functionality</h3>
+
+<p>And their respective workflow tools differ too. The table shows the tools for the workflow functionalities for GATK3 versus GATK4.</p>
+
+<p><a rel="nofollow" href="https://us.v-cdn.net/5019796/uploads/editor/jz/pj1619aaqc72.png"><div style="text-align: center;"><img src="https://us.v-cdn.net/5019796/uploads/editor/jz/pj1619aaqc72.png" width="" alt="image" style="text-align: ;" class="embedImage-img importedEmbed-img"></img></div></a></p>
+
+<p>GATK3 MuTect2 will remain in beta status. GATK4 Mutect2 is in beta status as of the official GATK4 release.</p>
+
+<p><br><br><strong>One major difference is GATK4 breaks off filtering into a separate tool, FilterMutectCalls.</strong> In GATK3, MuTect2 both calls and filters variants. In GATK4, Mutect2 is focused mostly on calling and does some minimal upfront filtering of obvious non-somatic sites. However, it leaves the majority of filtering to FilterMutectCalls. This separation makes it easier to test changes to filtering thresholds as the computationally expensive calling is decoupled from filtering. <br><br><br><strong>Another major difference is in <em>site</em> versus <em>allele</em> filtering against the germline resource.</strong> GATK3 MuTect2 prefilters sites in the germline resource regardless of the allele in the tumor. GATK4 Mutect2 distinguishes alleles in the germline resource and only filters the site if the tumor allele matches. If the alleles are different, then the tool considers the allele a putative somatic mutation.</p>
+
+<p>Filtering of sites in the panel of normals (PoN) and the matched normal remains unchanged, except that the tool will <em>prefilter</em> most of these such that site records are absent from the VCF.</p>
+
+<p><a rel="nofollow" href="https://us.v-cdn.net/5019796/uploads/editor/hh/btqyot4dunbj.png"><div style="text-align: center;"><img src="https://us.v-cdn.net/5019796/uploads/editor/hh/btqyot4dunbj.png" width="" alt="image" style="text-align: ;" class="embedImage-img importedEmbed-img"></img></div></a><br>
+With the <a rel="nofollow" href="http://www.internationalgenome.org/">1000 Genomes Project</a> now wrapped up, and with the availability of germline variant callsets from even larger cohorts, i.e. <a rel="nofollow" href="http://gnomad.broadinstitute.org/about">gnomAD</a>, the germline component of human cancers is something that GATK4 Mutect2 can account for in a more sophisticated way. GATK4 Mutect2 factors the germline population <em>allele frequencies</em> towards somatic probability calculations. For a given allele in the tumor, if it is present in the germline resource, its probability of being a somatic mutation is weighted inversely to the frequency with which the allele is observed in the population.<br><br><br><strong>Here are the differences between GATK3 MuTect2 and GATK4 Mutect2 as a list.</strong></p>
+
+<ol><li>The filtering functionality that annotates the FILTER column is now done by a separate tool called FilterMutectCalls. To filter further based on sequence context artifacts, additionally use FilterByOrientationBias. Note that Mutect2 still performs some upfront filtering (see next point).</li>
+<li>Mutect2 ignores sites present in the Panel of Normals (PoN) as well as sites that correspond to high fraction variants in the normal. By doing so, the tool avoids spending time in steps such as graph assembly and pairHMM alignments that cost compute. However, there is an option to force the tool to run the full process on sites that are in the PoN (<code class="code codeInline" spellcheck="false">--genotype-pon-sites</code>), which can be useful in comparing results to older MuTect versions.</li>
+<li>If using a known germline variants resource, then it must contain population allele frequencies, e.g. if working on humans then from gnomAD. The VCF INFO field contains the allele frequency (AF) tag. See the <a rel="nofollow" href="https://software.broadinstitute.org/gatk/download/bundle">GATK Resource Bundle</a> or the <a rel="nofollow" href="https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_hellbender_tools_walkers_mutect_Mutect2.php">Mutect2 tool documentation</a> for an example.</li>
+<li>To create the PoN, call on each normal sample using Mutect2's tumor-only mode and then use GATK4's CreateSomaticPanelOfNormals, a tool new to GATK4. This contrasts with the GATK3 workflow, which uses an <strong><em>artifact calling mode</em></strong> in MuTect2 and CombineVariants for PoN creation. In GATK4, omitting to filter with FilterMutectCalls achieves the same result.</li>
+<li>Instead of using a maximum likelihood estimate to calculate the variant likelihoods, GATK4 Mutect2 marginalizes over allele fractions using a Bayesian likelihoods model.  See the <a rel="nofollow" href="https://github.com/broadinstitute/gatk/blob/master/docs/mutect/mutect.pdf">Mutect2 methods whitepaper</a> for algorithm details. GATK3 MuTect2 uses allele depths (AD) directly to estimate allele fractions and calculate likelihoods. In contrast, GATK4 Mutect2 factors for the statistical error inherent in allele depths by marginalizing over allele fractions when calculating likelihoods.</li>
+<li>In GATK4, we recommend including cross-sample contamination estimates from CalculateContamination when filtering with FilterMutectCalls. CalculateContamination, in turn, relies on the results of GetPileupSummaries and can incorporate information from the matched normal, if available, when calculating the contamination in the tumor sample.</li>
+</ol><hr></hr><p>What remains unchanged is that neither version calls potential loss of heterozygosity (LoH) events. To detect LoH, see the Somatic Copy Number Variant (CNV) workflow.</p>
+
+<hr></hr><p>You can find tutorials that explore consideration in the GATK3 workflow or the GATK4 workflow on our forum.</p>
+
+<ul><li><a rel="nofollow" href="https://software.broadinstitute.org/gatk/documentation/article?id=9183">Tutorial#9183</a> outlines the GATK3 MuTect2 workflow.</li>
+<li><a rel="nofollow" href="https://software.broadinstitute.org/gatk/documentation/article?id=11136">Tutorial#11136</a> outlines the GATK4 Mutect2 workflow.</li>
+<li>If you are wondering about the differences between Mutect2 and HaplotypeCaller, see <a rel="nofollow" href="https://software.broadinstitute.org/gatk/documentation/article?id=11127">Article#11127</a>.</li>
+<li>If you are nostalgic for the original MuTect, you can get it as a standalone jar from the <a rel="nofollow" href="https://software.broadinstitute.org/gatk/download/mutect">MuTect1 Download page</a>. The version is v1.1.7 and it requires Java 7 to run. MuTect1 is a somatic pileup caller that calls SNVs only. That is, it does not call indels, and therefore workflows that use it <a rel="nofollow" href="https://software.broadinstitute.org/gatk/blog?id=7847">should include indel realignment</a>. Version 1.1.7 writes results to VCF format (specify with <code class="code codeInline" spellcheck="false">–-vcf</code>). For example usage commands see <a rel="nofollow" href="https://gatkforums.broadinstitute.org/gatk/discussion/6033/a-gatk-runtime-error-has-occurred-version-3-1-0-g72492bb#latest">this thread</a>. For prior versions that give results in MAF format, see the <a rel="nofollow" href="http://archive.broadinstitute.org/cancer/cga/mutsig_download">Broad CGA website</a>. For workflows that use a composite of MuTect1 SNV calls and MuTect2 indel calls, see <a rel="nofollow" href="https://gatkforums.broadinstitute.org/firecloud/discussion/7512">FireCloud Article#7512</a>.</li>
+</ul><p><br></p>
+
+<hr></hr>

@@ -1,0 +1,11 @@
+## March 2019 workshop videos on YouTube
+
+By Geraldine_VdAuwera
+
+<p>The videos from the GATK workshop we ran at the Broad Institute in March are now available on YouTube! This complements the slide decks and tutorials, which were already online.</p>
+
+<p>This was an updated version of our classic GATK workshop, a four day bootcamp-style course that empowers participants to understand and run the full range of GATK Best Practice workflows, covering all the basic genomics involved, data processing and variant calling for nearly all major classes of variants (structural variants being the exception -- that work is still in progress). The workshop involves a balanced mix of talks and hands-on tutorials to communicate both the theoretical knowledge and the practical skills necessary to utilize GATK tools and pipelines.</p>
+
+<p>In this updated form, the workshop materials stand largely on their own, with tutorials that can be run on our cloud platform, <a rel="nofollow" href="https://app.terra.bio">Terra</a>. So anyone should be able to use them from the comfort of their own home (or lab) as I've written about previously <a rel="nofollow" href="https://software.broadinstitute.org/gatk/blog?id=24191">here (overall concept)</a> and in some more practical detail <a rel="nofollow" href="https://software.broadinstitute.org/gatk/blog?id=24175">here (tutorial notebook highlights)</a>. I encourage you to check these out! We've been getting some good feedback about how useful the tutorials are, whether you're just getting started or have been using GATK for sometime but want to get more deeply familiar with how the tools work.</p>
+
+<p>The videos were the missing piece to fully communicate the theory of what's going on under the hood, since it had been a long time since we'd had the opportunity to record workshop talks. So I'm really thrilled that these are finally online. You can jump directly to the <a rel="nofollow" href="https://www.youtube.com/playlist?list=PLlMMtlgw6qNiqr_qtiU4CVeKFrlGj3YZO">playlist on YouTube</a> or you can check out the <a rel="nofollow" href="https://support.terra.bio/hc/en-us/articles/360029633732-GATK-workshop-at-BroadE-March-2019">more complete workshop information page</a>, which also collates a bunch of other useful resources including slide decks and tutorials.</p>

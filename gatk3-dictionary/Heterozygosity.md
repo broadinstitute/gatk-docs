@@ -1,0 +1,13 @@
+## Heterozygosity
+
+By Geraldine_VdAuwera
+
+<h3>Heterozygosity in population genetics</h3>
+
+<p>In the context of population genetics, heterozygosity can refer to the fraction of individuals in a given population that are heterozygous at a given locus, or the fraction of loci that are heterozygous in an individual. See the Wikipedia entries on <a rel="nofollow" href="http://en.wikipedia.org/wiki/Zygosity#Heterozygosity_in_population_genetics">Heterozygosity</a> and <a rel="nofollow" href="https://en.wikipedia.org/wiki/Coalescent_theory">Coalescent Theory</a> as well as the book "Population Genetics: A Concise Guide" by John H. Gillespie for further details on related theory.</p>
+
+<h3>Heterozygosity in GATK</h3>
+
+<p>In GATK genotyping, we use an "expected heterozygosity" value to compute the prior probability that a locus is non-reference. Given the expected heterozygosity <code class="code codeInline" spellcheck="false">hets</code>, we calculate the probability of N samples being hom-ref at a site as <code class="code codeInline" spellcheck="false">1 - sum_i_2N (hets / i)</code>. The default value provided for humans is <code class="code codeInline" spellcheck="false">hets = 1e-3</code>;  a value of 0.001 implies that two randomly chosen chromosomes from the population of organisms would differ from each other at a rate of 1 in 1000 bp. In this context <code class="code codeInline" spellcheck="false">hets</code> is analogous to the parameter <code class="code codeInline" spellcheck="false">theta</code> from population genetics. The <code class="code codeInline" spellcheck="false">hets</code> parameter value can be modified if desired.</p>
+
+<p>Note that this quantity has nothing to do with the likelihood of any given sample having a heterozygous genotype, which in the GATK is purely determined by the probability of the observed data P(D | AB) under the model that there may be an AB heterozygous genotype. The posterior probability of this AB genotype would use the <code class="code codeInline" spellcheck="false">hets</code> prior, but the GATK only uses this posterior probability in determining the probability that a site is polymorphic.  So changing the <code class="code codeInline" spellcheck="false">hets</code> parameters only increases the chance that a site will be called non-reference across all samples, but doesn't actually change the output genotype likelihoods at all, as these aren't <em>posterior</em> probabilities. The one quantity that changes whether the GATK considers the possibility of a heterozygous genotype at all is the <em>ploidy</em>, which describes how many copies of each chromosome each individual in the species carries.</p>

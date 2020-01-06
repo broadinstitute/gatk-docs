@@ -1,0 +1,15 @@
+## WDL building blocks: A tour of resources for pipelining with WDL
+
+By KateN
+
+<p>You may have noticed we’ve been talking about this new thing called WDL--the Workflow Definition Language. We've published a <a rel="nofollow" href="https://software.broadinstitute.org/gatk/documentation/article?id=8017">tutorial</a> using WDL to run some GATK tasks, as well as <a rel="nofollow" href="https://software.broadinstitute.org/gatk/blog?id=8104">a pipeline implementation of the Best Practices for germline short variant discovery written in WDL</a>. These fully-baked WDL scripts assume you already know what to do with them, but you may be wondering where to start. Whether you need a few pointers to get you started, or you’re completely new to this, we’ve got you covered. <br><small>(And if you’re just looking for how to run pre-written WDLs, head on over to the <a rel="nofollow" href="https://software.broadinstitute.org/wdl/userguide/execution">executions</a> section. You can still learn a lot from reading the rest of this article too though!)</small></p>
+
+<p>WDL is designed to be easy to use--"human readable and writable" is our promise. You should think of building a pipeline with WDL like building with legos. The final product (like that full pipeline script I linked before) can look quite complex, but it is a simple matter of going step by step with your WDL building blocks.</p>
+
+<p></p><div style="text-align: center;"><img src="https://us.v-cdn.net/5019796/uploads/FileUpload/f6/f1fe4c0aa4e90bc66ea7c8d8405a3d.png" width="400" alt="image" class="embedImage-img importedEmbed-img"></img></div>
+
+<p>I would recommend that you get started by reading our <a rel="nofollow" href="https://software.broadinstitute.org/wdl/userguide/">user guide</a>. By reading through and clicking to the next article at the bottom of each page, the user guide will introduce you to all the pieces you can use in your lego-pipeline--from what pieces you'll need all the way through how to test &amp; run your pipeline once you've finished it.</p>
+
+<p>Once you've got a handle on what WDL can do, head over to the <a rel="nofollow" href="https://software.broadinstitute.org/wdl/userguide/topic?name=wdl-tutorials">tutorials</a> section. In these sequential tutorials, I walk you through how to use those building blocks to implement a small part of the GATK pipeline. Each tutorial builds on the previous one to help you learn to use WDL in new ways without repeating all of your earlier work.</p>
+
+<p>You've read the user guide and you've run through the tutorials; you now have all you need to get started writing your very own WDLs. If you get stuck on something, you can always see how we do things in <a rel="nofollow" href="https://github.com/broadinstitute/wdl/tree/develop/scripts">these real WDL scripts</a>. If you have a more specific question, don't hesitate to post it on our <a rel="nofollow" href="http://gatkforums.broadinstitute.org/wdl/categories/ask-the-wdl-team">WDL forum</a>. Happy building!</p>

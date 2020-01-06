@@ -1,0 +1,24 @@
+## Introducing a new forum support policy
+
+By Tiffany_at_Broad
+
+<p>Hello! My name is Tiffany; I manage the frontline team that supports GATK and some other software and services developed by the Data Sciences Platform (DSP) at the Broad, like Terra, FireCloud, and WDL. Our team's mission is to provide high-quality support to everyone who uses our tools, with the ultimate goal of enabling all of you to use them effectively. In practice that means we answer your questions on the forum, we develop and maintain many of the resource workspaces in Terra, and we work closely with the DSP User Education team members who write documentation and develop materials for workshops. (We love meeting forum members in person at workshops!)</p>
+
+<p>I wanted to let you know that we're rolling out a <a rel="nofollow" href="https://gatkforums.broadinstitute.org/gatk/discussion/24417/what-types-of-questions-will-the-gatk-frontline-team-answer#latest" title="new support policy for GATK">new support policy for GATK</a>, and I'd like to explain where this is coming from.</p>
+
+<p>We've been facing a mounting challenge over the past few years: the amount of GATK support requests we get is starting to exceed our capacity, mainly because the scope of the GATK and the size of its user community have both expanded substantially over time.</p>
+
+<p>To put things into perspective, the GATK forum was launched in 2012 to a few hundred users.<br>
+The <a rel="nofollow" href="https://software.broadinstitute.org/gatk/blog?id=67" title="first blog post">first blog post</a>, dated July 2012, was the release notes for GATK 2.0, in which HaplotypeCaller was introduced as a “New tool”. Crazy, right? (Please, nobody mention ReduceReads, or Geraldine will start crying). Since then, GATK has gone from covering a single primary use case (germline short variants, involving about 10 main tools) to an assortment of pipelines that covers all germline and somatic variant classes (including copy number and structural variation) plus several side uses like mitochondrial variants. Meanwhile, we estimate that at least 60,000 people use or have used the GATK, with about 2,000 new people joining the community every quarter.</p>
+
+<p>As a result, we are seeing on average seventy-two questions a week, often with spikes of even higher numbers following new GATK releases. Here is some data from five weeks this past summer; each bar is a week, with the colors showing the breakdown of questions per day.<br><img src="https://us.v-cdn.net/5019796/uploads/editor/vv/mrra6c6c1ekj.png" alt="" title="" class="embedImage-img importedEmbed-img"></img></p>
+
+<p>During this whole time, we've had just one person dedicated full-time to answering forum questions. It used to be Geraldine, then Sheila, and now it's Bhanu, who has been doing a heroic job since she joined us last year. But today, the volume of incoming requests (and in many cases, the rising level of complexity of the questions) is simply too great for a single person to address, even with occasional reinforcements from others on our team.</p>
+
+<p>We are deeply humbled by the fact that so many people are using GATK, and there is nothing our little frontline team cares about more than providing the best support that we possibly can. So we looked at what we could do to deliver the highest level of quality and service given the constraints we're operating under.</p>
+
+<p>So far, we’ve been focused on addressing <em>all</em> questions as quickly as possible. That might sound great in principle, but the downside is that we're spending time on questions that are either already addressed in the documentation (though the answers are not always easy to find) or pertain to unsupported use cases that take a lot of digging and may not even be answerable without some analysis work. Meanwhile, we're not prioritizing questions (or bug reports) that have a disproportionately high impact (either in terms of severity, urgency or number of people affected). Yet we feel that the research community as a whole would be better served if we were to prioritize those problems. That's why we decided to develop a <a rel="nofollow" href="https://gatkforums.broadinstitute.org/gatk/discussion/24417/what-types-of-questions-will-the-gatk-frontline-team-answer#latest" title="new support policy">new support policy</a> that sets some clear priorities and spells out more explicitly what we are able to support versus what we will leave to the community to discuss and hopefully resolve.</p>
+
+<p>In my next blog post, I'll explain a bit more how this will work in practice, to set clear expectations so no one feels left in the lurch. In the meantime, let me know if you have any concerns; I'm open to tweaking the policy as needed so I'd love to get your feedback as we roll this out.</p>
+
+<p>Thanks for reading and being a part of this community!</p>

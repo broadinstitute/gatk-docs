@@ -1,0 +1,19 @@
+{
+  "summary": "Phred-scaled p-value for exact test of excess heterozygosity\n\n This annotation estimates excess heterozygosity in a population of samples.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": " It is related to but distinct from InbreedingCoeff, which estimates evidence for inbreeding in a population. ExcessHet scales more reliably to large cohort sizes.\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eThis annotation is a one-sided phred-scaled p-value using an exact test of the Hardy-Weinberg Equilibrium. The null hypothesis is that the number of heterozygotes follows the Hardy-Weinberg Equilibrium. The p-value is the probability of getting the same or more heterozygotes as was observed, given the null hypothesis. \u003c/p\u003e\n \u003cp\u003eThe implementation used is adapted from Wigginton JE, Cutler DJ, Abecasis GR. A Note on Exact Tests of Hardy-Weinberg Equilibrium. American Journal of Human Genetics. 2005;76(5):887-893.\u003c/p\u003e\n \u003cp\u003eThe p-value is calculated exactly by using the Levene-Haldane distribution. This implementation also uses a mid-p correction as described by Graffelman, J. \u0026 Moreno, V. (2013). The mid p-value in exact tests for Hardy-Weinberg equilibrium. Statistical Applications in Genetics and Molecular Biology, 12(4), pp. 433-448. \u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eThe annotation is not accurate for very small p-values. Beyond 1.0E-16 there is no guarantee that the p-value is accurate, just that it is in fact smaller than 1.0E-16. \u003c/li\u003e\n \u003cli\u003eFor multiallelic sites, all non-reference alleles are treated as a single alternate allele.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_annotator_InbreedingCoeff.html\"\u003eInbreedingCoeff\u003c/a\u003e\u003c/b\u003e estimates whether there is evidence of inbreeding in a population\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AS_InbreedingCoeff.html\"\u003eAS_InbreedingCoeff\u003c/a\u003e\u003c/b\u003e outputs an allele-specific version of the InbreedingCoeff annotation.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "ExcessHet",
+  "annotinfo": "StandardAnnotation, ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dExcessHet,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Phred-scaled p-value for exact test of excess heterozygosity\u0026quot;\u0026gt;"
+  ]
+}

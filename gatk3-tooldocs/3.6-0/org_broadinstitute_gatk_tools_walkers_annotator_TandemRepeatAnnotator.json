@@ -1,0 +1,21 @@
+{
+  "summary": "Tandem repeat unit composition and counts per allele",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation tags variants that fall within tandem repeat sets. It also provides the composition of the tandem repeat units and the number of times they are repeated for each allele (including the REF allele).\u003c/p\u003e\n\n \u003cp\u003eA tandem repeat unit is composed of one or more nucleotides that are repeated multiple times in series. Repetitive sequences are difficult to map to the reference because they are associated with multiple alignment possibilities. Knowing the number of repeat units in a set of tandem repeats tells you the number of different positions the tandem repeat can be placed in. The observation of many tandem repeat units multiplies the number of possible representations that can be made of the region.",
+  "name": "TandemRepeatAnnotator",
+  "annotinfo": "StandardUGAnnotation, ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dSTR,Number\u003d0,Type\u003dFlag,Description\u003d\u0026quot;Variant is a short tandem repeat\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dRU,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Tandem repeat unit (bases)\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dRPA,Number\u003d.,Type\u003dInteger,Description\u003d\u0026quot;Number of times tandem repeat unit is repeated, for each allele (including reference)\u0026quot;\u0026gt;"
+  ]
+}

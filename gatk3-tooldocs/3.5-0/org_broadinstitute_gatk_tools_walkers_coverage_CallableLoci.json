@@ -1,0 +1,214 @@
+{
+  "summary": "Collect statistics on callable, uncallable, poorly mapped, and other parts of the genome",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Output format",
+      "name": "--format",
+      "synonyms": "-format",
+      "type": "OutputFormat",
+      "required": "no",
+      "fulltext": "The output of this tool will be written in this format.  The recommended option is BED.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": [
+        {
+          "summary": "The output will be written as a BED file.  There\u0027s a BED element for each\n continuous run of callable states (i.e., PASS, REF_N, etc).  This is the recommended\n format",
+          "name": "BED"
+        },
+        {
+          "summary": "Emit chr start stop state quads for each base.  Produces a potentially disastrously\n large amount of output.",
+          "name": "STATE_PER_BASE"
+        }
+      ]
+    },
+    {
+      "summary": "Maximum read depth before a locus is considered poorly mapped",
+      "name": "--maxDepth",
+      "synonyms": "-maxDepth",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If the QC+ depth exceeds this value the site is considered to have EXCESSIVE_DEPTH",
+      "defaultValue": "-1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "If the fraction of reads at a base with low mapping quality exceeds this value, the site may be poorly mapped",
+      "name": "--maxFractionOfReadsWithLowMAPQ",
+      "synonyms": "-frlmq",
+      "type": "double",
+      "required": "no",
+      "fulltext": "If the number of reads at this site is greater than minDepthForLowMAPQ and the fraction of reads with low mapping quality\n exceeds this fraction then the site has POOR_MAPPING_QUALITY.",
+      "defaultValue": "0.1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Maximum value for MAPQ to be considered a problematic mapped read.",
+      "name": "--maxLowMAPQ",
+      "synonyms": "-mlmq",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "The gap between this value and mmq are reads that are not sufficiently well mapped for calling but\n aren\u0027t indicative of mapping problems.  For example, if maxLowMAPQ \u003d 1 and mmq \u003d 20, then reads with\n MAPQ \u003d\u003d 0 are poorly mapped, MAPQ \u003e\u003d 20 are considered as contributing to calling, where\n reads with MAPQ \u003e\u003d 1 and \u003c 20 are not bad in and of themselves but aren\u0027t sufficiently good to contribute to\n calling.  In effect this reads are invisible, driving the base to the NO_ or LOW_COVERAGE states",
+      "defaultValue": "1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum quality of bases to count towards depth.",
+      "name": "--minBaseQuality",
+      "synonyms": "-mbq",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "Bases with less than minBaseQuality are viewed as not sufficiently high quality to contribute to the PASS state",
+      "defaultValue": "20",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum QC+ read depth before a locus is considered callable",
+      "name": "--minDepth",
+      "synonyms": "-minDepth",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If the number of QC+ bases (on reads with MAPQ \u003e minMappingQuality and with base quality \u003e minBaseQuality) exceeds this\n value and is less than maxDepth the site is considered PASS.",
+      "defaultValue": "4",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum read depth before a locus is considered a potential candidate for poorly mapped",
+      "name": "--minDepthForLowMAPQ",
+      "synonyms": "-mdflmq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "We don\u0027t want to consider a site as POOR_MAPPING_QUALITY just because it has two reads, and one is MAPQ.  We\n won\u0027t assign a site to the POOR_MAPPING_QUALITY state unless there are at least minDepthForLowMAPQ reads\n covering the site.",
+      "defaultValue": "10",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum mapping quality of reads to count towards depth.",
+      "name": "--minMappingQuality",
+      "synonyms": "-mmq",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "Reads with MAPQ \u003e minMappingQuality are treated as usable for variation detection, contributing to the PASS\n state.",
+      "defaultValue": "10",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Name of file for output summary",
+      "name": "--summary",
+      "synonyms": "-summary",
+      "type": "File",
+      "required": "yes",
+      "fulltext": "Callable loci summary counts will be written to this file.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n A very common question about a NGS set of reads is what areas of the genome are considered callable. This tool\n considers the coverage at each locus and emits either a per base state or a summary interval BED file that\n partitions the genomic intervals into the following callable states:\n \u003cdl\u003e\n \u003cdt\u003eREF_N\u003c/dt\u003e\n \u003cdd\u003eThe reference base was an N, which is not considered callable the GATK\u003c/dd\u003e\n \u003cdt\u003ePASS\u003c/dt\u003e\n \u003cdd\u003eThe base satisfied the min. depth for calling but had less than maxDepth to avoid having EXCESSIVE_COVERAGE\u003c/dd\u003e\n \u003cdt\u003eNO_COVERAGE\u003c/dt\u003e\n \u003cdd\u003eAbsolutely no reads were seen at this locus, regardless of the filtering parameters\u003c/dd\u003e\n \u003cdt\u003eLOW_COVERAGE\u003c/dt\u003e\n \u003cdd\u003eThere were fewer than min. depth bases at the locus, after applying filters\u003c/dd\u003e\n \u003cdt\u003eEXCESSIVE_COVERAGE\u003c/dt\u003e\n \u003cdd\u003eMore than -maxDepth read at the locus, indicating some sort of mapping problem\u003c/dd\u003e\n \u003cdt\u003ePOOR_MAPPING_QUALITY\u003c/dt\u003e\n \u003cdd\u003eMore than --maxFractionOfReadsWithLowMAPQ at the locus, indicating a poor mapping quality of the reads\u003c/dd\u003e\n \u003c/dl\u003e\n \u003c/p\u003e\n \u003cp/\u003e\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A BAM file containing \u003cb\u003eexactly one sample\u003c/b\u003e.\n \u003c/p\u003e\n \u003cp/\u003e\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n     A file with the callable status covering each base and a table of callable status x count of all examined bases\n \u003c/p\u003e\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n  java -jar GenomeAnalysisTK.jar \\\n     -T CallableLoci \\\n     -R reference.fasta \\\n     -I myreads.bam \\\n     -summary table.txt \\\n     -o callable_status.bed\n \u003c/pre\u003e\n \u003cp/\u003e\n would produce a BED file that looks like:\n \u003cp/\u003e\n \u003cpre\u003e\n     20 10000000 10000864 PASS\n     20 10000865 10000985 POOR_MAPPING_QUALITY\n     20 10000986 10001138 PASS\n     20 10001139 10001254 POOR_MAPPING_QUALITY\n     20 10001255 10012255 PASS\n     20 10012256 10012259 POOR_MAPPING_QUALITY\n     20 10012260 10012263 PASS\n     20 10012264 10012328 POOR_MAPPING_QUALITY\n     20 10012329 10012550 PASS\n     20 10012551 10012551 LOW_COVERAGE\n     20 10012552 10012554 PASS\n     20 10012555 10012557 LOW_COVERAGE\n     20 10012558 10012558 PASS\n \u003c/pre\u003e\n as well as a summary table that looks like:\n \u003cp/\u003e\n \u003cpre\u003e\n                        state nBases\n                        REF_N 0\n                         PASS 996046\n                  NO_COVERAGE 121\n                 LOW_COVERAGE 928\n           EXCESSIVE_COVERAGE 0\n         POOR_MAPPING_QUALITY 2906\n \u003c/pre\u003e",
+  "name": "CallableLoci",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 1000
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

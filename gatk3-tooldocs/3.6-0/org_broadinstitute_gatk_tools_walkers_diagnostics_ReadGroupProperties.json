@@ -1,0 +1,61 @@
+{
+  "summary": "Collect statistics about read groups and their properties",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "READ",
+  "walkertype": "ReadWalker",
+  "arguments": [
+    {
+      "summary": "Calculate median from the first maxElementsForMedian values observed",
+      "name": "--max_values_for_median",
+      "synonyms": "-maxElementsForMedian",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "10000",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool emits a GATKReport containing read group, sample, library, platform, center, sequencing data,\n paired end status, simple read type name (e.g. 2x76) median insert size and median read length\n for each read group in every provided BAM file.\u003c/p\u003e\n\n \u003cp\u003eNote that this walker stops when all read groups have been observed at least a few thousand times so that\n the median statistics are well determined.  It is safe to run it on whole genome sequence data and expect it to\n finish in an appropriate timeframe.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n  \u003cp\u003e\n      Any number of BAM files\n  \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n  \u003cp\u003e\n      GATKReport containing read group, sample, library, platform, center, median insert size and median read length.\n\n      For example, running this tool on the NA12878 data sets:\n\n      \u003cpre\u003e\n      ##:GATKReport.v0.2 ReadGroupProperties : Table of read group properties\n      readgroup  sample   library       platform  center  date     has.any.reads  is.paired.end  n.reads.analyzed  simple.read.type  median.read.length  median.insert.size\n      20FUK.1    NA12878  Solexa-18483  illumina  BI      2/2/10   true           true                        498  2x101                            101                 386\n      20FUK.2    NA12878  Solexa-18484  illumina  BI      2/2/10   true           true                        476  2x101                            101                 417\n      20FUK.3    NA12878  Solexa-18483  illumina  BI      2/2/10   true           true                        407  2x101                            101                 387\n      20FUK.4    NA12878  Solexa-18484  illumina  BI      2/2/10   true           true                        389  2x101                            101                 415\n      20FUK.5    NA12878  Solexa-18483  illumina  BI      2/2/10   true           true                        433  2x101                            101                 386\n      20FUK.6    NA12878  Solexa-18484  illumina  BI      2/2/10   true           true                        480  2x101                            101                 418\n      20FUK.7    NA12878  Solexa-18483  illumina  BI      2/2/10   true           true                        450  2x101                            101                 386\n      20FUK.8    NA12878  Solexa-18484  illumina  BI      2/2/10   true           true                        438  2x101                            101                 418\n      20GAV.1    NA12878  Solexa-18483  illumina  BI      1/26/10  true           true                        490  2x101                            101                 391\n      20GAV.2    NA12878  Solexa-18484  illumina  BI      1/26/10  true           true                        485  2x101                            101                 417\n      20GAV.3    NA12878  Solexa-18483  illumina  BI      1/26/10  true           true                        460  2x101                            101                 392\n      20GAV.4    NA12878  Solexa-18484  illumina  BI      1/26/10  true           true                        434  2x101                            101                 415\n      20GAV.5    NA12878  Solexa-18483  illumina  BI      1/26/10  true           true                        479  2x101                            101                 389\n      20GAV.6    NA12878  Solexa-18484  illumina  BI      1/26/10  true           true                        461  2x101                            101                 416\n      20GAV.7    NA12878  Solexa-18483  illumina  BI      1/26/10  true           true                        509  2x101                            101                 386\n      20GAV.8    NA12878  Solexa-18484  illumina  BI      1/26/10  true           true                        476  2x101                            101                 410                           101                 414\n      \u003c/pre\u003e\n  \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n  \u003cpre\u003e\n    java -jar GenomeAnalysisTK.jar \\\n      -T ReadGroupProperties \\\n      -R reference.fasta \\\n      -I example1.bam \\\n      -I example2.bam \\\n      -o readgroup_report.grp\n  \u003c/pre\u003e",
+  "name": "ReadGroupProperties",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "NONE",
+    "to_cov": -1
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

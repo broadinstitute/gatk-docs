@@ -1,0 +1,160 @@
+{
+  "summary": "Generate an alternative reference sequence over the specified interval",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Maximum length of sequence to write per line",
+      "name": "--lineWidth",
+      "synonyms": "-lw",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "60",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Print sequences with no FASTA header lines, one line per interval (i.e. lineWidth \u003d infinity)",
+      "name": "--rawOnelineSeq",
+      "synonyms": "-raw",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Please note that when using this argument adjacent intervals will automatically be merged.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "SNP mask VCF file",
+      "name": "--snpmask",
+      "synonyms": "-snpmask",
+      "type": "RodBinding[VariantContext]",
+      "required": "no",
+      "fulltext": "SNPs from this file are used as a mask (inserting N\u0027s in the sequence) when constructing the alternate reference",
+      "defaultValue": "none",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "SNP mask priority",
+      "name": "--snpmaskPriority",
+      "synonyms": "-snpmaskPriority",
+      "type": "Boolean",
+      "required": "no",
+      "fulltext": "Gives priority to a SNP mask over an input VCF for a site. Only has an effect if the --snpmask argument is used.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "If specified, heterozygous SNP sites will be output using IUPAC ambiguity codes given the genotypes for this sample",
+      "name": "--use_IUPAC_sample",
+      "synonyms": "-IUPAC",
+      "type": "String",
+      "required": "no",
+      "fulltext": "This option will generate an error if the specified sample does not exist in the VCF.\n Non-diploid (or non-called) genotypes are ignored.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 50,
+    "start": -1
+  },
+  "description": "\n\n \u003cp\u003eGiven a variant callset, this tool replaces the reference bases at variation sites with the bases supplied in the\n corresponding callset records. Additionally, it allows for one or more \"snpmask\" VCFs to set overlapping bases to \u0027N\u0027.\u003c/p\u003e\n\n \u003cp\u003eThe output format can be partially controlled using the provided command-line arguments.\n Specify intervals with the usual -L argument to output only the reference bases within your intervals.\n Overlapping intervals are automatically merged; reference bases for each disjoint interval will be output as a\n separate fasta sequence (named numerically in order).\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eIf there are multiple variants that start at a site, it chooses one of them randomly.\u003c/li\u003e\n     \u003cli\u003eWhen there are overlapping indels (but with different start positions) only the first will be chosen.\u003c/li\u003e\n     \u003cli\u003eThis tool works only for SNPs and for simple indels (but not for things like complex substitutions).\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n The reference, requested intervals, and any number of variant ROD files.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A FASTA file representing the requested intervals.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T FastaAlternateReferenceMaker \\\n   -R reference.fasta \\\n   -o output.fasta \\\n   -L input.intervals \\\n   -V input.vcf \\\n   [--snpmask mask.vcf]\n \u003c/pre\u003e",
+  "name": "FastaAlternateReferenceMaker",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 1000
+  },
+  "group": "Reference Utilities",
+  "annotfield": ""
+}

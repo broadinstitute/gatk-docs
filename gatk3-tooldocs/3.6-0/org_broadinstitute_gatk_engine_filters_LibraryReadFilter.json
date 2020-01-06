@@ -1,0 +1,33 @@
+{
+  "summary": "Only use reads from the specified library",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "The name of the library to keep, filtering out all others",
+      "name": "--library",
+      "synonyms": "-library",
+      "type": "String",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is useful for running on only a subset of the data as identified by a read group property.\n In the case of the library filter, the goal is usually to run quality control checks on a particular library.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eEnable the library read filter\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf LibraryRead \\\n         -library library_name\n \u003c/pre\u003e",
+  "name": "LibraryReadFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

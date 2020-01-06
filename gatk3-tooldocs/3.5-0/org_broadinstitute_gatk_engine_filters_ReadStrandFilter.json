@@ -1,0 +1,33 @@
+{
+  "summary": "Filter out reads based on strand orientation",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "Discard reads on the forward strand",
+      "name": "--filterPositive",
+      "synonyms": "-fp",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is useful for isolating reads from only forward or reverse strands. By default, it filters out reads\n from the negative (reverse) strand. This logic can be reversed by using the -filterPositive flag.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eSet the read strand filter to filter out positive (forward) strand reads\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf ReadStrand \\\n         -filterPositive\n \u003c/pre\u003e",
+  "name": "ReadStrandFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

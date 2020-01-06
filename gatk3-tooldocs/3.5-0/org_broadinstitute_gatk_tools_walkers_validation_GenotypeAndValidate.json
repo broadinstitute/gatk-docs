@@ -1,0 +1,179 @@
+{
+  "summary": "Genotype and validate a dataset and the calls of another dataset using the Unified Genotyper",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "http://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "The set of alleles at which to genotype",
+      "name": "--alleles",
+      "synonyms": "-alleles",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "The callset to be used as truth (default) or validated (if BAM file is set to truth).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "Condition validation on a minimum depth of coverage by the reads",
+      "name": "--condition_on_depth",
+      "synonyms": "-depth",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Only validate sites that have at least a given depth",
+      "defaultValue": "-1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Maximum deletion fraction for calling a genotype",
+      "name": "--maximum_deletion_fraction",
+      "synonyms": "-deletions",
+      "type": "double",
+      "required": "no",
+      "fulltext": "The maximum deletion fraction allowed in a site for calling a genotype. This argument is passed to the Unified Genotyper.",
+      "defaultValue": "-1.0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum base quality score for calling a genotype",
+      "name": "--minimum_base_quality_score",
+      "synonyms": "-mbq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "The minimum base quality score necessary for a base to be considered when calling a genotype. This argument is passed to the Unified Genotyper.",
+      "defaultValue": "-1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Output VCF file with annotated variants",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "The optional output file that will have all the variants used in the Genotype and Validation essay.\n The new annotation `callStatus` will carry the value called in the validation VCF or BAM file.\"",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Use the calls on the reads (bam file) as the truth dataset and validate the calls on the VCF",
+      "name": "--set_bam_truth",
+      "synonyms": "-bt",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Makes the Unified Genotyper calls to the BAM file the truth dataset and validates the alleles ROD binding callset.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "the minimum phred-scaled Qscore threshold to separate high confidence from low confidence calls",
+      "name": "--standard_min_confidence_threshold_for_calling",
+      "synonyms": "-stand_call_conf",
+      "type": "double",
+      "required": "no",
+      "fulltext": "the minimum phred-scaled Qscore threshold to separate high confidence from low confidence calls. This argument is passed to the Unified Genotyper.",
+      "defaultValue": "-1.0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "the minimum phred-scaled Qscore threshold to emit low confidence calls",
+      "name": "--standard_min_confidence_threshold_for_emitting",
+      "synonyms": "-stand_emit_conf",
+      "type": "double",
+      "required": "no",
+      "fulltext": "the minimum phred-scaled Qscore threshold to emit low confidence calls. This argument is passed to the Unified Genotyper.",
+      "defaultValue": "-1.0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 200,
+    "start": -200
+  },
+  "description": "\n\n  \u003ch4\u003eNote that this is an old tool that makes use of the UnifiedGenotyper, which has since been\n  deprecated in favor of the HaplotypeCaller.\u003c/h4\u003e\n  \u003cp\u003e\n     Genotype and Validate is a tool to evaluate the quality of a dataset for calling SNPs\n     and Indels given a secondary (validation) data source. The data sources are BAM or VCF\n     files. You can use them interchangeably (i.e. a BAM to validate calls in a VCF or a VCF\n     to validate calls on a BAM).\n  \u003c/p\u003e\n\n  \u003cp\u003e\n     The simplest scenario is when you have a VCF of hand annotated SNPs and Indels, and you\n     want to know how well a particular technology performs calling these snps. With a\n     dataset (BAM file) generated by the technology in test, and the hand annotated VCF, you\n     can run GenotypeAndValidate to asses the accuracy of the calls with the new technology\u0027s\n     dataset.\n  \u003c/p\u003e\n\n  \u003cp\u003e\n     Another option is to validate the calls on a VCF file, using a deep coverage BAM file\n     that you trust the calls on. The GenotypeAndValidate walker will make calls using the\n     reads in the BAM file and take them as truth, then compare to the calls in the VCF file\n     and produce a truth table.\n  \u003c/p\u003e\n\n\n \u003ch3\u003eInput\u003c/h3\u003e\n  \u003cp\u003e\n      A BAM file to make calls on and a VCF file to use as truth validation dataset.\n\n      You also have the option to invert the roles of the files using the command line options listed below.\n  \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n  \u003cp\u003e\n      GenotypeAndValidate has two outputs. The truth table and the optional VCF file. The truth table is a\n      2x2 table correlating what was called in the dataset with the truth of the call (whether it\u0027s a true\n      positive or a false positive). The table should look like this:\n  \u003c/p\u003e\n \u003ccenter\u003e\n \u003ctable id\u003d\"description-table\"\u003e\n     \u003ctr\u003e\n         \u003cth\u003e\u003c/th\u003e\n         \u003cth\u003eALT\u003c/th\u003e\n         \u003cth\u003eREF\u003c/th\u003e\n         \u003cth\u003ePredictive Value\u003c/th\u003e\n     \u003c/tr\u003e\n     \u003ctr\u003e\n         \u003ctd\u003e\u003cb\u003ecalled alt\u003c/b\u003e\u003c/td\u003e\n         \u003ctd\u003eTrue Positive (TP)\u003c/td\u003e\n         \u003ctd\u003eFalse Positive (FP)\u003c/td\u003e\n         \u003ctd\u003ePositive PV\u003c/td\u003e\n     \u003c/tr\u003e\n     \u003ctr\u003e\n         \u003ctd\u003e\u003cb\u003ecalled ref\u003c/b\u003e\u003c/td\u003e\n         \u003ctd\u003eFalse Negative (FN)\u003c/td\u003e\n         \u003ctd\u003eTrue Negative (TN)\u003c/td\u003e\n         \u003ctd\u003eNegative PV\u003c/td\u003e\n     \u003c/tr\u003e\n \u003c/table\u003e\n \u003c/center\u003e\n\n  \u003cp\u003e\n      The \u003cb\u003epositive predictive value (PPV)\u003c/b\u003e is the proportion of subjects with positive test results\n      who are correctly diagnosed.\n  \u003c/p\u003e\n  \u003cp\u003e\n      The \u003cb\u003enegative predictive value (NPV)\u003c/b\u003e is the proportion of subjects with a negative test result\n      who are correctly diagnosed.\n  \u003c/p\u003e\n  \u003cp\u003e\n      The VCF file will contain only the variants that were called or not called, excluding the ones that\n      were uncovered or didn\u0027t pass the filters. This file is useful if you are trying to compare\n      the PPV and NPV of two different technologies on the exact same sites (so you can compare apples to\n      apples).\n  \u003c/p\u003e\n\n  \u003cp\u003e\n      Here is an example of an annotated VCF file (info field clipped for clarity)\n\n \u003cpre\u003e\n #CHROM  POS ID  REF ALT QUAL    FILTER  INFO    FORMAT  NA12878\n 1   20568807    .   C   T   0    HapMapHet        AC\u003d1;AF\u003d0.50;AN\u003d2;DP\u003d0;GV\u003dT  GT  0/1\n 1   22359922    .   T   C   282  WG-CG-HiSeq      AC\u003d2;AF\u003d0.50;GV\u003dT;AN\u003d4;DP\u003d42 GT:AD:DP:GL:GQ  1/0 ./. 0/1:20,22:39:-72.79,-11.75,-67.94:99    ./.\n 13  102391461   .   G   A   341  Indel;SnpCluster AC\u003d1;GV\u003dF;AF\u003d0.50;AN\u003d2;DP\u003d45 GT:AD:DP:GL:GQ  ./. ./. 0/1:32,13:45:-50.99,-13.56,-112.17:99   ./.\n 1   175516757   .   C   G   655  SnpCluster,WG    AC\u003d1;AF\u003d0.50;AN\u003d2;GV\u003dF;DP\u003d74 GT:AD:DP:GL:GQ  ./. ./. 0/1:52,22:67:-89.02,-20.20,-191.27:99   ./.\n \u003c/pre\u003e\n\n  \u003c/p\u003e\n\n  \u003ch3\u003eAdditional Details\u003c/h3\u003e\n  \u003cul\u003e\n      \u003cli\u003e\n          You should always use -L on your VCF track, so that the GATK only looks at the sites on the VCF file.\n          This speeds up the process a lot.\n      \u003c/li\u003e\n      \u003cli\u003e\n          The total number of visited bases may be greater than the number of variants in the original\n          VCF file because of extended indels, as they trigger one call per new insertion or deletion.\n          (i.e. ACTG/- will count as 4 genotyper calls, but it\u0027s only one line in the VCF).\n      \u003c/li\u003e\n  \u003c/ul\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n \u003ch4\u003eGenotypes BAM file from new technology using the VCF as a truth dataset\u003c/h4\u003e\n \u003cpre\u003e\n  java\n      -jar GenomeAnalysisTK.jar \\\n      -T  GenotypeAndValidate \\\n      -R reference.fasta \\\n      -I myNewTechReads.bam \\\n      -alleles handAnnotatedVCF.vcf \\\n      -L handAnnotatedVCF.vcf \\\n      -o output.vcf\n \u003c/pre\u003e\n\n \u003ch4\u003eGenotypes BAM file from new technology a BAM file as the truth dataset\u003c/h4\u003e\n \u003cpre\u003e\n  java\n      -jar GenomeAnalysisTK.jar \\\n      -T  GenotypeAndValidate \\\n      -R reference.fasta \\\n      -I myTruthDataset.bam \\\n      -alleles callsToValidate.vcf \\\n      -L callsToValidate.vcf \\\n      -bt \\\n      -o output.vcf\n \u003c/pre\u003e",
+  "name": "GenotypeAndValidate",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Validation Utilities",
+  "annotfield": ""
+}

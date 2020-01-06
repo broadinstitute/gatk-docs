@@ -1,0 +1,106 @@
+{
+  "summary": "Compare callability statistics",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "First comparison track name",
+      "name": "--comp1",
+      "synonyms": "-comp1",
+      "type": "RodBinding[BEDFeature]",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_tribble_bed_BEDCodec.html\u003eBED\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "Second comparison track name",
+      "name": "--comp2",
+      "synonyms": "-comp2",
+      "type": "RodBinding[BEDFeature]",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_tribble_bed_BEDCodec.html\u003eBED\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "If provided, prints sites satisfying this state pair",
+      "name": "--printstate",
+      "synonyms": "-printState",
+      "type": "String",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool can be used to evaluate how different sequence datasets compare in terms of \"callability\"\n based on the output of the CallableLoci tool. \u003c/p\u003e\n\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n Two files to compare, output by two runs of CallableLoci\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A table showing the callability status of each interval of interest in the two comparison sets and whether they match.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -R reference.fasta \\\n   -T CompareCallableLoci \\\n   -comp1 callable_loci_1.bed \\\n   -comp2 callable_loci_2.bed \\\n   [-L input.intervals \\]\n   -o comparison.table\n \u003c/pre\u003e",
+  "name": "CompareCallableLoci",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

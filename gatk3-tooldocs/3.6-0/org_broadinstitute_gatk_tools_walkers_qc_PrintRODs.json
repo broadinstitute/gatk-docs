@@ -1,0 +1,74 @@
+{
+  "summary": "Print out all of the RODs in the input data set",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "The input ROD which should be printed out.",
+      "name": "--input",
+      "synonyms": "-input",
+      "type": "RodBinding[Feature]",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, BEAGLE, BED, BEDTABLE, EXAMPLEBINARY, GELITEXT, RAWHAPMAP, REFSEQ, SAMPILEUP, SAMREAD, TABLE, VCF, VCF3",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool reports what RODs (reference ordered data sets) are contained in a given input.\u003c/p\u003e",
+  "name": "PrintRODs",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

@@ -1,0 +1,72 @@
+{
+  "summary": "Count the total number of covered loci",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    },
+    {
+      "arg": "-nct",
+      "name": "NanoSchedulable",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nct"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n This tool counts the number of loci (positions in the reference) that are covered by sequence data.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n One or more BAM files.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n Number of loci traversed. If an output file name is provided, then the result will be written to that file.\n Otherwise it will be sent to standard console output.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T CountLoci \\\n   -R reference.fasta \\\n   -I input.bam \\\n   -o output.txt \\\n   [-L input.intervals]\n \u003c/pre\u003e",
+  "name": "CountLoci",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 1000
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

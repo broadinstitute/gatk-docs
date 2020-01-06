@@ -1,0 +1,27 @@
+{
+  "summary": "Top effect from SnpEff functional predictions",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation processes the output of the SnpEff functional prediction tool to select only the predicted effect with the highest biological impact. The SnpEff output must be provided on the command line by specifying \"--snpEffFile filename.vcf\". See \u003ca href\u003d\"http://snpeff.sourceforge.net/\"\u003ehttp://snpeff.sourceforge.net/\u003c/a\u003e for more information about the SnpEff tool.\u003c/p\u003e\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n\n \u003cul\u003e\u003cli\u003eThis annotation currently only supports output from SnpEff version 2.0.5.\u003c/li\u003e\u003c/ul\u003e",
+  "name": "SnpEff",
+  "annotinfo": "RodRequiringAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_EFFECT,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;The highest-impact effect resulting from the current variant (or one of the highest-impact effects, if there is a tie)\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_IMPACT,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Impact of the highest-impact effect resulting from the current variant [MODIFIER, LOW, MODERATE, HIGH]\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_FUNCTIONAL_CLASS,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Functional class of the highest-impact effect resulting from the current variant: [NONE, SILENT, MISSENSE, NONSENSE]\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_CODON_CHANGE,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Old/New codon for the highest-impact effect resulting from the current variant\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_AMINO_ACID_CHANGE,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Old/New amino acid for the highest-impact effect resulting from the current variant (in HGVS style)\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_GENE_NAME,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Gene name for the highest-impact effect resulting from the current variant\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_GENE_BIOTYPE,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Gene biotype for the highest-impact effect resulting from the current variant\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_TRANSCRIPT_ID,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Transcript ID for the highest-impact effect resulting from the current variant\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dSNPEFF_EXON_ID,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Exon ID for the highest-impact effect resulting from the current variant\u0026quot;\u0026gt;"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "summary": "Class for handling common failures of dynamic class resolution",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "DynamicClassResolutionException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (DevZone)",
+  "annotfield": "",
+  "annotdescript": []
+}

@@ -1,0 +1,19 @@
+{
+  "summary": "Rank Sum Test for relative positioning of REF versus ALT alleles within reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis variant-level annotation tests whether there is evidence of bias in the position of alleles within the reads that support them, between the reference and alternate alleles.\u003c/p\u003e\n\n \u003cp\u003eSeeing an allele only near the ends of reads is indicative of error, because that is where sequencers tend to make the most errors. However, some variants located near the edges of sequenced regions will necessarily be covered by the ends of reads, so we can\u0027t just set an absolute \"minimum distance from end of read\" threshold. That is why we use a rank sum test to evaluate whether there is a difference in how well the reference allele and the alternate allele are supported.\u003c/p\u003e\n\n \u003cp\u003eThe ideal result is a value close to zero, which indicates there is little to no difference in where the alleles are found relative to the ends of reads. A negative value indicates that the alternate allele is found at the ends of reads more often than the reference allele. Conversely, a positive value indicates that the reference allele is found at the ends of reads more often than the alternate allele. \u003c/p\u003e\n\n \u003cp\u003eThis annotation can be used to evaluate confidence in a variant call and is a recommended covariate for variant recalibration (VQSR). Finding a statistically significant difference in relative position either way suggests that the sequencing process may have been biased or affected by an artifact. In practice, we only filter out low negative values when evaluating variant quality because the idea is to filter out variants for which the quality of the data supporting the alternate allele is comparatively low. The reverse case, where it is the quality of data supporting the reference allele that is lower (resulting in positive ranksum scores), is not really informative for filtering variants.\u003c/p\u003e\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eThe value output for this annotation is the u-based z-approximation from the Mann-Whitney-Wilcoxon Rank Sum Test for site position within reads (position within reads supporting REF vs. position within reads supporting ALT). See the \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d8031\"\u003emethod document on statistical tests\u003c/a\u003e for a more detailed explanation of the ranksum test.\u003c/p\u003e\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eThe read position rank sum test can not be calculated for sites without a mixture of reads showing both the reference and alternate alleles.\u003c/li\u003e\n \u003cli\u003eUninformative reads are not used in these annotations.\u003c/li\u003e\n \u003c/ul\u003e\n\n  * \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AS_ReadPosRankSumTest.html\"\u003eAS_ReadPosRankRankSumTest\u003c/a\u003e\u003c/b\u003e outputs an allele-specific version of this annotation.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "ReadPosRankSumTest",
+  "annotinfo": "StandardAnnotation, ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dReadPosRankSum,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Z-score from Wilcoxon rank sum test of Alt vs. Ref read position bias\u0026quot;\u0026gt;"
+  ]
+}

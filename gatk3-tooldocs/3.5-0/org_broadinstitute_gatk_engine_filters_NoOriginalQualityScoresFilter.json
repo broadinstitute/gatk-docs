@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads that do not have an original quality quality score (OQ) tag",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThe OQ tag can be added during the base recalibration process in order to preserve original information.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf NoOriginalQualityScores\n \u003c/pre\u003e",
+  "name": "NoOriginalQualityScoresFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

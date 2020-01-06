@@ -1,0 +1,16 @@
+{
+  "summary": "Detect clustering of variants near the ends of reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e This annotation detects clustering of evidence for a somatic variant near the ends of reads. To turn on the annotation and the accompanying filter (clustered_read_position), add --enable_clustered_read_position_filter flag in the commandline.\n\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003e ClusteredReadPosition produces four INFO field annotations. At a given somatic variant site, MEDIAN_LEFT_OFFSET is the median of the number of bases from the left end of the tumor read to the variant. MEDIAN_RIGHT_OFFSET is similar, but counts from the right end of the read. MAD_LEFT_OFFSET and MAD_RIGHT_OFFSET measure the median absolute deviations. The median gives us the offset of a representative read, while the median absolute deviation captures the spread. We filter a variant if MEDIAN_LEFT_OFFSET \u003c\u003d 10 and MAD_LEFT_OFFSET \u003c\u003d 3, or if MEDIAN_RIGHT_OFFSET \u003c\u003d 10 and MAD_RIGHT_OFFSET \u003c\u003d 3.\n\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cp\u003e ClusteredReadPosition is available with MuTect2 only \u003c/p\u003e\n\n \u003ch3\u003eRelatedAnnotation\u003c/h3\u003e\n \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_annotator_ReadPosRankSumTest.html\"\u003eReadPosRankSum\u003c/a\u003e\u003c/b\u003e is a similar annotation designed for germline variants.",
+  "name": "ClusteredReadPosition",
+  "annotinfo": "ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)"
+}

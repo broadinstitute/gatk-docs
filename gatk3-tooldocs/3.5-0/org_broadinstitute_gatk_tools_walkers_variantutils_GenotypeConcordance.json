@@ -1,0 +1,170 @@
+{
+  "summary": "Genotype concordance between two callsets",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "The variants and genotypes to compare against",
+      "name": "--comp",
+      "synonyms": "-comp",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "The callset you want to treat as \u0027truth\u0027. Can also be of unknown quality for the sake of callset comparisons.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "The variants and genotypes to evaluate",
+      "name": "--eval",
+      "synonyms": "-eval",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "The callset you want to evaluate, typically this is where you\u0027d put \u0027unassessed\u0027 callsets.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "One or more criteria to use to set COMP genotypes to no-call. These genotype-level filters are only applied to the COMP rod.",
+      "name": "--genotypeFilterExpressionComp",
+      "synonyms": "-gfc",
+      "type": "ArrayList[String]",
+      "required": "no",
+      "fulltext": "Identical to -gfe except the filter is applied to genotypes in the comp rod.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "One or more criteria to use to set EVAL genotypes to no-call. These genotype-level filters are only applied to the EVAL rod.",
+      "name": "--genotypeFilterExpressionEval",
+      "synonyms": "-gfe",
+      "type": "ArrayList[String]",
+      "required": "no",
+      "fulltext": "A genotype level JEXL expression to apply to eval genotypes. Genotypes filtered in this way will be replaced by NO_CALL.\n For instance: -gfe \u0027GQ\u003c20\u0027 will set to no-call any genotype with genotype quality less than 20.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Filters will be ignored",
+      "name": "--ignoreFilters",
+      "synonyms": "NA",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "The FILTER field of the eval and comp VCFs will be ignored. If this flag is not included, all FILTER sites will\n be treated as not being present in the VCF. (That is, the genotypes will be assigned UNAVAILABLE, as distinct\n from NO_CALL).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Molten rather than tabular output",
+      "name": "--moltenize",
+      "synonyms": "-moltenize",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Moltenize the count and proportion tables. Rather than moltenizing per-sample data into a 2x2 table, it is fully\n moltenized into elements. That is, WITHOUT this argument, each row of the table begins with the sample name and\n proceeds directly with counts/proportions of eval/comp counts (for instance HOM_REF/HOM_REF, HOM_REF/NO_CALL).\n\n If the Moltenize argument is given, the output will begin with a sample name, followed by the contrastive genotype\n type (such as HOM_REF/HOM_REF), followed by the count or proportion. This will significantly increase the number of\n rows.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_flag",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "File to output the discordant sites and genotypes.",
+      "name": "--printInterestingSites",
+      "synonyms": "-sites",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "Print sites where genotypes are mismatched between callsets along with annotations giving the genotype of each callset\n to the given filename",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n  This tool takes in two callsets (vcfs) and tabulates the number of sites which overlap and share alleles,\n  and for each sample, the genotype-by-genotype counts (e.g. the number of sites at which a sample was\n  called homozygous-reference in the EVAL callset, but homozygous-variant in the COMP callset). It outputs these\n  counts as well as convenient proportions (such as the proportion of het calls in the EVAL which were called REF in\n  the COMP) and metrics (such as NRD and NRS).\n  \u003c/p\u003e\n\n  \u003ch3\u003eInput\u003c/h3\u003e\n  \u003cp\u003e\n  Genotype concordance requires two callsets (as it does a comparison): an EVAL and a COMP callset, specified via\n  the -eval and -comp arguments. Typically, the EVAL callset is an experimental set you want to evaluate, while the\n  COMP callset is a previously existing set used as a standard for comparison (taken to represent \"truth\").\n  \u003c/p\u003e\n  \u003cp\u003e\n  (Optional) Jexl expressions for genotype-level filtering of EVAL or COMP genotypes, specified via the -gfe and\n  -cfe arguments, respectively.\n  \u003c/p\u003e\n\n  \u003ch3\u003eOutput\u003c/h3\u003e\n  \u003cp\u003e\n  Genotype Concordance writes a GATK report to the specified file (via -o), consisting of multiple tables of counts\n  and proportions. These tables are constructed on a per-sample basis, and include counts of EVAL vs COMP genotype\n  states.\n  \u003c/p\u003e\n  \u003ch4\u003eTables\u003c/h4\u003e\n  \u003cp\u003e\n  Headers for the (non-moltenized -- see below) GenotypeConcordance counts and proportions tables give the genotype of\n  the EVAL callset followed by the genotype of the COMP callset. For example the value corresponding to HOM_REF_HET\n  reflects variants called HOM_REF in the EVAL callset and HET in the COMP callset. Variants for which the alternate\n  alleles between the EVAL and COMP sample did not match are excluded from genotype comparisons and given in the\n  \"Mismatching_Alleles\" field.\n  \u003c/p\u003e\n  \u003cp\u003e\n  It may be informative to reshape rows of the GenotypeConcordance counts and proportions tables into separate row-major tables\n  where the columns indicate the COMP genotype and the rows indicate the EVAL genotype for easy comparison between the\n  two callsets. This can be done with the gsa.reshape.concordance.table function in the gsalib R library.\n  In Excel this can be accomplished using the OFFSET function.\n  \u003c/p\u003e\n  \u003cul\u003e\n      \u003cli\u003e\u003ci\u003eGenotypeConcordance_CompProportions\u003c/i\u003e: Gives the proportion of variants in each category normalized to the total number of called genotypes in the COMP callset\u003c/li\u003e\n      \u003cli\u003e\u003ci\u003eGenotypeConcordance_Counts\u003c/i\u003e: Gives the counts for number of genotypes in each category\u003c/li\u003e\n      \u003cli\u003e\u003ci\u003eGenotypeConcordance_EvalProportions\u003c/i\u003e: Gives the proportion of genotypes in each category normalized to the total number of called genotypes in the EVAL callset\u003c/li\u003e\n      \u003cli\u003e\u003ci\u003eGenotypeConcordance_Summary\u003c/i\u003e: Summary statistics for the sum of all samples and each sample individually. See below for definitions.\u003c/li\u003e\n      \u003cli\u003e\u003ci\u003eSiteConcordance_Summary\u003c/i\u003e: Gives comparison counts of called genotypes and their alleles between the two callsets. See below for definitions.\u003c/li\u003e\n  \u003c/ul\u003e\n  \u003c/p\u003e\n\n  \u003ch4\u003eTerm and metrics definitions\u003c/h4\u003e\n \u003cp\u003e\n \u003cul\u003e\n          \u003cli\u003e\u003ci\u003eGenotypeConcordance_CompProportions\u003c/i\u003e, \u003ci\u003eGenotypeConcordance_Counts\u003c/i\u003e, and \u003ci\u003eGenotypeConcordance_EvalProportions\u003c/i\u003e\u003c/li\u003e\n          \u003cul\u003e\n               \u003cli\u003eNO_CALL: reported genotype is ./., indicating not enough data to call\u003c/li\u003e\n               \u003cli\u003eHET: heterozygous\u003c/li\u003e\n               \u003cli\u003eHOM_REF: homozygous reference\u003c/li\u003e\n               \u003cli\u003eHOM_VAR: homozygous variant\u003c/li\u003e\n               \u003cli\u003eUNAVAILABLE: variant is not called in this callset\u003c/li\u003e\n               \u003cli\u003eMIXED: something like ./1\u003c/li\u003e\n          \u003c/ul\u003e\n          \u003cli\u003e\u003ci\u003eGenotypeConcordance_Summary\u003c/i\u003e\u003c/li\u003e\n          \u003cul\u003e\n               \u003cli\u003eNon-Reference_Sensitivity (NRS): sensitivity of the EVAL calls to polymorphic calls in the COMP set, calculated by (# true positive)/(# true polymorphic)\u003c/li\u003e\n               \u003cli\u003eNon-Reference_Discrepancy (NRD): genotype discordance excluding concordant reference sites, calculated by (# discordant sites)/(total excluding # HOM_REF_HOM_REF) \u003d 1.0-(# HOM_VAR_HOM_VAR + # HET_HET)/(total excluding # HOM_REF_HOM_REF)\u003c/li\u003e\n               \u003cli\u003eOverall_Genotype_Concordance: overall concordance calculated by (# concordant genotypes)/(# genotypes)\u003c/li\u003e\n          \u003c/ul\u003e\n          \u003cli\u003e\u003ci\u003eSiteConcordance_Summary\u003c/i\u003e\u003c/li\u003e\n          \u003cul\u003e\n               \u003cli\u003eALLELES_MATCH: counts of calls at the same site where the alleles match\u003c/li\u003e\n               \u003cli\u003eALLELES_DO_NOT_MATCH: counts of calls at the same location with different alleles, such as the EVAL set calling a \u0027G\u0027 alternate allele, and the comp set calling a \u0027T\u0027 alternate allele\u003c/li\u003e\n               \u003cli\u003eEVAL_SUBSET_TRUTH: (multi-alleleic sites only) ALT alleles for EVAL are a subset of ALT alleles for COMP. See also below.\u003c/li\u003e\n               \u003cli\u003eEVAL_SUPERSET_TRUTH: (multi-allelic sites only) ALT alleles for COMP are a subset of ALT alleles for EVAL. See also below.\u003c/li\u003e\n               \u003cli\u003eEVAL_ONLY: counts of sites present only in the EVAL set, not in the COMP set\u003c/li\u003e\n               \u003cli\u003eTRUTH_ONLY: counts of sites present only in the COMP set, not in the EVAL set\u003c/li\u003e\n          \u003c/ul\u003e\n \u003c/ul\u003e\n \u003c/p\u003e\n\n \u003ch4\u003eSite-level allelic concordance\u003c/h4\u003e\n\n \u003cp\u003e\n  For strictly bi-allelic VCFs, only the ALLELES_MATCH, EVAL_ONLY, TRUTH_ONLY fields will be populated,\n  but where multi-allelic sites are involved counts for EVAL_SUBSET_TRUTH and EVAL_SUPERSET_TRUTH will be generated.\n \u003c/p\u003e\n \u003cp\u003e\n  For example, in the following situation\n  \u003cpre\u003e\n    eval:  ref - A   alt - C\n    comp:  ref - A   alt - C,T\n  \u003c/pre\u003e\n  then the site is tabulated as EVAL_SUBSET_TRUTH. Were the situation reversed, it would be EVAL_SUPERSET_TRUTH.\n  However, in the case where EVAL has both C and T alternate alleles, both must be observed in the genotypes\n  (that is, there must be at least one of (0/1,1/1) and at least one of (0/2,1/2,2/2) in the genotype field). If\n  one of the alleles has no observations in the genotype fields of the EVAL, the site-level concordance is\n  tabulated as though that allele were not present in the record.\n \u003c/p\u003e\n\n  \u003ch4\u003eMonomorphic Records\u003c/h4\u003e\n  \u003cp\u003e\n  A site which has an alternate allele, but which is monomorphic in samples, is treated as not having been\n  discovered, and will be recorded in the TRUTH_ONLY column (if a record exists in the COMP set), or not at all\n  (if no record exists in the COMP set).\n  \u003c/p\u003e\n  \u003cp\u003e\n  That is, in the situation\n  \u003cpre\u003e\n   eval:  ref - A   alt - C   genotypes - 0/0  0/0  0/0 ... 0/0\n   comp:  ref - A   alt - C   ...         0/0  0/0  ...\n  \u003c/pre\u003e\n  is equivalent to\n  \u003cpre\u003e\n   eval:  ref - A   alt - .   genotypes - 0/0  0/0  0/0 ... 0/0\n   comp:  ref - A   alt - C   ...         0/0  0/0  ...\n  \u003c/pre\u003e\n  \u003c/p\u003e\n  \u003cp\u003e\n  When a record is present in the COMP set the *genotypes* for the monomorphic site will still be used to evaluate\n  per-sample genotype concordance counts.\n \u003c/p\u003e\n\n  \u003ch4\u003eFiltered Records\u003c/h4\u003e\n  Filtered records are treated as though they were not present in the VCF, unless -ignoreSiteFilters is provided,\n  in which case all records are used. There is currently no way to assess concordance metrics on filtered sites\n  exclusively. SelectVariants can be used to extract filtered sites, and VariantFiltration used to un-filter them.\n\n \u003ch4\u003eMoltenized tables\u003c/h4\u003e\n\n \u003cp\u003eThese tables may be optionally moltenized via the -moltenize argument. That is, the standard table\n\n  \u003cpre\u003e\n  Sample   NO_CALL_HOM_REF  NO_CALL_HET  NO_CALL_HOM_VAR   (...)\n  NA12878       0.003        0.001            0.000        (...)\n  NA12891       0.005        0.000            0.000        (...)\n  \u003c/pre\u003e\n\n  would instead be displayed\n\n \u003cpre\u003e\n  NA12878  NO_CALL_HOM_REF   0.003\n  NA12878  NO_CALL_HET       0.001\n  NA12878  NO_CALL_HOM_VAR   0.000\n  NA12891  NO_CALL_HOM_REF   0.005\n  NA12891  NO_CALL_HET       0.000\n  NA12891  NO_CALL_HOM_VAR   0.000\n  (...)\n  \u003c/pre\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T GenotypeConcordance \\\n   -R reference.fasta \\\n   -eval test_set.vcf \\\n   -comp truth_set.vcf \\\n   -o output.grp\n \u003c/pre\u003e",
+  "name": "GenotypeConcordance",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Evaluation and Manipulation Tools",
+  "annotfield": ""
+}

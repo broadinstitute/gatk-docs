@@ -1,0 +1,51 @@
+{
+  "summary": "Collect statistics about sequence reads based on their SAM flags",
+  "parallel": [
+    {
+      "arg": "-nct",
+      "name": "NanoSchedulable",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nct"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "READ",
+  "walkertype": "ReadWalker",
+  "arguments": [
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool emulates the behavior of \u0027samtools flagstat\u0027. It collects statistics such as total number of reads,\n reads with QC failure flag set, number of duplicates, percentage mapped, etc.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A BAM file containing the sequence data.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n Resulting stats are written to file if an output file name is given (with -o), otherwise output to stdout.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T FlagStat \\\n   -R reference.fasta \\\n   -I reads.bam \\\n   [-o output.txt]\n \u003c/pre\u003e",
+  "name": "FlagStat",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "NONE",
+    "to_cov": -1
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

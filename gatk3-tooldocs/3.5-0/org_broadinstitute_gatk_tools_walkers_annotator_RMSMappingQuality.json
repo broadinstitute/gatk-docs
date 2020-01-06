@@ -1,0 +1,19 @@
+{
+  "summary": "Root Mean Square of the mapping quality of reads across all samples.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation provides an estimation of the overall mapping quality of reads supporting a variant call. It produce both raw data (sum of square and num of total reads) and the calculated root mean square.\u003c/p\u003e\n\n The raw data is used to accurately calculate the root mean square when combining more than one sample.\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eThe root mean square is equivalent to the mean of the mapping qualities plus the standard deviation of the mapping qualities.\u003c/p\u003e\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cp\u003eUninformative reads are not used in this annotation.\u003c/p\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AS_RMSMappingQuality.html\"\u003eAS_RMSMappingQuality\u003c/a\u003e\u003c/b\u003e outputs an allele-specific version of this annotation.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_MappingQualityRankSumTest.html\"\u003eMappingQualityRankSumTest\u003c/a\u003e\u003c/b\u003e compares the mapping quality of reads supporting the REF and ALT alleles.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "RMSMappingQuality",
+  "annotinfo": "StandardAnnotation, ActiveRegionBasedAnnotation, ReducibleAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dMQ,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;RMS Mapping Quality\u0026quot;\u0026gt;"
+  ]
+}

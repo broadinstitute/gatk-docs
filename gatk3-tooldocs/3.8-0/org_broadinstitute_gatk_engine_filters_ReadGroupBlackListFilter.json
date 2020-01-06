@@ -1,0 +1,17 @@
+{
+  "summary": "Filter out reads matching a read group tag value",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is useful for running on only a subset of the data as identified by a read group property,\n using expression matching against the read group tags.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eSet the read group filter to blacklist read groups that have the PU tag \"1000G-mpimg-080821-1_1\"\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf ReadGroupBlackList \\\n         -rgbl PU:1000G-mpimg-080821-1_1\n \u003c/pre\u003e",
+  "name": "ReadGroupBlackListFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": "",
+  "annotdescript": []
+}

@@ -1,0 +1,17 @@
+{
+  "summary": "A special exception that happens only in the case where\n the filesystem, by design or configuration, is completely unable\n to handle locking.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "  This exception will specifically NOT be thrown\n in the case where the filesystem handles locking but is unable to\n acquire a lock due to concurrency.",
+  "name": "UserException.FileSystemInabilityToLockException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (Exclude)",
+  "annotfield": "",
+  "annotdescript": []
+}

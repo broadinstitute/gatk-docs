@@ -1,0 +1,179 @@
+{
+  "summary": "Collect quality metrics for a set of intervals",
+  "parallel": [
+    {
+      "arg": "-nct",
+      "name": "NanoSchedulable",
+      "link": "https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nct"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "INTERVAL",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Undocumented option",
+      "name": "--baitsfile",
+      "synonyms": "-baits",
+      "type": "String",
+      "required": "no",
+      "fulltext": "List of baits to distinguish untargeted intervals from those that are targeted but not covered",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "minimum coverage to be considered sequenceable",
+      "name": "--coveragethreshold",
+      "synonyms": "-cov",
+      "type": "int",
+      "required": "no",
+      "fulltext": "The coverage of a missing interval may determine whether or not an interval is sequenceable. A low coverage will\n trigger gc content, mapping, base qualities and other checks to figure out why this interval was deemed\n unsequenceable.",
+      "defaultValue": "20",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "upper and lower bound for an interval to be considered high/low GC content",
+      "name": "--gcthreshold",
+      "synonyms": "-gc",
+      "type": "double",
+      "required": "no",
+      "fulltext": "This value will be used to determine whether or not an interval had too high or too low GC content to be\n sequenced. This is only applied if there was not enough data in the interval.",
+      "defaultValue": "0.3",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "minimum interval length to be considered",
+      "name": "--intervalsizethreshold",
+      "synonyms": "-size",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "Intervals that are too small generate biased analysis. For example an interval of size 1 will have GC content\n 1 or 0. To avoid misinterpreting small intervals, all intervals below this threshold will be ignored in the\n interpretation.",
+      "defaultValue": "10",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "minimum mapping quality for it to be considered usable",
+      "name": "--mappingthreshold",
+      "synonyms": "-mmq",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "An average mapping quality above this value will determine the interval to be mappable.",
+      "defaultValue": "20",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "A single GATKReport table with the qualifications on why the intervals passed by the -L argument were missing.",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "minimum base quality for it to be considered usable",
+      "name": "--qualthreshold",
+      "synonyms": "-mbq",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "An average base quality above this value will rule out the possibility of context specific problems with the\n sequencer.",
+      "defaultValue": "20",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Undocumented option",
+      "name": "--targetsfile",
+      "synonyms": "-targets",
+      "type": "String",
+      "required": "yes",
+      "fulltext": "List of targets used in the experiment. This file will be used to calculate the distance your missing\n intervals are to the targets (usually exons). Typically this is your hybrid selection targets file\n (e.g. Agilent exome target list)",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool collects the following metrics:\u003c/p\u003e\n \u003cul\u003e\n     \u003cli\u003eAverage Base Quality\u003c/li\u003e\n     \u003cli\u003eAverage Mapping Quality\u003c/li\u003e\n     \u003cli\u003eAverage Depth\u003c/li\u003e\n     \u003cli\u003eGC Content\u003c/li\u003e\n     \u003cli\u003ePosition in the target (Integer.MIN_VALUE if no overlap)\u003c/li\u003e\n     \u003cli\u003eLength of the overlapping target (zero if no overlap)\u003c/li\u003e\n     \u003cli\u003eCoding Sequence / Intron (optional)\u003c/li\u003e\n     \u003cli\u003eLength of the uncovered interval\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003cp\u003eIt is meant to be run on a set of intervals that have been identified as problematic in earlier stages of quality control and are considered \"missing\" from the sequence dataset.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n  A reference file (for GC content), the input bam file (for base and mapping quality calculation), the missing intervals (in the -L), the baits/targets used to sequence (in the -targets) and a bed file with the coding sequence intervals of the genome (in the -cds).\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n  GC content, distance from the end of the target, coding sequence intersection, mapping and base quality averages and average depth per \"missing\" interval.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T QualifyMissingIntervals \\\n   -R reference.fasta \\\n   -I input.bam \\\n   -o output.grp \\\n   -L input.intervals \\\n   -cds cds.intervals \\\n   -targets targets.intervals\n \u003c/pre\u003e",
+  "name": "QualifyMissingIntervals",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 1000
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

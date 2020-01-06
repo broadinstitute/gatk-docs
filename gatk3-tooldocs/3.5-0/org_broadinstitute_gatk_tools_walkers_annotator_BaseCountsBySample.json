@@ -1,0 +1,19 @@
+{
+  "summary": "Count of A, C, G, T bases for each sample",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e This annotation returns the counts of A, C, G, and T bases for each sample, in that order.\u003c/p\u003e\n \u003ch3\u003eExample:\u003c/h3\u003e\n\n \u003cpre\u003eBCS\u003d3,0,3,0\u003c/pre\u003e\n\n \u003cp\u003e\n     This means the number of A bases seen is 3, the number of T bases seen is 0, the number of G bases seen is 3, and the number of T bases seen is 0.\n \u003c/p\u003e\n\n \u003cp\u003e\n     BaseCountsBySample is intended to provide insight into the pileup of bases used by HaplotypeCaller in the calling process, which may differ from the pileup\n     observed in the original bam file because of the local realignment and additional filtering performed internally by HaplotypeCaller.\n \u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eCan only be requested from HaplotypeCaller, not VariantAnnotator.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_annotator_BaseCounts.html\"\u003eBaseCounts\u003c/a\u003e\u003c/b\u003e counts the percentage of N bases.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "BaseCountsBySample",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "FORMAT (sample genotype-level)",
+  "annotdescript": [
+    "FORMAT\u003d\u0026lt;ID\u003dBCS,Number\u003d4,Type\u003dInteger,Description\u003d\u0026quot;Counts of each base by sample\u0026quot;\u0026gt;"
+  ]
+}

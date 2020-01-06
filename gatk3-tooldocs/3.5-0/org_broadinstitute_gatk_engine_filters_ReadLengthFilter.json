@@ -1,0 +1,49 @@
+{
+  "summary": "Filter out reads based on length",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "Discard reads with length greater than the specified value",
+      "name": "--maxReadLength",
+      "synonyms": "-maxRead",
+      "type": "int",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_param",
+      "options": []
+    },
+    {
+      "summary": "Discard reads with length shorter than the specified value",
+      "name": "--minReadLength",
+      "synonyms": "-minRead",
+      "type": "int",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is useful for running on only reads that are longer (or shorter) than the given threshold sizes. \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf ReadLength \\\n         -minRead 50 \\\n         -maxRead 101\n \u003c/pre\u003e",
+  "name": "ReadLengthFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

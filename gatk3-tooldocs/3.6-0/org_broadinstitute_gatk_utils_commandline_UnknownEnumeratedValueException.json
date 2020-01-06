@@ -1,0 +1,17 @@
+{
+  "summary": "An exception for when an argument doesn\u0027t match an of the enumerated options for that var type",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "UnknownEnumeratedValueException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (Exclude)",
+  "annotfield": "",
+  "annotdescript": []
+}

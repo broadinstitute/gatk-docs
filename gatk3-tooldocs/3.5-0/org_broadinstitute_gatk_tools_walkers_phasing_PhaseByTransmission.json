@@ -1,0 +1,122 @@
+{
+  "summary": "Compute the most likely genotype combination and phasing for trios and parent/child pairs",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Prior for de novo mutations. Default: 1e-8",
+      "name": "--DeNovoPrior",
+      "synonyms": "-prior",
+      "type": "double",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "1.0E-8",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Ouputs the father allele as the first allele in phased child genotype. i.e. father|mother rather than mother|father.",
+      "name": "--FatherAlleleFirst",
+      "synonyms": "-fatherAlleleFirst",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "File to output the mendelian violation details.",
+      "name": "--MendelianViolationsFile",
+      "synonyms": "-mvf",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n This tool performs two functions:\n \u003c/p\u003e\n \u003col\u003e\n     \u003cli\u003eCompute the most likely genotype combination of trios and parent/child pairs given their genotype likelihoods and a mutation prior;\u003c/li\u003e\n     \u003cli\u003ePhase all sites were parent/child transmission can be inferred unambiguously. \u003c/li\u003e\n \u003c/ol\u003e\n\n \u003cp\u003eThe tool ultimately reports the genotype combination (and hence phasing) probability.\u003c/p\u003e\n\n \u003ch4\u003eAmbiguous sites are:\u003c/h4\u003e\n \u003cul\u003e\n     \u003cli\u003eSites where all individuals are heterozygous\u003c/li\u003e\n     \u003cli\u003eSites where there is a Mendelian violation\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch4\u003eMissing genotypes are handled as follows:\u003c/h4\u003e\n \u003cul\u003e\n     \u003cli\u003eIn parent/child pairs: If an individual genotype is missing at one site, the other one is phased if it is homozygous. No phasing probability is emitted.\u003c/li\u003e\n     \u003cli\u003eIn trios: If the child is missing, parents are treated as separate individuals and phased if homozygous. No phasing probability is emitted.\u003c/li\u003e\n     \u003cli\u003eIn trios: If one of the parents is missing, it is handled like a parent/child pair. Phasing is done unless both the parent and child are heterozygous and a phasing probability is emitted.\u003c/li\u003e\n     \u003cli\u003eIn trios: If two individuals are missing, the remaining individual is phased if it is homozygous. No phasing probability is emitted.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n \u003cul\u003e\n     \u003cli\u003eA VCF variant set containing trio(s) and/or parent/child pair(s).\u003c/li\u003e\n     \u003cli\u003eA PED pedigree file containing the description of the individuals relationships.\u003c/li\u003e\n \u003c/ul\u003e\n \u003c/p\u003e\n\n \u003ch3\u003eImportant options\u003c/h3\u003e\n     \u003cul\u003e\n         \u003cli\u003eMendelianViolationsFile: An optional argument for reporting. If a file is specified, all sites that\n         remain in mendelian violation after being assigned the most likely genotype combination will be reported\n         there. Information reported: chromosome, position, filter, allele count in VCF, family, transmission\n         probability, and each individual genotype, depth, allelic depth and likelihoods.\u003c/li\u003e\n         \u003cli\u003eDeNovoPrior: Prior probability of de novo mutations. The default value of 1e-8 is fairly stringent, so if\n         you are interested in maximizing sensitivity at the expense of specificity (i.e. are ok with seeing some false\n         positives as long as all true positives are detected) you will need to relax this value.\u003c/li\u003e\n     \u003c/ul\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n An VCF with genotypes recalibrated as most likely under the familial constraint and phased by descent (where non\n ambiguous).\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T PhaseByTransmission \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   -ped input.ped \\\n   -o output.vcf\n \u003c/pre\u003e",
+  "name": "PhaseByTransmission",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Evaluation and Manipulation Tools",
+  "annotfield": ""
+}

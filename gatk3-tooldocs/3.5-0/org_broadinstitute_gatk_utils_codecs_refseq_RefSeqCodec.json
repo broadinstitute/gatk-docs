@@ -1,0 +1,16 @@
+{
+  "summary": "Allows for reading in RefSeq information",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n Parses a sorted UCSC RefSeq file (see below) into relevant features: the gene name, the unique gene name (if multiple transcrips get separate entries), exons, gene start/stop, coding start/stop,\n strandedness of transcription. \n \u003c/p\u003e\n\n \u003cp\u003e\n Instructions for generating a RefSeq file for use with the RefSeq codec can be found on the documentation guide here\n \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d1329\"\u003ehttp://www.broadinstitute.org/gatk/guide/article?id\u003d1329\u003c/a\u003e\n \u003c/p\u003e\n \u003ch2\u003e Usage \u003c/h2\u003e\n The RefSeq Rod can be bound as any other rod, and is specified by REFSEQ, for example\n \u003cpre\u003e\n -refSeqBinding:REFSEQ /path/to/refSeq.txt\n \u003c/pre\u003e\n\n You will need to consult individual walkers for the binding name (\"refSeqBinding\", above)\n\n \u003ch2\u003eFile format example\u003c/h2\u003e\n If you want to define your own file for use, the format is (tab delimited):\n bin, name, chrom, strand, transcription start, transcription end, coding start, coding end, num exons, exon starts, exon ends, id, alt. name, coding start status (complete/incomplete), coding end status (complete,incomplete)\n and exon frames, for example:\n \u003cpre\u003e\n 76 NM_001011874 1 - 3204562 3661579 3206102 3661429 3 3204562,3411782,3660632, 3207049,3411982,3661579, 0 Xkr4 cmpl cmpl 1,2,0,\n \u003c/pre\u003e\n for more information see \u003ca href\u003d\"http://skip.ucsc.edu/cgi-bin/hgTables?hgsid\u003d5651\u0026hgta_doSchemaDb\u003dmm8\u0026hgta_doSchemaTable\u003drefGene\"\u003ehere\u003c/a\u003e\n \u003cp\u003e\n     \n \u003c/p\u003e",
+  "name": "RefSeqCodec",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "ROD Codecs",
+  "annotfield": ""
+}

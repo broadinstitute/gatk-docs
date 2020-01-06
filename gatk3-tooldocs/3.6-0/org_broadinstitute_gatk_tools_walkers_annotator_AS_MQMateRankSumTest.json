@@ -1,0 +1,19 @@
+{
+  "summary": "Allele specific Rank Sum Test for mate\u0027s mapping qualities of REF versus ALT reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis allele specific variant-level annotation compares the mapping qualities of the reads\u0027 mates supporting the reference allele with the reads\u0027 mates supporting the alternative allele.  To be clear, it does so separately for each alternate allele. The Rank Sum Test is using the null hypothesis that the mapping qualities from the reads\u0027 mates in the reference allele come from the same distribution as the mapping qualities of the reads\u0027 mates in the alternative allele. The alternative hypothesis is that the mapping qualities of the alternative allele reads\u0027 mates are stochastically less than the reference allele reads\u0027 mates\u0027 mapping qualities. Therefore if the resulting Z-score is close to 0 (in other words it follows a standard normal distribution) then there isn\u0027t enough evidence to reject the null hypothesis. If you have a more extreme Z-score in the negative direction you know that this variant might have lower quality reads that support the alternative allele (or in this case at least their mates have lower mapping quality).\u003c/p\u003e\n \u003cp\u003eThis annotation can be used to evaluate confidence in a variant call and could be used as a covariate for variant recalibration (VQSR). Finding a statistically significant difference in quality either way suggests that the sequencing and/or mapping process may have been biased or affected by an artifact. In practice, we only filter out low negative values when evaluating variant quality because the idea is to filter out variants for which the quality of the data supporting the alternate allele is comparatively low. The reverse case, where it is the quality of data supporting the reference allele that is lower (resulting in positive ranksum scores), is not really informative for filtering variants.\u003c/p\u003e\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eThe value output for this annotation is the u-based z-approximation from the Mann-Whitney-Wilcoxon Rank Sum Test for mapping qualities of the read\u0027s mate See the \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d4732\"\u003emethod document on statistical tests\u003c/a\u003e for a more detailed explanation of the ranksum test.\u003c/p\u003e\n\n * \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\u003cli\u003eThe mapping quality rank sum test can not be calculated for sites without a mixture of reads showing both the reference and alternate alleles.\u003c/li\u003e\n \u003cli\u003eUninformative reads are not used in these annotations.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AS_MappingQualityRankSumTest.html\"\u003eAS_MappingQualityRankSumTest\u003c/a\u003e\u003c/b\u003e outputs the same rank sum test on the mapping quality of the reads themselves rather than their mates.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "AS_MQMateRankSumTest",
+  "annotinfo": "ActiveRegionBasedAnnotation, BetaTestingAnnotation, ReducibleAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dAS_MateMQRankSum,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;allele specific Z-score from Wilcoxon rank sum test of mate mapping qualities\u0026quot;\u0026gt;"
+  ]
+}

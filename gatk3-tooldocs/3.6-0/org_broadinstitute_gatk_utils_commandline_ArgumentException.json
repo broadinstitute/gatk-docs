@@ -1,0 +1,17 @@
+{
+  "summary": "Generic class for handling misc parsing exceptions.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "ArgumentException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (Exclude)",
+  "annotfield": "",
+  "annotdescript": []
+}

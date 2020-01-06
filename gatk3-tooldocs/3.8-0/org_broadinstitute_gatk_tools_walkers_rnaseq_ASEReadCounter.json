@@ -1,0 +1,183 @@
+{
+  "summary": "Calculate read counts per allele for allele-specific expression analysis",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Handling of overlapping reads from the same fragment",
+      "name": "--countOverlapReadsType",
+      "synonyms": "-overlap",
+      "type": "CountPileupType",
+      "required": "no",
+      "fulltext": "These options modify how the tool deals with overlapping read pairs. The default value is COUNT_FRAGMENTS_REQUIRE_SAME_BASE.",
+      "defaultValue": "COUNT_FRAGMENTS_REQUIRE_SAME_BASE",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "Count all reads independently (even if from the same fragment).",
+          "name": "COUNT_READS"
+        },
+        {
+          "summary": "Count all fragments (even if the reads that compose the fragment are not consistent at that base).",
+          "name": "COUNT_FRAGMENTS"
+        },
+        {
+          "summary": "Count all fragments (but only if the reads that compose the fragment are consistent at that base).",
+          "name": "COUNT_FRAGMENTS_REQUIRE_SAME_BASE"
+        }
+      ]
+    },
+    {
+      "summary": "Minimum base quality",
+      "name": "--minBaseQuality",
+      "synonyms": "-mbq",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "If this argument is enabled, bases with quality scores lower than this threshold will not be counted.\n This can be set to -1 by default to disable the evaluation and ignore this threshold.",
+      "defaultValue": "0",
+      "minValue": "-1.0",
+      "maxValue": "127.0",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum number of bases that pass filters",
+      "name": "--minDepthOfNonFilteredBase",
+      "synonyms": "-minDepth",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If this argument is enabled, loci with total depth lower than this threshold after all filters have been applied\n will be skipped. This can be set to -1 by default to disable the evaluation and ignore this threshold.",
+      "defaultValue": "-1",
+      "minValue": "-1.0",
+      "maxValue": "2.147483647E9",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum read mapping quality",
+      "name": "--minMappingQuality",
+      "synonyms": "-mmq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If this argument is enabled, reads with mapping quality values lower than this threshold will not be counted.\n This can be set to -1 by default to disable the evaluation and ignore this threshold.",
+      "defaultValue": "0",
+      "minValue": "-1.0",
+      "maxValue": "2.147483647E9",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Format of the output file, can be CSV, TABLE, RTABLE",
+      "name": "--outputFormat",
+      "synonyms": "NA",
+      "type": "OUTPUT_FORMAT",
+      "required": "no",
+      "fulltext": "Available options are csv, table, rtable. By default, the format is rtable (an r-readable table).",
+      "defaultValue": "RTABLE",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "TABLE"
+        },
+        {
+          "summary": "",
+          "name": "RTABLE"
+        },
+        {
+          "summary": "",
+          "name": "CSV"
+        }
+      ]
+    },
+    {
+      "summary": "Undocumented option",
+      "name": "--sitesVCFFile",
+      "synonyms": "-sites",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n This tool calculates allele counts at a set of positions after applying filters that are tuned for enabling\n allele-specific expression (ASE) analysis. The filters operate on mapping quality, base quality, depth of coverage,\n overlapping paired reads and deletions overlapping the position. All thresholds and options are controlled by\n command-line arguments.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eBAM files (with proper headers) to be analyzed for ASE\u003c/li\u003e\n     \u003cli\u003eA VCF file with specific sites to process.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A table of allele counts at the given sites. By default, it is formatted as a tab-delimited text file\n that is readable by R and compatible with \u003ca href\u003d\"http://www.well.ox.ac.uk/~rivas/mamba/\"\u003eMamba\u003c/a\u003e,\n a downstream tool developed for allele-specific expression analysis.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -R reference.fasta \\\n   -T ASEReadCounter \\\n   -o file_name.csv \\\n   -I input.bam \\\n   -sites sites.vcf \\\n   -U ALLOW_N_CIGAR_READS \\\n   [-minDepth 10] \\\n   [--minMappingQuality 10] \\\n   [--minBaseQuality 2] \\\n   [-drf DuplicateRead]\n \u003c/pre\u003e\n\n \u003ch3\u003eNote\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eLike most GATK tools, this tools filters out duplicate reads by default. However, some ASE methods\n     recommend including duplicate reads in the analysis, so the DuplicateRead filter can be disabled using the\n     \"-drf DuplicateRead\" flag in the command-line.\u003c/li\u003e\n \u003c/ul\u003e\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eThis tool will only process biallelic SNP sites. If your callset contains multiallelic sites, they will be ignored.\n     Optionally, you can subset your callset to just biallelic variants using e.g.\n     \u003ca href\u003d\"org_broadinstitute_gatk_tools_walkers_variantutils_SelectVariants.html\"\u003eSelectVariants\u003c/a\u003e\n     with the option \"-restrictAllelesTo BIALLELIC\".\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "ASEReadCounter",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 10000
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

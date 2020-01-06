@@ -1,0 +1,33 @@
+{
+  "summary": "Filter out reads with low mapping qualities for HaplotypeCaller",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "Minimum read mapping quality required to consider a read for analysis with the HaplotypeCaller",
+      "name": "--min_mapping_quality_score",
+      "synonyms": "-mmq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "20",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is applied by default for HaplotypeCaller and is designed to ensure that only reads that are likely\n to be informative will be used in the reassembly process. It performs the same basic function as the regular\n MappingQualityFilter, but it is used at specific points in the operation of HC where it is helpful\n to be able to apply a different quality threshold from the general case.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eSet the HC-specific mapping quality filter to filter out reads with MAPQ \u003c 10\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T HaplotypeCaller \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.vcf \\\n         -mmq 10\n \u003c/pre\u003e\n\n \u003cp\u003eNote that the HCMappingQuality filter itself does not need to be specified in the command line because it is set\n automatically for HaplotypeCaller.\u003c/p\u003e",
+  "name": "HCMappingQualityFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

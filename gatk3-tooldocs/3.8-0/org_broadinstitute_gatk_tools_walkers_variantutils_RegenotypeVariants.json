@@ -1,0 +1,80 @@
+{
+  "summary": "Regenotypes the variants from a VCF containing PLs or GLs.",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n This tool triggers re-genotyping of the samples through the Exact Allele Frequency calculation model.  Note that\n this is truly the mathematically correct way to select samples from a larger set (especially when calls were\n generated from low coverage sequencing data); using the hard genotypes to select (i.e. the default mode of\n SelectVariants) can lead to false positives when errors are confused for variants in the original genotyping.\n This functionality used to comprise the --regenotype option in SelectVariants but we pulled it out\n into its own tool for technical purposes.\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A variant set to regenotype.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A re-genotyped VCF.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T RegenotypeVariants \\\n   -R reference.fasta \\\n   --variant input.vcf \\\n   -o output.vcf\n \u003c/pre\u003e",
+  "name": "RegenotypeVariants",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Discovery Tools",
+  "annotfield": ""
+}

@@ -1,0 +1,147 @@
+{
+  "summary": "Write out sequence read data (for filtering, merging, subsetting etc)",
+  "parallel": [
+    {
+      "arg": "-nct",
+      "name": "NanoSchedulable",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nct"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "READ",
+  "walkertype": "ReadWalker",
+  "arguments": [
+    {
+      "summary": "Print the first n reads from the file, discarding the rest",
+      "name": "--number",
+      "synonyms": "-n",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Only prints the first n reads of the file",
+      "defaultValue": "-1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Write output to this BAM filename instead of STDOUT",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "GATKSAMFileWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Exclude all reads with this platform from the output",
+      "name": "--platform",
+      "synonyms": "-platform",
+      "type": "String",
+      "required": "no",
+      "fulltext": "For example, --platform ILLUMINA or --platform 454.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Exclude all reads with this read group from the output",
+      "name": "--readGroup",
+      "synonyms": "-readGroup",
+      "type": "String",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "File containing a list of samples (one per line). Can be specified multiple times",
+      "name": "--sample_file",
+      "synonyms": "-sf",
+      "type": "Set[File]",
+      "required": "no",
+      "fulltext": "Only reads from samples listed in the provided file(s) will be included in the output.",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Sample name to be included in the analysis. Can be specified multiple times.",
+      "name": "--sample_name",
+      "synonyms": "-sn",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "Only reads from the sample(s) will be included in the output.",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Simplify all reads",
+      "name": "--simplify",
+      "synonyms": "-s",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Erase all extra attributes in the read but keep the read group information",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n PrintReads is a generic utility tool for manipulating sequencing data in SAM/BAM format. It can dynamically\n merge the contents of multiple input BAM files, resulting in merged output sorted in coordinate order. It can\n also optionally filter reads based on various read properties such as read group tags using the `--read_filter/-rf`\n command line argument (see documentation on read filters for more information).\n \u003c/p\u003e\n\n \u003cp\u003e\n Note that when PrintReads is used as part of the Base Quality Score Recalibration workflow,\n it takes the `--BQSR` engine argument, which is listed under Inherited Arguments \u003e CommandLineGATK below.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n One or more bam files.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A single processed bam file.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n \u003cpre\u003e\n // Prints all reads that have a mapping quality above zero\n java -jar GenomeAnalysisTK.jar \\\n   -T PrintReads \\\n   -R reference.fasta \\\n   -I input1.bam \\\n   -I input2.bam \\\n   -o output.bam \\\n   --read_filter MappingQualityZero\n\n // Prints the first 2000 reads in the BAM file\n java -jar GenomeAnalysisTK.jar \\\n   -T PrintReads \\\n   -R reference.fasta \\\n   -I input.bam \\\n   -o output.bam \\\n   -n 2000\n\n // Downsamples BAM file to 25%\n java -jar GenomeAnalysisTK.jar \\\n   -T PrintReads \\\n   -R reference.fasta \\\n   -I input.bam \\\n   -o output.bam \\\n   -dfrac 0.25\n \u003c/pre\u003e",
+  "name": "PrintReads",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "NONE",
+    "to_cov": -1
+  },
+  "group": "Sequence Data Processing Tools",
+  "annotfield": ""
+}

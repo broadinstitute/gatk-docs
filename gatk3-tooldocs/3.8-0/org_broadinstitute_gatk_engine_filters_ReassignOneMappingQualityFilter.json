@@ -1,0 +1,49 @@
+{
+  "summary": "Set the mapping quality of reads with a given value to another given value",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "Original mapping quality",
+      "name": "--reassign_mapping_quality_from",
+      "synonyms": "-RMQF",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "255",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Desired mapping quality",
+      "name": "--reassign_mapping_quality_to",
+      "synonyms": "-RMQT",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "60",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n  \u003cp\u003e\n     This read transformer will change a certain read mapping quality to a different value without affecting reads that\n     have other mapping qualities. This is intended primarily for users of RNA-Seq data handling programs such\n     as TopHat, which use MAPQ \u003d 255 to designate uniquely aligned reads. According to convention, 255 normally\n     designates \"unknown\" quality, and most GATK tools automatically ignore such reads. By reassigning a different\n     mapping quality to those specific reads, users of TopHat and other tools can circumvent this problem without\n     affecting the rest of their dataset.\n  \u003c/p\u003e\n\n  \u003cp\u003e\n     This differs from the ReassignMappingQuality filter by its selectivity -- only one mapping quality is targeted.\n     ReassignMappingQuality will change ALL mapping qualities to a single one, and is typically used for datasets\n     that have no assigned mapping qualities.\n  \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n  \u003cp\u003e\n\t    BAM file(s)\n  \u003c/p\u003e\n\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n  \u003cp\u003e\n      BAM file(s) with one read mapping quality selectively reassigned as desired\n  \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n  \u003cpre\u003e\n    java -jar GenomeAnalysisTK.jar \\\n      -T PrintReads \\\n      -R reference.fasta \\\n      -I input.bam \\\n      -o output.file \\\n      -rf ReassignOneMappingQuality \\\n      -RMQF 255 \\\n      -RMQT 60\n  \u003c/pre\u003e",
+  "name": "ReassignOneMappingQualityFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

@@ -1,0 +1,16 @@
+{
+  "summary": "The standard table codec that expects loci as contig start stop, not contig:start-stop",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n The standard table codec with a slightly different parsing convention\n (expects loci as contig start stop, not contig:start-stop)\n \u003c/p\u003e\n\n \u003cp\u003e\n See also: TableCodec\n \u003c/p\u003e",
+  "name": "BedTableCodec",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "ROD Codecs",
+  "annotfield": ""
+}

@@ -1,0 +1,17 @@
+{
+  "summary": "An exception indicating that some required arguments are missing.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "MissingArgumentException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (Exclude)",
+  "annotfield": "",
+  "annotdescript": []
+}

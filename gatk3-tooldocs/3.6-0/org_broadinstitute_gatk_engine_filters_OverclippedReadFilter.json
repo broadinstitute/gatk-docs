@@ -1,0 +1,49 @@
+{
+  "summary": "Filter out reads that are over-soft-clipped",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "Allow a read to be filtered out based on having only 1 soft-clipped block. By default, both ends must have a soft-clipped block, setting this flag requires only 1 soft-clipped block.",
+      "name": "--do_not_require_softclips_both_ends",
+      "synonyms": "-NoRequireSCBothEnds",
+      "type": "Boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Value for which reads with less than this number of aligned bases is considered too short",
+      "name": "--filter_is_too_short_value",
+      "synonyms": "-filterTooShort",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "30",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n     This filter is intended to filter out reads that are potentially from foreign organisms.\n     From experience with sequencing of human DNA we have found cases of contamination by bacterial\n     organisms; the symptoms of such contamination are a class of reads with only a small number\n     of aligned bases and additionally many soft-clipped bases.  This filter is intended\n     to remove such reads. Consecutive soft-clipped blocks are treated as a single block\n \u003c/p\u003e",
+  "name": "OverclippedReadFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

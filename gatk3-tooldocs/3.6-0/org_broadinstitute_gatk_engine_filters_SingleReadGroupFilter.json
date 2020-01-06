@@ -1,0 +1,33 @@
+{
+  "summary": "Only use reads from the specified read group",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "The name of the read group to keep, filtering out all others",
+      "name": "--read_group_to_keep",
+      "synonyms": "-goodRG",
+      "type": "String",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is useful for isolating data from one particular read group (usually a single lane).\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eUse only reads from the read group with ID \"read_group_1\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf SingleReadGroup \\\n         -goodRG read_group_1\n \u003c/pre\u003e",
+  "name": "SingleReadGroupFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

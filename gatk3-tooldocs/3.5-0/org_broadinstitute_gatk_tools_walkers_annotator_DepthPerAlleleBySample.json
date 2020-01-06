@@ -1,0 +1,19 @@
+{
+  "summary": "Depth of coverage of each allele per sample",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eAlso known as the allele depth, this annotation gives the unfiltered count of reads that support a given allele for an individual sample. The values in the field are ordered to match the order of alleles specified in the REF and ALT fields: REF, ALT1, ALT2 and so on if there are multiple ALT alleles.\u003c/p\u003e\n\n \u003cp\u003eSee the method documentation on \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d4721\"\u003eusing coverage information\u003c/a\u003e for important interpretation details.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eThe AD calculation as performed by HaplotypeCaller may not yield exact results because only reads that statistically favor one allele over the other are counted. Due to this fact, the sum of AD may be different than the individual sample depth, especially when there are many non-informative reads.\u003c/li\u003e\n     \u003cli\u003eFor the AD calculation as performed by the UnifiedGenotyper, the same caveat as above applies to indels (but not to SNPs).\u003c/li\u003e\n     \u003cli\u003eBecause the AD includes reads and bases that were filtered by the caller (and in case of indels, is based on a statistical computation), it  should not be used to make assumptions about the genotype that it is associated with. Ultimately, the phred-scaled genotype likelihoods (PLs) are what determines the genotype calls.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_Coverage.html\"\u003eCoverage\u003c/a\u003e\u003c/b\u003e gives the filtered depth of coverage for each sample and the unfiltered depth across all samples.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AlleleBalance.html\"\u003eAlleleBalance\u003c/a\u003e\u003c/b\u003e is a generalization of this annotation over all samples.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AlleleBalanceBySample.html\"\u003eAlleleBalanceBySample\u003c/a\u003e\u003c/b\u003e calculates allele balance for each individual sample.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_StrandAlleleCountsBySample.html\"\u003eStrandAlleleCountsBySample\u003c/a\u003e\u003c/b\u003e stratifies depths by allele and strand.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "DepthPerAlleleBySample",
+  "annotinfo": "StandardAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "FORMAT (sample genotype-level)",
+  "annotdescript": [
+    "FORMAT\u003d\u0026lt;ID\u003dAD,Number\u003d.,Type\u003dInteger,Description\u003d\u0026quot;Allelic depths for the ref and alt alleles in the order listed\u0026quot;\u0026gt;"
+  ]
+}

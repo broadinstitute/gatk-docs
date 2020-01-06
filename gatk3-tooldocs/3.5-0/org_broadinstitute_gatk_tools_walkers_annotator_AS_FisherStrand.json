@@ -1,0 +1,19 @@
+{
+  "summary": "Allele-specific strand bias estimated using Fisher\u0027s Exact Test\n\n *",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": " \u003cp\u003eStrand bias is a type of sequencing bias in which one DNA strand is favored over the other, which can result in incorrect evaluation of the amount of evidence observed for one allele vs. the other.\u003c/p\u003e\n\n \u003cp\u003eThe AS_FisherStrand annotation is one of several methods that aims to evaluate whether there is strand bias in the data. It uses Fisher\u0027s Exact Test to determine if there is strand bias between forward and reverse strands for the reference or alternate allele, and does so separately for each alternate allele.\u003c/p\u003e\n \u003cp\u003eThe output is a Phred-scaled p-value. The higher the output value, the more likely there is to be bias. More bias is indicative of false positive calls.\u003c/p\u003e\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eSee the \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d4732\"\u003emethod document on statistical tests\u003c/a\u003e for a more detailed explanation of this application of Fisher\u0027s Exact Test.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eThe FisherStrand test may not be calculated for certain complex indel cases or for multi-allelic sites.\u003c/li\u003e\n     \u003cli\u003eFisherStrand is best suited for low coverage situations. For testing strand bias in higher coverage situations, see the StrandOddsRatio annotation.\u003c/li\u003e\n \u003c/ul\u003e\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AS_FisherStrand.html\"\u003eAS_FisherStrand\u003c/a\u003e\u003c/b\u003e outputs a version of this annotation that includes all alternate alleles in a single calculation.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_StrandBiasBySample.html\"\u003eStrandBiasBySample\u003c/a\u003e\u003c/b\u003e outputs counts of read depth per allele for each strand orientation.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_StrandOddsRatio.html\"\u003eStrandOddsRatio\u003c/a\u003e\u003c/b\u003e is an updated form of FisherStrand that uses a symmetric odds ratio calculation.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "AS_FisherStrand",
+  "annotinfo": "ActiveRegionBasedAnnotation, ReducibleAnnotation, AS_StandardAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dAS_FS,Number\u003dA,Type\u003dFloat,Description\u003d\u0026quot;allele specific phred-scaled p-value using Fisher\u0027s exact test to detect strand bias of each alt allele\u0026quot;\u0026gt;"
+  ]
+}

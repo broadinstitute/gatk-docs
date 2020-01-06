@@ -1,0 +1,19 @@
+{
+  "summary": "Allele specific Rank Sum Test for insert sizes of REF versus ALT reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis  variant-level annotation compares the insert sizes of reads supporting the reference allele with those supporting each alternate allele.  To be clear, it does so separately for each alternate allele.\u003c/p\u003e\n\n \u003cp\u003eThe ideal result is a value close to zero, which indicates there is little to no difference. A negative value indicates that the reads supporting the alternate allele are associated with smaller insert sizes than those supporting the reference allele. Conversely, a positive value indicates that reads supporting the alternate allele are associated with larger insert sizes than those supporting the reference allele. Finding a statistically significant difference either way suggests that the sequencing process may have been biased or affected by an artifact.\u003c/p\u003e\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eThe value output for this annotation is the u-based z-approximation from the Mann-Whitney-Wilcoxon Rank Sum Test for insert sizes (insert sizes of reads supporting REF vs. insert sizes of reads supporting ALT). See the \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d8031\"\u003emethod document on statistical tests\u003c/a\u003e for a more detailed explanation of the ranksum test.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eUninformative reads are not used in these calculations.\u003c/li\u003e\n \u003cli\u003eThe insert size rank sum test cannot be calculated for sites without a mixture of reads showing both the reference and alternate alleles.\u003c/li\u003e\n \u003cli\u003eThis is an experimental annotation and as such it is unsupported. Use at your own risk.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "AS_InsertSizeRankSum",
+  "annotinfo": "ActiveRegionBasedAnnotation, BetaTestingAnnotation, ExperimentalAnnotation, ReducibleAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dAS_InsertSizeRankSum,Number\u003dA,Type\u003dFloat,Description\u003d\u0026quot;Allele-specific Insert Size Rank Sum\u0026quot;\u0026gt;"
+  ]
+}

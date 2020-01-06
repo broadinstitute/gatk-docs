@@ -1,0 +1,109 @@
+{
+  "summary": "Splits reads that contain Ns in their CIGAR string",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "READ",
+  "walkertype": "ReadWalker",
+  "arguments": [
+    {
+      "summary": "do not have the walker hard-clip overhanging sections of the reads",
+      "name": "--doNotFixOverhangs",
+      "synonyms": "-doNotFixOverhangs",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "max number of bases allowed in the overhang",
+      "name": "--maxBasesInOverhang",
+      "synonyms": "-maxOverhang",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If there are more than this many bases in the overhang, we won\u0027t try to hard-clip them out",
+      "defaultValue": "40",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "max number of mismatches allowed in the overhang",
+      "name": "--maxMismatchesInOverhang",
+      "synonyms": "-maxMismatches",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If there are more than this many mismatches within the overhang regions, the whole overhang will get hard-clipped out.\n It is still possible in some cases that the overhang could get clipped if the number of mismatches do not exceed this\n value, e.g. if most of the overhang mismatches.",
+      "defaultValue": "1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "max reads allowed to be kept in memory at a time by the BAM writer",
+      "name": "--maxReadsInMemory",
+      "synonyms": "-maxInMemory",
+      "type": "int",
+      "required": "no",
+      "fulltext": "For expert users only!  To minimize memory consumption you can lower this number, but then the tool may skip\n overhang fixing in regions with too much coverage.  Just make sure to give Java enough memory!  4Gb should be\n enough with the default value.",
+      "defaultValue": "150000",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Write output to this BAM filename instead of STDOUT",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "GATKSAMFileWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool identifies all N cigar elements in sequence reads, and creates k+1 new reads\n (where k is the number of N cigar elements) that correspond to the segments of the original read beside/between\n the splicing events represented by the Ns in the original CIGAR. The first read includes the bases that are to the\n left of the first N element, while the part of the read that is to the right of the N (including the Ns) is hard\n clipped, and so on for the rest of the new reads.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n One or more bam files.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A single processed bam file.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T SplitNCigarReads \\\n   -R reference.fasta \\\n   -I input.bam \\\n   -o output.bam \\\n   -U ALLOW_N_CIGARS\n \u003c/pre\u003e\n \n \u003ch3\u003eNote\u003c/h3\u003e\n \u003cp\u003eWhen this tool is used as part of the RNAseq best practices, the command should include mapping quality\n reassignment. See the Best Practices documentation for details.\u003c/p\u003e",
+  "name": "SplitNCigarReads",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "NONE",
+    "to_cov": -1
+  },
+  "group": "Sequence Data Processing Tools",
+  "annotfield": ""
+}

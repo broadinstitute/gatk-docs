@@ -1,0 +1,20 @@
+{
+  "summary": "Allele count and frequency expectation per sample",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation calculates the maximum likelihood (ML) number and frequency of alternate alleles for each individual sample at a site. In essence, it is equivalent to calculating the sum of \"1\"s in a genotype (for a biallelic site).\u003c/p\u003e",
+  "name": "AlleleCountBySample",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "FORMAT (sample genotype-level)",
+  "annotdescript": [
+    "FORMAT\u003d\u0026lt;ID\u003dMLPSAC,Number\u003dA,Type\u003dInteger,Description\u003d\u0026quot;Maximum likelihood expectation (MLE) for the alternate allele count, in the same order as listed, for each individual sample\u0026quot;\u0026gt;",
+    "FORMAT\u003d\u0026lt;ID\u003dMLPSAF,Number\u003dA,Type\u003dFloat,Description\u003d\u0026quot;Maximum likelihood expectation (MLE) for the alternate allele fraction, in the same order as listed, for each individual sample\u0026quot;\u0026gt;"
+  ]
+}

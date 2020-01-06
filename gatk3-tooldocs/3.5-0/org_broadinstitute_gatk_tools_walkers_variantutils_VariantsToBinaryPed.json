@@ -1,0 +1,214 @@
+{
+  "summary": "Convert VCF to binary pedigree file",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "output bed file",
+      "name": "--bed",
+      "synonyms": "-bed",
+      "type": "PrintStream",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_out",
+      "options": []
+    },
+    {
+      "summary": "output map file",
+      "name": "--bim",
+      "synonyms": "-bim",
+      "type": "PrintStream",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_out",
+      "options": []
+    },
+    {
+      "summary": "Checks that alternate alleles actually appear in samples, erroring out if they do not",
+      "name": "--checkAlternateAlleles",
+      "synonyms": "NA",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "dbSNP file",
+      "name": "--dbsnp",
+      "synonyms": "-D",
+      "type": "RodBinding[VariantContext]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "output fam file",
+      "name": "--fam",
+      "synonyms": "-fam",
+      "type": "PrintStream",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_out",
+      "options": []
+    },
+    {
+      "summary": "Sets the major allele to be \u0027reference\u0027 for the bim file, rather than the ref allele",
+      "name": "--majorAlleleFirst",
+      "synonyms": "NA",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Sample metadata file",
+      "name": "--metaData",
+      "synonyms": "-m",
+      "type": "File",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "If genotype quality is lower than this value, output NO_CALL",
+      "name": "--minGenotypeQuality",
+      "synonyms": "-mgq",
+      "type": "int",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_param",
+      "options": []
+    },
+    {
+      "summary": "The output file mode (SNP major or individual major)",
+      "name": "--outputMode",
+      "synonyms": "-mode",
+      "type": "OutputMode",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_in",
+      "options": [
+        {
+          "summary": "",
+          "name": "INDIVIDUAL_MAJOR"
+        },
+        {
+          "summary": "",
+          "name": "SNP_MAJOR"
+        }
+      ]
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 100,
+    "start": 0
+  },
+  "description": "\n\n \u003cp\u003eThis tool takes a VCF and produces a binary pedigree as used by\n \u003ca href\u003d\"http://pngu.mgh.harvard.edu/~purcell/plink/\"\u003ePLINK\u003c/a\u003e, consisting of three associated files (.bed/.bim/.fam).\u003c/p\u003e\n\n \u003ch3\u003eInputs\u003c/h3\u003e\n \u003cp\u003e\n A VCF file and a metadata file.\n \u003c/p\u003e\n\n \u003cp\u003eThe metaData file can take two formats, the first of which is the first 6 lines of the standard pedigree file. This\n is what Plink describes as a .fam file. Note that the sex encoding convention is 1\u003dmale; 2\u003dfemale; other\u003dunknown. An example .fam file is as follows (note that there is no header):\u003c/p\u003e\n \u003cpre\u003e\n CEUTrio NA12878 NA12891 NA12892 2 -9\n CEUTrio NA12891 UNKN1 UNKN2 1 -9\n CEUTrio NA12892 UNKN3 UNKN4 2 -9\n \u003c/pre\u003e\n \u003cp\u003ewhere the entries are: FamilyID IndividualID DadID MomID Sex Phenotype.\u003c/p\u003e\n \u003cp\u003eAn alternate format is a two-column key-value file:\u003c/p\u003e\n \u003cpre\u003e\n NA12878        fid\u003dCEUTrio;dad\u003dNA12891;mom\u003dNA12892;sex\u003d2;phenotype\u003d-9\n NA12891        fid\u003dCEUTrio;sex\u003d1;phenotype\u003d-9\n NA12892        fid\u003dCEUTrio;sex\u003d2;phenotype\u003d-9\n \u003c/pre\u003e\n \u003cp\u003ewhere unknown parents do not need to be specified. The columns are the individual ID and a list of key-value pairs.\u003c/p\u003e\n\n \u003cp\u003e\n Regardless of which file is specified, the tool will output a .fam file alongside the pedigree file. If the\n command line has \"-m [name].fam\", the fam file will be subset and reordered to match the sample content and ordering\n of the VCF. However, if a metadata file of the alternate format is passed by \"-m [name].txt\", the tool will\n construct a formatted .fam file from the data.\n \u003c/p\u003e\n\n \u003ch3\u003eOutputs\u003c/h3\u003e\n \u003cp\u003e\n A binary pedigree in PLINK format, composed of three files (.bed/.bim/.fam). See the \u003ca href\u003d\u0027http://pngu.mgh.harvard.edu/~purcell/plink/data.shtml#ped\u0027\u003ePLINK format specification\u003c/a\u003e for more details.\n \u003c/p\u003e\n\n \u003ch3\u003eExample\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T VariantsToBinaryPed \\\n   -R reference.fasta \\\n   -V variants.vcf \\\n   -m metadata.fam \\\n   -bed output.bed \\\n   -bim output.bim \\\n   -fam output.fam\n \u003c/pre\u003e",
+  "name": "VariantsToBinaryPed",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Evaluation and Manipulation Tools",
+  "annotfield": ""
+}

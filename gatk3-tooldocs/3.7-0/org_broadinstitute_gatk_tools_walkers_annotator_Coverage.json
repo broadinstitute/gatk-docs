@@ -1,0 +1,19 @@
+{
+  "summary": "Total depth of coverage per sample and over all samples.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation is used to provide counts of read depth at two different levels, with some important differences. At the sample level (FORMAT), the DP value is the count of reads that passed the caller\u0027s internal quality control metrics (such as MAPQ \u003e 17, for example). At the site level (INFO), the DP value is the unfiltered depth over all samples.\u003c/p\u003e\n\n \u003cp\u003eSee the method documentation on \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d4721\"\u003eusing coverage information\u003c/a\u003e for important interpretation details.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eIf downsampling is enabled (as is done by default for some analyses to remove excessive coverage), the depth of coverage effectively seen by the caller may be inferior to the actual depth of coverage in the original file. If using \"-dcov D\", the maximum depth that can be seen for N samples will be N * D.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_DepthPerAlleleBySample.html\"\u003eDepthPerAlleleBySample\u003c/a\u003e\u003c/b\u003e calculates depth of coverage for each allele per sample (AD).\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_DepthPerSampleHC.html\"\u003eDepthPerSampleHC\u003c/a\u003e\u003c/b\u003e calculates depth of coverage after filtering by HaplotypeCaller.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "Coverage",
+  "annotinfo": "StandardAnnotation, ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dDP,Number\u003d1,Type\u003dInteger,Description\u003d\u0026quot;Approximate read depth; some reads may have been filtered\u0026quot;\u0026gt;"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "summary": "Allele specific Rank Sum Test for insert sizes of REF versus ALT reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n     This annotation tests whether the insert sizes of reads supporting the REF allele and ALT allele are roughly equal.\n     In case of multiple alternate alleles, each alternate allele is considered separately.\n\n \u003c/p\u003e\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003e See the \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d4732\"\u003emethod document\u003c/a\u003e for a more detailed explanation of the rank sum test. \u003c/p\u003e",
+  "name": "AS_InsertSizeRankSum",
+  "annotinfo": "ActiveRegionBasedAnnotation, BetaTestingAnnotation, ExperimentalAnnotation, ReducibleAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dAS_InsertSizeRankSum,Number\u003dA,Type\u003dFloat,Description\u003d\u0026quot;Allele-specific Insert Size Rank Sum\u0026quot;\u0026gt;"
+  ]
+}

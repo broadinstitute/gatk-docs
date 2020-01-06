@@ -1,0 +1,16 @@
+{
+  "summary": "",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "UserException.TooManyOpenFiles",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (DevZone)",
+  "annotfield": ""
+}

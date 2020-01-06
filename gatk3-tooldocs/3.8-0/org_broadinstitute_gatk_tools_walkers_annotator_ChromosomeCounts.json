@@ -1,0 +1,21 @@
+{
+  "summary": "Counts and frequency of alleles in called genotypes",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation outputs the following:\u003c/p\u003e\n\n     \u003cul\u003e\n     \u003cli\u003eNumber of times each ALT allele is represented, in the same order as listed (AC)\u003c/li\u003e\n     \u003cli\u003eFrequency of each ALT allele, in the same order as listed (AF)\u003c/li\u003e\n     \u003cli\u003eTotal number of alleles in called genotypes (AN)\u003c/li\u003e\n \u003c/ul\u003e\n \u003ch3\u003eExample\u003c/h3\u003e\n \u003cpre\u003eAC\u003d1;AF\u003d0.500;AN\u003d2\u003c/pre\u003e\n \u003cp\u003eThis set of annotations, relating to a heterozygous call(0/1) means there is 1 alternate allele in the genotype. The corresponding allele frequency is 0.5 because there is 1 alternate allele and 1 reference allele in the genotype.\n The total number of alleles in the genotype should be equivalent to the ploidy of the sample.\u003c/p\u003e",
+  "name": "ChromosomeCounts",
+  "annotinfo": "StandardAnnotation, ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dAF,Number\u003dA,Type\u003dFloat,Description\u003d\u0026quot;Allele Frequency, for each ALT allele, in the same order as listed\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dAC,Number\u003dA,Type\u003dInteger,Description\u003d\u0026quot;Allele count in genotypes, for each ALT allele, in the same order as listed\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dAN,Number\u003d1,Type\u003dInteger,Description\u003d\u0026quot;Total number of alleles in called genotypes\u0026quot;\u0026gt;"
+  ]
+}

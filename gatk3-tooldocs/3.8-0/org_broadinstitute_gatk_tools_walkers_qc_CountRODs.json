@@ -1,0 +1,117 @@
+{
+  "summary": "Count the number of ROD objects encountered",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    },
+    {
+      "arg": "-nct",
+      "name": "NanoSchedulable",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nct"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file(s)",
+      "name": "--rod",
+      "synonyms": "-rod",
+      "type": "List[RodBinding[Feature]]",
+      "required": "yes",
+      "fulltext": "One or more input rod files",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, BEAGLE, BED, BEDTABLE, EXAMPLEBINARY, RAWHAPMAP, REFSEQ, SAMPILEUP, SAMREAD, TABLE, VCF, VCF3",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "If true, this tool will print out the skipped locations",
+      "name": "--showSkipped",
+      "synonyms": "-s",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "If true, this tool will print out detailed information about the rods it finds and locations",
+      "name": "--verbose",
+      "synonyms": "-v",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eCountRods is a RODWalker, and so traverses the data by ROD (reference ordered data). For example if the ROD passed to it is a VCF file,\n it will count the variants in the file.\u003c/p\u003e\n\n \u003cp\u003eNote that this tool is different from CountRodsByRef which is a RefWalker, and so traverses the data by\n position along the reference. CountRodsByRef can count ROD elements (such as, but not limited to, variants) found\n at each position or within specific intervals if you use the -L argument (see CommandLineGATK).\u003c/p\u003e\n\n \u003cp\u003eBoth these tools are different from CountVariants in that they are more generic (they can also count RODs that\n are not variants) and CountVariants is more detailed, in that it computes additional statistics (type of variants\n being indels vs. SNPs etc). \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n One or more ROD files.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n Number of RODs seen.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T CountRODs \\\n   -R reference.fasta \\\n   -o output.txt \\\n   --rod input.vcf\n \u003c/pre\u003e",
+  "name": "CountRODs",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

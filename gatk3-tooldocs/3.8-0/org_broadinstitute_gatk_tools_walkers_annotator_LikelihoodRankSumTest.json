@@ -1,0 +1,19 @@
+{
+  "summary": "Rank Sum Test of per-read likelihoods of REF versus ALT reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis variant-level annotation compares the likelihoods of reads to their best haplotype match, between reads that support the reference allele and those that support the alternate allele. The ideal result is a value close to zero, which indicates there is little to no difference.  A negative value indicates that the reads supporting the alternate allele have lower likelihoods to their best haplotype match than those supporting the reference allele. Conversely, a positive value indicates that the reads supporting the alternate allele have higher likelihoods to their best haplotype match than those supporting the reference allele. Finding a statistically significant difference either way suggests that the sequencing and/or mapping process may have been biased or affected by an artifact.\u003c/p\u003e\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eThe value output for this annotation is the u-based z-approximation from the Mann-Whitney-Wilcoxon Rank Sum Test for per-read likelihoods to the best haplotype match (likelihoods of reads supporting REF vs. likelihoods of reads supporting ALT). See the \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d8031\"\u003emethod document on statistical tests\u003c/a\u003e for a more detailed explanation of the ranksum test.\u003c/p\u003e\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cp\u003eThe read position rank sum test can not be calculated for sites without a mixture of reads showing both the reference and alternate alleles.\u003c/p\u003e",
+  "name": "LikelihoodRankSumTest",
+  "annotinfo": "ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dLikelihoodRankSum,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Z-score from Wilcoxon rank sum test of Alt Vs. Ref haplotype likelihoods\u0026quot;\u0026gt;"
+  ]
+}

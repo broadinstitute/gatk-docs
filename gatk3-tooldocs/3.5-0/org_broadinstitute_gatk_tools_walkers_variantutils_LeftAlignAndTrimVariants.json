@@ -1,0 +1,109 @@
+{
+  "summary": "Left-align indels in a variant callset",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Do not Trim alleles to remove bases common to all of them",
+      "name": "--dontTrimAlleles",
+      "synonyms": "-notrim",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "If this argument is set, bases common to all alleles will not be removed and will not leave their minimal representation.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Split multiallelic records and left-align individual alleles",
+      "name": "--splitMultiallelics",
+      "synonyms": "-split",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "If this argument is set, split multiallelic records and left-align individual alleles.\n If this argument is not set, multiallelic records are not attempted to left-align and will be copied as is.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 200,
+    "start": -200
+  },
+  "description": "\n\n \u003cp\u003e\n LeftAlignAndTrimVariants is a tool that takes a VCF file, left-aligns the indels and trims common bases from indels,\n leaving them with a minimum representation. The same indel can often be placed at multiple positions and still\n represent the same haplotype. While the standard convention with VCF is to place an indel at the left-most position\n this isn\u0027t always done, so this tool can be used to left-align them. This tool optionally splits multiallelic\n sites into biallelics and left-aligns individual alleles. Optionally, the tool will not trim common bases from indels.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A variant call set to left-align and trim.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A left-aligned VCF.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n\n \u003ch4\u003eLeft align and trim alleles\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T LeftAlignAndTrimVariants \\\n   -R reference.fasta \\\n   --variant input.vcf \\\n   -o output.vcf\n \u003c/pre\u003e\n\n \u003ch4\u003eLeft align and don\u0027t trim alleles\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T LeftAlignAndTrimVariants \\\n   -R reference.fasta \\\n   --variant input.vcf \\\n   -o output.vcf \\\n   --dontTrimAlleles\n \u003c/pre\u003e\n\n \u003ch4\u003eLeft align and trim alleles, process alleles \u003c\u003d 208 bases\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T LeftAlignAndTrimVariants \\\n   -R reference.fasta \\\n   --variant input.vcf \\\n   -o output.vcf \\\n   --reference_window_stop 208\n \u003c/pre\u003e\n\n \u003ch4\u003eSplit multiallics into biallelics, left align and trim alleles\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T LeftAlignAndTrimVariants \\\n   -R reference.fasta \\\n   --variant input.vcf \\\n   -o output.vcf \\\n   --splitMultiallelics\n \u003c/pre\u003e\n\n \u003ch4\u003eSplit multiallelics into biallics, left align but don\u0027t trim alleles\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T LeftAlignAndTrimVariants \\\n   -R reference.fasta \\\n   --variant input.vcf \\\n   -o output.vcf \\\n   --splitMultiallelics \\\n   --dontTrimAlleles\n \u003c/pre\u003e",
+  "name": "LeftAlignAndTrimVariants",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Evaluation and Manipulation Tools",
+  "annotfield": ""
+}

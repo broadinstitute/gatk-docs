@@ -1,0 +1,222 @@
+{
+  "summary": "Annotate physical phasing information",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "The window size (in bases) to cache variant sites and their reads for the phasing procedure",
+      "name": "--cacheWindowSize",
+      "synonyms": "-cacheWindow",
+      "type": "Integer",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "20000",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "If specified, print out very verbose debug information (if -l DEBUG is also specified)",
+      "name": "--debug",
+      "synonyms": "-debug",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Merge consecutive phased sites into MNP records",
+      "name": "--enableMergePhasedSegregatingPolymorphismsToMNP",
+      "synonyms": "-enableMergeToMNP",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "The maximum reference-genome distance between consecutive heterozygous sites to permit merging phased VCF records into a MNP record",
+      "name": "--maxGenomicDistanceForMNP",
+      "synonyms": "-maxDistMNP",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "The maximum number of successive heterozygous sites permitted to be used by the phasing algorithm",
+      "name": "--maxPhaseSites",
+      "synonyms": "-maxSites",
+      "type": "Integer",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "10",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum base quality required to consider a base for phasing",
+      "name": "--min_base_quality_score",
+      "synonyms": "-mbq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "17",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum read mapping quality required to consider a read for phasing",
+      "name": "--min_mapping_quality_score",
+      "synonyms": "-mmq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "20",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "The minimum phasing quality score required to output phasing",
+      "name": "--phaseQualityThresh",
+      "synonyms": "-phaseThresh",
+      "type": "Double",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "20.0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Only include these samples when phasing",
+      "name": "--sampleToPhase",
+      "synonyms": "-sampleToPhase",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool identifies haplotypes based on the overlap between reads and uses this information to generate physical\n phasing information for variants within these haplotypes.\u003c/p\u003e\n\n \u003cp\u003eIt operates by walking along all variant ROD loci, caching a user-defined window of VariantContext sites, and\n then finishes phasing them when they go out of range (using upstream and downstream reads). The underlying algorithm\n is based on building up 2^n local haplotypes, where n is the number of heterozygous SNPs in the local region we\n expected to find phase-informative reads (and assumes a maximum value of maxPhaseSites, a user parameter). Then,\n these 2^n haplotypes are used to determine, with sufficient certainty (the assigned PQ score), to which haplotype\n the alleles of a genotype at a particular locus belong (denoted by the HP tag).\u003c/p\u003e\n\n \u003cp\u003e\n Performs physical phasing of SNP calls, based on sequencing reads.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n VCF file of SNP calls, BAM file of sequence reads.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n Phased VCF file.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n    java -jar GenomeAnalysisTK.jar \\\n      -T ReadBackedPhasing \\\n      -R reference.fasta \\\n      -I reads.bam \\\n      --variant SNPs.vcf \\\n      -L SNPs.vcf \\\n      -o phased_SNPs.vcf \\\n      --phaseQualityThresh 20.0\n \u003c/pre\u003e\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cp\u003eThe current implementation works for diploid SNPs, and will transparently (but properly) ignore other sites.\u003c/p\u003e",
+  "name": "ReadBackedPhasing",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MappingQualityZeroFilter.html",
+      "name": "MappingQualityZeroFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Evaluation and Manipulation Tools",
+  "annotfield": ""
+}

@@ -1,0 +1,74 @@
+{
+  "summary": "Print out all of the RODs in the input data set",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "The input ROD which should be printed out.",
+      "name": "--input",
+      "synonyms": "-input",
+      "type": "RodBinding[Feature]",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_beagle_BeagleCodec.html\u003eBEAGLE\u003c/a\u003e, \u003ca href\u003dhtsjdk_tribble_bed_BEDCodec.html\u003eBED\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_table_BedTableCodec.html\u003eBEDTABLE\u003c/a\u003e, \u003ca href\u003dhtsjdk_tribble_example_ExampleBinaryCodec.html\u003eEXAMPLEBINARY\u003c/a\u003e, \u003ca href\u003dhtsjdk_tribble_gelitext_GeliTextCodec.html\u003eGELITEXT\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_hapmap_RawHapMapCodec.html\u003eRAWHAPMAP\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_refseq_RefSeqCodec.html\u003eREFSEQ\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_sampileup_SAMPileupCodec.html\u003eSAMPILEUP\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_samread_SAMReadCodec.html\u003eSAMREAD\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_table_TableCodec.html\u003eTABLE\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool reports what RODs (reference ordered data sets) are contained in a given input.\u003c/p\u003e",
+  "name": "PrintRODs",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

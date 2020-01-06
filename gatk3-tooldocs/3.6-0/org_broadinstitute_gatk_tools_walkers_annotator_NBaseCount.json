@@ -1,0 +1,19 @@
+{
+  "summary": "Percentage of N bases",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eN occurs in a sequence when the sequencer does not have enough information to determine which base it should call. The presence of many Ns at the same site lowers our confidence in any calls made there, because it suggests that there was some kind of technical difficulty that interfered with the sequencing process.\u003c/p\u003e\n\n \u003ch3\u003eNote\u003c/h3\u003e\n \u003cp\u003eIn GATK versions 3.2 and earlier, this annotation only counted N bases from reads generated with SOLiD technology. This functionality was generalized for all sequencing platforms in GATK version 3.3.\u003c/p\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_BaseCounts.html\"\u003eBaseCounts\u003c/a\u003e\u003c/b\u003e counts the number of A, C, G, T bases across all samples.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "NBaseCount",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dPercentNBase,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Percentage of N bases in the pileup\u0026quot;\u0026gt;"
+  ]
+}

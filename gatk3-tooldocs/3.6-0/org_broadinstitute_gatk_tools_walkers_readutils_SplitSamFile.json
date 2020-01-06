@@ -1,0 +1,45 @@
+{
+  "summary": "Split a BAM file by sample",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "READ",
+  "walkertype": "ReadWalker",
+  "arguments": [
+    {
+      "summary": "output BAM file",
+      "name": "--outputRoot",
+      "synonyms": "NA",
+      "type": "String",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "\"\"",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool divides the input data set into separate BAM files, one for each sample in the input data set. The split\n files are named by concatenating the sample name to the end of the provided outputRoot command-line argument.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A single bam file.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A separate bam file for each sample.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T SplitSamFile \\\n   -R reference.fasta \\\n   -I input.bam \\\n   --outputRoot myproject_\n \u003c/pre\u003e",
+  "name": "SplitSamFile",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "NONE",
+    "to_cov": -1
+  },
+  "group": "Sequence Data Processing Tools",
+  "annotfield": ""
+}

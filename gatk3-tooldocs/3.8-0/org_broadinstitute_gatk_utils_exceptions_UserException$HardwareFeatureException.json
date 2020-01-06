@@ -1,0 +1,17 @@
+{
+  "summary": "A trivial specialization of  UserException to mark that a hardware feature is not supported",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "UserException.HardwareFeatureException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (Exclude)",
+  "annotfield": "",
+  "annotdescript": []
+}

@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads with mapping quality zero",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is intended to ensure that only reads that are likely\n to be mapped in the right place, and therefore to be informative, will be used in analysis.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf MappingQualityZero\n \u003c/pre\u003e",
+  "name": "MappingQualityZeroFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

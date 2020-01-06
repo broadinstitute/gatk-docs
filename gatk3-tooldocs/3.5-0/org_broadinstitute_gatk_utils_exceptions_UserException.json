@@ -1,0 +1,17 @@
+{
+  "summary": "Represents the common user errors detected by GATK\n\n Root class for all GATK user errors, as well as the container for errors themselves",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "UserException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (DevZone)",
+  "annotfield": "",
+  "annotdescript": []
+}

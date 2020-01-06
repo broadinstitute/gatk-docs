@@ -1,0 +1,19 @@
+{
+  "summary": "Count of A, C, G, T bases across all samples",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e This annotation returns the counts of A, C, G, and T bases across all samples, in that order.\u003c/p\u003e\n \u003ch3\u003eExample:\u003c/h3\u003e\n\n \u003cpre\u003eBaseCounts\u003d3,0,3,0\u003c/pre\u003e\n\n \u003cp\u003e\n     This means the number of A bases seen is 3, the number of T bases seen is 0, the number of G bases seen is 3, and the number of T bases seen is 0.\n \u003c/p\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_NBaseCount.html\"\u003eNBaseCount\u003c/a\u003e\u003c/b\u003e counts the percentage of N bases.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "BaseCounts",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dBaseCounts,Number\u003d4,Type\u003dInteger,Description\u003d\u0026quot;Counts of each base\u0026quot;\u0026gt;"
+  ]
+}

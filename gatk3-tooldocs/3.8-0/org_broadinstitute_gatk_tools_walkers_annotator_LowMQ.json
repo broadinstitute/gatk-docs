@@ -1,0 +1,19 @@
+{
+  "summary": "Proportion of low quality reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation tells you what fraction of reads have a mapping quality of less than the given threshold of 10 (including 0). Note that certain tools may impose a different minimum mapping quality threshold. For example, HaplotypeCaller excludes reads with MAPQ\u003c20.\u003c/p\u003e\n\n \u003ch3\u003eCalculation\u003c/h3\u003e\n $$ LowMQ \u003d \\frac{# reads with MAPQ\u003d0 + # reads with MAPQ\u003c10}{total # reads} $$\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_MappingQualityZero.html\"\u003eMappingQualityZero\u003c/a\u003e\u003c/b\u003e gives the count of reads with MAPQ\u003d0 across all samples.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_MappingQualityZeroBySample.html\"\u003eMappingQualityZeroBySample\u003c/a\u003e\u003c/b\u003e gives the count of reads with MAPQ\u003d0 for each individual sample.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "LowMQ",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dLowMQ,Number\u003d3,Type\u003dFloat,Description\u003d\u0026quot;3-tuple: \u0026lt;fraction of reads with MQ\u003d0\u0026gt;"
+  ]
+}

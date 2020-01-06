@@ -1,0 +1,17 @@
+{
+  "summary": "",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "UserException.IncompatibleSequenceDictionaries",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (DevZone)",
+  "annotfield": "",
+  "annotdescript": []
+}

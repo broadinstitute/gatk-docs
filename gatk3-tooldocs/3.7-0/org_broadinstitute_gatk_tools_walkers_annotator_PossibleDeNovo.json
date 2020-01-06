@@ -1,0 +1,20 @@
+{
+  "summary": "Existence of a de novo mutation in at least one of the given families",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation uses the genotype information from individuals in family trios to identify possible de novo mutations and the sample(s) in which they occur. This works best if the genotypes have been processed according to the \u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/article?id\u003d4723\"\u003eGenotype Refinement workflow\u003c/a\u003e.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eThe calculation assumes that the organism is diploid.\u003c/li\u003e\n     \u003cli\u003eThis annotation requires a valid pedigree file.\u003c/li\u003e\n     \u003cli\u003eOnly reports possible de novos for children whose genotypes have not been tagged as filtered (which is most appropriate if parent likelihoods\n have already been factored in using PhaseByTransmission).\u003c/li\u003e\n     \u003cli\u003eWhen multiple trios are present, the annotation is simply the maximum of the likelihood ratios, rather than the strict 1-Prod(1-p_i) calculation, as this can scale poorly for uncertain sites and many trios.\u003c/li\u003e\n     \u003cli\u003eThis annotation can only be used from the Variant Annotator. If you attempt to use it from the UnifiedGenotyper, the run will fail with an error message to that effect. If you attempt to use it from the HaplotypeCaller, the run will complete successfully but the annotation will not be added to any variants.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_MVLikelihoodRatio.html\"\u003eMVLikelihoodRatio\u003c/a\u003e\u003c/b\u003e evaluates whether a site is transmitted from parents to offspring according to Mendelian rules or not.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "PossibleDeNovo",
+  "annotinfo": "RodRequiringAnnotation, ExperimentalAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dhiConfDeNovo,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;High confidence possible de novo mutation (GQ \u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dloConfDeNovo,Number\u003d1,Type\u003dString,Description\u003d\u0026quot;Low confidence possible de novo mutation (GQ \u0026gt;"
+  ]
+}

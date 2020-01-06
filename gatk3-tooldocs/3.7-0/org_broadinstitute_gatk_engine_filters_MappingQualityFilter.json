@@ -1,0 +1,33 @@
+{
+  "summary": "Filter out reads with low mapping qualities",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "Minimum read mapping quality required to consider a read for calling",
+      "name": "--min_mapping_quality_score",
+      "synonyms": "-mmq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "10",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is intended to ensure that only reads that are likely\n to be mapped in the right place, and therefore to be informative, will be used in analysis.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eSet the mapping quality filter to filter out reads that have MAPQ \u003c 15\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T HaplotypeCaller \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.vcf \\\n         -rf MappingQuality \\\n         -mmq 15\n \u003c/pre\u003e",
+  "name": "MappingQualityFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

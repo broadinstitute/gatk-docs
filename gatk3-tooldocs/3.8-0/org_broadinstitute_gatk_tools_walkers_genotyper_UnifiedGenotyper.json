@@ -1,0 +1,691 @@
+{
+  "summary": "Call SNPs and indels on a per-locus basis",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    },
+    {
+      "arg": "-nct",
+      "name": "NanoSchedulable",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nct"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Set of alleles to use in genotyping",
+      "name": "--alleles",
+      "synonyms": "-alleles",
+      "type": "RodBinding[VariantContext]",
+      "required": "no",
+      "fulltext": "When --genotyping_mode is set to GENOTYPE_GIVEN_ALLELES mode, the caller will genotype the samples using only the alleles provide in this callset. Note that this is not well tested in HaplotypeCaller, and is definitely not suitable for use with HaplotypeCaller in -ERC GVCF mode. In addition, it does not apply to MuTect2 at all.",
+      "defaultValue": "none",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "Annotate all sites with PLs",
+      "name": "--allSitePLs",
+      "synonyms": "-allSitePLs",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Experimental argument FOR USE WITH UnifiedGenotyper ONLY: if SNP likelihood model\n is specified, and if EMIT_ALL_SITES output mode is set, when we set this argument then we\n will also emit PLs at all sites. This will give a measure of reference confidence and a\n measure of which alt alleles are more plausible (if any).\n WARNINGS:\n - This feature will inflate VCF file size considerably.\n - All SNP ALT alleles will be emitted with corresponding 10 PL values.\n - An error will be emitted if EMIT_ALL_SITES is not set, or if anything other than diploid\n SNP model is used\n - THIS WILL NOT WORK WITH HaplotypeCaller, GenotypeGVCFs or MuTect2! Use HaplotypeCaller with\n -ERC GVCF then GenotypeGVCFs instead. See the Best Practices documentation for more information.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_flag",
+      "options": []
+    },
+    {
+      "summary": "Annotate number of alleles observed",
+      "name": "--annotateNDA",
+      "synonyms": "-nda",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Depending on the value of the --max_alternate_alleles argument, we may genotype only a fraction of the alleles\n being sent on for genotyping. Using this argument instructs the genotyper to annotate (in the INFO field) the\n number of alternate alleles that were originally discovered (but not necessarily genotyped) at the site.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "One or more specific annotations to apply to variant calls",
+      "name": "--annotation",
+      "synonyms": "-A",
+      "type": "List[String]",
+      "required": "no",
+      "fulltext": "Which annotations to add to the output VCF file. See the VariantAnnotator -list argument to view available annotations.",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Comparison VCF file",
+      "name": "--comp",
+      "synonyms": "-comp",
+      "type": "List[RodBinding[VariantContext]]",
+      "required": "no",
+      "fulltext": "If a call overlaps with a record from the provided comp track, the INFO field will be annotated\n as such in the output with the track name (e.g. -comp:FOO will have \u0027FOO\u0027 in the INFO field).\n Records that are filtered in the comp track will be ignored.\n Note that \u0027dbSNP\u0027 has been special-cased (see the --dbsnp argument).",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "If provided, we will calculate the SLOD (SB annotation)",
+      "name": "--computeSLOD",
+      "synonyms": "-slod",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Note that calculating the SLOD increases the runtime by an appreciable amount.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Contamination per sample",
+      "name": "--contamination_fraction_per_sample_file",
+      "synonyms": "-contaminationFile",
+      "type": "File",
+      "required": "no",
+      "fulltext": "This argument specifies a file with two columns \"sample\" and \"contamination\" (separated by a tab)\n  specifying the contamination level for those samples (where contamination is given as a\n  decimal number, not an integer) per line. There should be no header. Samples that do not appear\n  in this file will be processed with CONTAMINATION_FRACTION.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Fraction of contamination to aggressively remove",
+      "name": "--contamination_fraction_to_filter",
+      "synonyms": "-contamination",
+      "type": "double",
+      "required": "no",
+      "fulltext": "If this fraction is greater is than zero, the caller will aggressively attempt to remove\n contamination through biased down-sampling of reads (for all samples). Basically, it will ignore the\n contamination fraction of reads for each alternate allele.  So if the pileup contains N\n total bases, then we will try to remove (N * contamination fraction) bases for each alternate\n allele.",
+      "defaultValue": "0.0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "dbSNP file",
+      "name": "--dbsnp",
+      "synonyms": "-D",
+      "type": "RodBinding[VariantContext]",
+      "required": "no",
+      "fulltext": "rsIDs from this file are used to populate the ID column of the output.  Also, the DB INFO flag will be set when appropriate.\n dbSNP is not used in any way for the calculations themselves.",
+      "defaultValue": "none",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "One or more specific annotations to exclude",
+      "name": "--excludeAnnotation",
+      "synonyms": "-XA",
+      "type": "List[String]",
+      "required": "no",
+      "fulltext": "Which annotations to exclude from output in the VCF file.  Note that this argument has higher priority than the -A or -G arguments,\n so annotations will be excluded even if they are explicitly included with the other options.",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Genotype likelihoods calculation model to employ -- SNP is the default option, while INDEL is also available for calling indels and BOTH is available for calling both together",
+      "name": "--genotype_likelihoods_model",
+      "synonyms": "-glm",
+      "type": "Model",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "SNP",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "SNP"
+        },
+        {
+          "summary": "",
+          "name": "INDEL"
+        },
+        {
+          "summary": "",
+          "name": "GENERALPLOIDYSNP"
+        },
+        {
+          "summary": "",
+          "name": "GENERALPLOIDYINDEL"
+        },
+        {
+          "summary": "",
+          "name": "BOTH"
+        }
+      ]
+    },
+    {
+      "summary": "Specifies how to determine the alternate alleles to use for genotyping",
+      "name": "--genotyping_mode",
+      "synonyms": "-gt_mode",
+      "type": "GenotypingOutputMode",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "DISCOVERY",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "The genotyper will choose the most likely alternate allele",
+          "name": "DISCOVERY"
+        },
+        {
+          "summary": "Only the alleles passed by the user should be considered.",
+          "name": "GENOTYPE_GIVEN_ALLELES"
+        }
+      ]
+    },
+    {
+      "summary": "One or more classes/groups of annotations to apply to variant calls.  The single value \u0027none\u0027 removes the default group",
+      "name": "--group",
+      "synonyms": "-G",
+      "type": "String[]",
+      "required": "no",
+      "fulltext": "If specified, all available annotations in the group will be applied. See the VariantAnnotator -list argument to view available groups.\n Keep in mind that RODRequiringAnnotations are not intended to be used as a group, because they require specific ROD inputs.",
+      "defaultValue": "[Standard, StandardUG]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Heterozygosity value used to compute prior likelihoods for any locus",
+      "name": "--heterozygosity",
+      "synonyms": "-hets",
+      "type": "Double",
+      "required": "no",
+      "fulltext": "The expected heterozygosity value used to compute prior probability that a locus is non-reference. See\n https://software.broadinstitute.org/gatk/documentation/article?id\u003d8603 for more details.",
+      "defaultValue": "0.001",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Standard deviation of eterozygosity for SNP and indel calling.",
+      "name": "--heterozygosity_stdev",
+      "synonyms": "-heterozygosityStandardDeviation",
+      "type": "double",
+      "required": "no",
+      "fulltext": "The standard deviation of the distribution of alt allele fractions. The above heterozygosity parameters give\n the *mean* of this distribution; this parameter gives its spread.",
+      "defaultValue": "0.01",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Heterozygosity for indel calling",
+      "name": "--indel_heterozygosity",
+      "synonyms": "-indelHeterozygosity",
+      "type": "double",
+      "required": "no",
+      "fulltext": "This argument informs the prior probability of having an indel at a site.",
+      "defaultValue": "1.25E-4",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Indel gap continuation penalty, as Phred-scaled probability.  I.e., 30 \u003d\u003e 10^-30/10",
+      "name": "--indelGapContinuationPenalty",
+      "synonyms": "-indelGCP",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "10",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Indel gap open penalty, as Phred-scaled probability.  I.e., 30 \u003d\u003e 10^-30/10",
+      "name": "--indelGapOpenPenalty",
+      "synonyms": "-indelGOP",
+      "type": "byte",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "45",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Input prior for calls",
+      "name": "--input_prior",
+      "synonyms": "-inputPrior",
+      "type": "List[Double]",
+      "required": "no",
+      "fulltext": "By default, the prior specified with the argument --heterozygosity/-hets is used for variant discovery at a\n particular locus, using an infinite sites model (see e.g. Waterson, 1975 or Tajima, 1996). This model asserts that\n the probability of having a population of k variant sites in N chromosomes is proportional to theta/k, for 1\u003d1:N.\n However, there are instances where using this prior might not be desirable, e.g. for population studies where prior\n might not be appropriate, as for example when the ancestral status of the reference allele is not known.\n\n This argument allows you to manually specify a list of probabilities for each AC\u003e0 to be used as\n priors for genotyping, with the following restrictions: only diploid calls are supported; you must specify 2 *\n N values where N is the number of samples; probability values must be positive and specified in Double format,\n in linear space (not log10 space nor Phred-scale); and all values must sume to 1.\n\n For completely flat priors,  specify the same value (\u003d1/(2*N+1)) 2*N times, e.g.\n      -inputPrior 0.33 -inputPrior 0.33\n for the single-sample diploid case.",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Maximum number of alternate alleles to genotype",
+      "name": "--max_alternate_alleles",
+      "synonyms": "-maxAltAlleles",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If there are more than this number of alternate alleles presented to the genotyper (either through discovery or\n GENOTYPE_GIVEN_ALLELES), then only this many alleles will be used.  Note that genotyping sites with many\n alternate alleles is both CPU and memory intensive and it scales exponentially based on the number of alternate\n alleles.  Unless there is a good reason to change the default value, we highly recommend that you not play around\n with this parameter.\n\n See also {@link #MAX_GENOTYPE_COUNT}.",
+      "defaultValue": "6",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Maximum fraction of reads with deletions spanning this locus for it to be callable",
+      "name": "--max_deletion_fraction",
+      "synonyms": "-deletions",
+      "type": "Double",
+      "required": "no",
+      "fulltext": "If the fraction of reads with deletions spanning a locus is greater than this value, the site will not be considered callable and will be skipped.\n To disable the use of this parameter, set its value to \u003e1.",
+      "defaultValue": "0.05",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Maximum number of genotypes to consider at any site",
+      "name": "--max_genotype_count",
+      "synonyms": "-maxGT",
+      "type": "int",
+      "required": "no",
+      "fulltext": "If there are more than this number of genotypes at a locus presented to the genotyper, then only this many\n genotypes will be used. This is intended to deal with sites where the combination of high ploidy and high alt\n allele count can lead to an explosion in the number of possible genotypes, with extreme adverse effects on\n runtime performance.\n\n How does it work? The possible genotypes are simply different ways of partitioning alleles given a specific\n ploidy assumption. Therefore, we remove genotypes from consideration by removing alternate alleles that are the\n least well supported. The estimate of allele support is based on the ranking of the candidate haplotypes coming\n out of the graph building step. Note however that the reference allele is always kept.\n\n The maximum number of alternative alleles used in the genotyping step will be the lesser of the two:\n 1. the largest number of alt alleles, given ploidy, that yields a genotype count no higher than {@link #MAX_GENOTYPE_COUNT}\n 2. the value of {@link #MAX_ALTERNATE_ALLELES}\n\n As noted above, genotyping sites with large genotype counts is both CPU and memory intensive. Unless you have\n a good reason to change the default value, we highly recommend that you not play around with this parameter.\n\n See also {@link #MAX_ALTERNATE_ALLELES}.",
+      "defaultValue": "1024",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Maximum number of PL values to output",
+      "name": "--max_num_PL_values",
+      "synonyms": "-maxNumPLValues",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Determines the maximum number of PL values that will be logged in the output.  If the number of genotypes\n (which is determined by the ploidy and the number of alleles) exceeds the value provided by this argument,\n then output of all of the PL values will be suppressed.",
+      "defaultValue": "100",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum base quality required to consider a base for calling",
+      "name": "--min_base_quality_score",
+      "synonyms": "-mbq",
+      "type": "int",
+      "required": "no",
+      "fulltext": "The minimum confidence needed in a given base for it to be used in variant calling.  Note that the base quality of a base\n is capped by the mapping quality so that bases on reads with low mapping quality may get filtered out depending on this value.\n Note too that this argument is ignored in indel calling. In indel calling, low-quality ends of reads are clipped off (with fixed threshold of Q20).",
+      "defaultValue": "17",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum number of consensus indels required to trigger genotyping run",
+      "name": "--min_indel_count_for_genotyping",
+      "synonyms": "-minIndelCnt",
+      "type": "int",
+      "required": "no",
+      "fulltext": "A candidate indel is genotyped (and potentially called) if there are this number of reads with a consensus indel at a site.\n Decreasing this value will increase sensitivity but at the cost of larger calling time and a larger number of false positives.",
+      "defaultValue": "5",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Minimum fraction of all reads at a locus that must contain an indel (of any allele) for that sample to contribute to the indel count for alleles",
+      "name": "--min_indel_fraction_per_sample",
+      "synonyms": "-minIndelFrac",
+      "type": "double",
+      "required": "no",
+      "fulltext": "Complementary argument to minIndelCnt.  Only samples with at least this fraction of indel-containing reads will contribute\n to counting and overcoming the threshold minIndelCnt.  This parameter ensures that in deep data you don\u0027t end\n up summing lots of super rare errors up to overcome the 5 read default threshold.  Should work equally well for\n low-coverage and high-coverage samples, as low coverage samples with any indel containing reads should easily over\n come this threshold.",
+      "defaultValue": "0.25",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "If provided, only these samples will be emitted into the VCF, regardless of which samples are present in the BAM file",
+      "name": "--onlyEmitSamples",
+      "synonyms": "-onlyEmitSamples",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "A raw, unfiltered, highly sensitive callset in VCF format.",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Which type of calls we should output",
+      "name": "--output_mode",
+      "synonyms": "-out_mode",
+      "type": "OutputMode",
+      "required": "no",
+      "fulltext": "Experimental argument FOR USE WITH UnifiedGenotyper ONLY. When using HaplotypeCaller, use -ERC\n instead. When using GenotypeGVCFs, see -allSites.",
+      "defaultValue": "EMIT_VARIANTS_ONLY",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": [
+        {
+          "summary": "produces calls only at variant sites",
+          "name": "EMIT_VARIANTS_ONLY"
+        },
+        {
+          "summary": "produces calls at variant sites and confident reference sites",
+          "name": "EMIT_ALL_CONFIDENT_SITES"
+        },
+        {
+          "summary": "produces calls at any callable site regardless of confidence; this argument is intended only for point\n mutations (SNPs) in DISCOVERY mode or generally when running in GENOTYPE_GIVEN_ALLELES mode; it will by\n no means produce a comprehensive set of indels in DISCOVERY mode",
+          "name": "EMIT_ALL_SITES"
+        }
+      ]
+    },
+    {
+      "summary": "The PairHMM implementation to use for -glm INDEL genotype likelihood calculations",
+      "name": "--pair_hmm_implementation",
+      "synonyms": "-pairHMM",
+      "type": "HMM_IMPLEMENTATION",
+      "required": "no",
+      "fulltext": "The PairHMM implementation to use for -glm INDEL genotype likelihood calculations. The various implementations balance a tradeoff of accuracy and runtime.",
+      "defaultValue": "LOGLESS_CACHING",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "EXACT"
+        },
+        {
+          "summary": "",
+          "name": "ORIGINAL"
+        },
+        {
+          "summary": "",
+          "name": "LOGLESS_CACHING"
+        },
+        {
+          "summary": "",
+          "name": "VECTOR_LOGLESS_CACHING"
+        },
+        {
+          "summary": "",
+          "name": "VECTOR_LOGLESS_CACHING_OMP"
+        },
+        {
+          "summary": "",
+          "name": "VECTOR_LOGLESS_CACHING_FPGA_EXPERIMENTAL"
+        },
+        {
+          "summary": "",
+          "name": "FASTEST_AVAILABLE"
+        },
+        {
+          "summary": "",
+          "name": "DEBUG_VECTOR_LOGLESS_CACHING"
+        },
+        {
+          "summary": "",
+          "name": "ARRAY_LOGLESS"
+        }
+      ]
+    },
+    {
+      "summary": "The PCR error rate to be used for computing fragment-based likelihoods",
+      "name": "--pcr_error_rate",
+      "synonyms": "-pcr_error",
+      "type": "Double",
+      "required": "no",
+      "fulltext": "The PCR error rate is independent of the sequencing error rate, which is necessary because we cannot necessarily\n distinguish between PCR errors vs. sequencing errors.  The practical implication for this value is that it\n effectively acts as a cap on the base qualities.",
+      "defaultValue": "1.0E-4",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Ploidy per sample. For pooled data, set to (Number of samples in each pool * Sample Ploidy).",
+      "name": "--sample_ploidy",
+      "synonyms": "-ploidy",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Sample ploidy - equivalent to number of chromosome copies per pool. For pooled experiments this should be set to\n   the number of samples in pool multiplied by individual sample ploidy.",
+      "defaultValue": "2",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "The minimum phred-scaled confidence threshold at which variants should be called",
+      "name": "--standard_min_confidence_threshold_for_calling",
+      "synonyms": "-stand_call_conf",
+      "type": "double",
+      "required": "no",
+      "fulltext": "The minimum phred-scaled confidence threshold at which variants should be called. Only variant sites with QUAL equal\n or greater than this threshold will be called. Note that since version 3.7, we no longer differentiate high confidence\n from low confidence calls at the calling step. The default call confidence threshold is set low intentionally to achieve\n high sensitivity, which will allow false positive calls as a side effect. Be sure to perform some kind of filtering after\n calling to reduce the amount of false positives in your final callset. Note that when HaplotypeCaller is used in GVCF mode\n (using either -ERC GVCF or -ERC BP_RESOLUTION) the call threshold is automatically set to zero. Call confidence thresholding\n will then be performed in the subsequent GenotypeGVCFs command.",
+      "defaultValue": "10.0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Use new AF model instead of the so-called exact model",
+      "name": "--useNewAFCalculator",
+      "synonyms": "-newQual",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "This activates a model for calculating QUAL that was introduced in version 3.7 (November 2016). We expect this\n model will become the default in future versions.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 200,
+    "start": -200
+  },
+  "description": "\n\n \u003cp\u003e\n This tool uses a Bayesian genotype likelihood model to estimate simultaneously the most likely genotypes and\n allele frequency in a population of N samples, emitting a genotype for each sample. The system can either emit\n just the variant sites or complete genotypes (which includes homozygous reference calls) satisfying some\n phred-scaled confidence value.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n The read data from which to make variant calls.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A raw, unfiltered, highly sensitive callset in VCF format.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n \u003ch4\u003eMulti-sample SNP calling\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T UnifiedGenotyper \\\n   -R reference.fasta \\\n   -I sample1.bam [-I sample2.bam ...] \\\n   --dbsnp dbSNP.vcf \\\n   -o snps.raw.vcf \\\n   -stand_call_conf [50.0] \\\n   [-L targets.interval_list]\n \u003c/pre\u003e\n\n \u003ch4\u003eGenerate calls at all sites\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T UnifiedGenotyper \\\n   -R reference.fasta \\\n   -I input.bam \\\n   -o raw_variants.vcf \\\n   --output_mode EMIT_ALL_SITES\n \u003c/pre\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eThe caller can be very aggressive in calling variants in order to be very sensitive, so the raw output will\n contain many false positives. We use extensive post-calling filters to eliminate most of these FPs. See the documentation on filtering (especially by Variant Quality Score Recalibration) for more details.\u003c/li\u003e\n \u003cli\u003e\u003cb\u003eThis tool has been deprecated in favor of HaplotypeCaller, a much more sophisticated variant caller that\n produces much better calls, especially on indels, and includes features that allow it to scale to much larger\n cohort sizes.\u003c/b\u003e\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eSpecial note on ploidy\u003c/h3\u003e\n \u003cp\u003eThis tool is able to handle almost any ploidy (except very high ploidies in large pooled experiments); the ploidy\n can be specified using the -ploidy argument for non-diploid organisms.\u003c/p\u003e",
+  "name": "UnifiedGenotyper",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadMateFilter.html",
+      "name": "BadMateFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MappingQualityUnavailableFilter.html",
+      "name": "MappingQualityUnavailableFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 250
+  },
+  "group": "Variant Discovery Tools",
+  "annotfield": ""
+}

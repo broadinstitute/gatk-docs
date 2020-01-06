@@ -1,0 +1,109 @@
+{
+  "summary": "Convert variants from other file formats to VCF format",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "dbSNP file",
+      "name": "--dbsnp",
+      "synonyms": "-D",
+      "type": "RodBinding[VariantContext]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "The sample name represented by the variant rod",
+      "name": "--sample",
+      "synonyms": "-sample",
+      "type": "String",
+      "required": "no",
+      "fulltext": "This argument is used for data (like GELI) with genotypes but no sample names encoded within.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Input variant file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[Feature]",
+      "required": "yes",
+      "fulltext": "Variants from this input file are used by this tool as input.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_beagle_BeagleCodec.html\u003eBEAGLE\u003c/a\u003e, \u003ca href\u003dhtsjdk_tribble_bed_BEDCodec.html\u003eBED\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_table_BedTableCodec.html\u003eBEDTABLE\u003c/a\u003e, \u003ca href\u003dhtsjdk_tribble_example_ExampleBinaryCodec.html\u003eEXAMPLEBINARY\u003c/a\u003e, \u003ca href\u003dhtsjdk_tribble_gelitext_GeliTextCodec.html\u003eGELITEXT\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_hapmap_RawHapMapCodec.html\u003eRAWHAPMAP\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_refseq_RefSeqCodec.html\u003eREFSEQ\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_sampileup_SAMPileupCodec.html\u003eSAMPILEUP\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_samread_SAMReadCodec.html\u003eSAMREAD\u003c/a\u003e, \u003ca href\u003dorg_broadinstitute_gatk_utils_codecs_table_TableCodec.html\u003eTABLE\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 40,
+    "start": -40
+  },
+  "description": "\n\n \u003cp\u003e\n Note that there must be a Tribble feature/codec available for the file format as well as an adaptor.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A variant file to convert.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A VCF file.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T VariantsToVCF \\\n   -R reference.fasta \\\n   -o output.vcf \\\n   --variant:RawHapMap input.hapmap\n \u003c/pre\u003e",
+  "name": "VariantsToVCF",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Evaluation and Manipulation Tools",
+  "annotfield": ""
+}

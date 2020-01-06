@@ -1,0 +1,122 @@
+{
+  "summary": "Create plots to visualize base recalibration results\n\n \u003cp/\u003e\n This tool generates plots for visualizing the quality of a recalibration run (effected by \u003ca href\u003d\u0027http://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_bqsr_BaseRecalibrator.html\u0027\u003eBaseRecalibrator\u003c/a\u003e).",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "file containing the BQSR second-pass report file",
+      "name": "--afterReportFile",
+      "synonyms": "-after",
+      "type": "File",
+      "required": "no",
+      "fulltext": "File containing the recalibration tables from the second pass.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "file containing the BQSR first-pass report file",
+      "name": "--beforeReportFile",
+      "synonyms": "-before",
+      "type": "File",
+      "required": "no",
+      "fulltext": "File containing the recalibration tables from the first pass.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "do not emit warning messages related to suspicious last modification time order of inputs",
+      "name": "--ignoreLastModificationTimes",
+      "synonyms": "-ignoreLMT",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "If true, it won\u0027t show a warning if the last-modification time of the before and after input files suggest that they have been reversed.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "location of the csv intermediate file",
+      "name": "--intermediateCsvFile",
+      "synonyms": "-csv",
+      "type": "File",
+      "required": "no",
+      "fulltext": "Output csv file name.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "location of the output report",
+      "name": "--plotsReportFile",
+      "synonyms": "-plots",
+      "type": "File",
+      "required": "no",
+      "fulltext": "Output report file name.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n\n \u003cp\u003eThe tool can take up to three different sets of recalibration tables.\n The resulting plots will be overlaid on top of each other to make\n comparisons easy.\u003c/p\u003e\n\n \u003cbr/\u003e\n \u003ctable style\u003d\"text-align: left\"\u003e\n     \u003cthead\u003e\n       \u003ctr\u003e\u003cth\u003eSet\u003c/th\u003e\u003cth\u003eArgument\u003c/th\u003e\u003cth\u003eLabel\u003c/th\u003e\u003cth\u003eColor\u003c/th\u003e\u003cth\u003eDescription\u003c/th\u003e\u003c/tr\u003e\n     \u003c/thead\u003e\n     \u003ctbody\u003e\n       \u003ctr\u003e\u003ctd\u003eOriginal\u003c/td\u003e\u003ctd\u003e-before\u003c/td\u003e\u003ctd\u003eBEFORE\u003c/td\u003e\u003ctd style\u003d\"color: #ff34b3\"\u003ePink\u003c/td\u003e\n         \u003ctd\u003eFirst pass recalibration\n             tables obtained from applying BaseRecalibration\n             on the original alignment.\u003c/td\u003e\u003c/tr\u003e\n       \u003ctr\u003e\u003ctd\u003eRecalibrated\u003c/td\u003e\u003ctd\u003e-after\u003c/td\u003e\u003ctd\u003eAFTER\u003c/td\u003e\u003ctd style\u003d\"color: #0000ff\"\u003eBlue\u003c/td\u003e\n         \u003ctd\u003eSecond pass recalibration tables\n             results from the application of BaseRecalibration\n             on the alignment recalibrated using the first pass tables\u003c/td\u003e\u003c/tr\u003e\n       \u003ctr\u003e\u003ctd\u003eInput\u003c/td\u003e\u003ctd\u003e-BQSR\u003c/td\u003e\u003ctd\u003eBQSR\u003c/td\u003e\u003ctd style\u003d\"color: #000000\"\u003eBlack\u003c/td\u003e\n           \u003ctd\u003eAny recalibration table without a specific role\u003c/td\u003e\u003c/tr\u003e\n     \u003c/tbody\u003e\n \u003c/table\u003e\n \u003cbr/\u003e\n\n \u003cp\u003eYou need to specify at least one set. Multiple sets need to have the same values for the following parameters:\n \u003cbr/\u003e\u003c/br\u003e\n \u003ci\u003ecovariate (order is not important), no_standard_covs, run_without_dbsnp, solid_recal_mode,\n solid_nocall_strategy, mismatches_context_size, mismatches_default_quality, deletions_default_quality,\n insertions_default_quality, maximum_cycle_value, low_quality_tail, default_platform, force_platform,\n quantizing_levels\u003c/i\u003e and \u003ci\u003ebinary_tag_name\u003c/i\u003e\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n\n \u003cp\u003eA pdf document with plots that show the quality of the recalibration, and an optional csv file that contains a table with all the data required to generate those plots.\u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n\n\n \u003ch4\u003ePlot a single recalibration table\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n      -T AnalyzeCovariates \\\n      -R myrefernce.fasta \\\n      -BQSR myrecal.table \\\n      -plots BQSR.pdf\n \u003c/pre\u003e\n\n \u003ch4\u003ePlot before (first pass) and after (second pass) recalibration tables to compare them\u003c/h4\u003e\n\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n      -T AnalyzeCovariates \\\n      -R myrefernce.fasta \\\n      -before recal2.table \\\n      -after recal3.table \\\n      -plots recalQC.pdf\n \u003c/pre\u003e\n\n \u003ch4\u003ePlot up to three recalibration tables for comparison\u003c/h4\u003e\n\n \u003cpre\u003e\n\n # You can ignore the before/after semantics completely if you like (if you do, add -ignoreLMT\n # to avoid a possible warning), but all tables must have been generated using the same parameters.\n\n java -jar GenomeAnalysisTK.jar \\\n      -T AnalyzeCovariates \\\n      -R myrefernce.fasta \\\n      -ignoreLMT \\\n      -BQSR recal1.table \\   # you can discard any two\n      -before recal2.table \\\n      -after recal3.table \\\n      -plots myrecals.pdf\n \u003c/pre\u003e\n\n \u003ch4\u003eFull BQSR quality assessment pipeline\u003c/h4\u003e\n\n \u003cpre\u003e\n # Generate the first pass recalibration table file\n java -jar GenomeAnalysisTK.jar \\\n      -T BaseRecalibrator \\\n      -R reference.fasta \\\n      -I myinput.bam \\\n      -knownSites bundle/my-trusted-snps.vcf \\ # optional but recommended\n      -knownSites bundle/my-trusted-indels.vcf \\ # optional but recommended\n      -o firstpass.table\n\n # Generate the second pass recalibration table file\n java -jar GenomeAnalysisTK.jar \\\n      -T BaseRecalibrator \\\n      -R reference.fasta \\\n      -I myinput.bam \\\n      -knownSites bundle/my-trusted-snps.vcf \\\n      -knownSites bundle/my-trusted-indels.vcf \\\n      -BQSR firstpass.table \\\n      -o secondpass.table\n\n # Finally generate the plots and also keep a copy of the csv (optional)\n java -jar GenomeAnalysisTK.jar \\\n      -T AnalyzeCovariates \\\n      -R reference.fasta \\\n      -before firstpass.table \\\n      -after secondpass.table \\\n      -csv BQSR.csv \\ # optional\n      -plots BQSR.pdf\n \u003c/pre\u003e",
+  "name": "AnalyzeCovariates",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

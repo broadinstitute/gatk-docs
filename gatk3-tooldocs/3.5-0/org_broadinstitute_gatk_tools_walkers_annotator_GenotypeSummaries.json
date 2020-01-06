@@ -1,0 +1,21 @@
+{
+  "summary": "Summarize genotype statistics from all samples at the site level",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation collects several genotype-level statistics from all samples and summarizes them in the INFO field. The following statistics are collected:\u003c/p\u003e\n \u003cul\u003e\n     \u003cli\u003eNumber of called chromosomes (should amount to ploidy * called samples)\u003c/li\u003e\n     \u003cli\u003eNumber of no-called samples\u003c/li\u003e\n     \u003cli\u003ep-value from Hardy-Weinberg Equilibrium test\u003c/li\u003e\n     \u003cli\u003eMean of all GQ values\u003c/li\u003e\n     \u003cli\u003eStandard deviation of all GQ values\u003c/li\u003e\n \u003c/ul\u003e\n \u003ch3\u003eNote\u003c/h3\u003e\n \u003cp\u003eThese summaries can all be recomputed from the genotypes on the fly but it is a lot faster to add them here as INFO field annotations.\u003c/p\u003e",
+  "name": "GenotypeSummaries",
+  "annotinfo": "ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dNCC,Number\u003d1,Type\u003dInteger,Description\u003d\u0026quot;Number of no-called samples\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dGQ_MEAN,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Mean of all GQ values\u0026quot;\u0026gt;",
+    "INFO\u003d\u0026lt;ID\u003dGQ_STDDEV,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Standard deviation of all GQ values\u0026quot;\u0026gt;"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "summary": "Gather recalibration reports from parallelized base recalibration runs\n\n This tool is intended to be used to combine recalibration tables from runs of BaseRecalibrator parallelized per-interval.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n The combination is done simply by adding up all observations and errors.\n\n \u003ch3\u003eUsage\u003c/h3\u003e\n \u003cp\u003eNote that this is a command-line utility that bypasses the GATK engine. As a result, the command-line you must use to\n invoke it is a little different from other GATK tools (see example below), and it does not accept any of the\n classic \"CommandLineGATK\" arguments.\u003c/p\u003e\n\n \u003ch4\u003eInput\u003c/h4\u003e\n List of scattered BQSR files\n\n \u003ch4\u003eOutput\u003c/h4\u003e\n Combined recalibration table in GATKReport format.\n\n \u003ch4\u003eCommand\u003c/h4\u003e\n \u003cpre\u003e\n     java -cp GenomeAnalysisTK.jar org.broadinstitute.gatk.tools.GatherBqsrReports \\\n          -I input.list \\\n          -O output.grp\n \u003c/pre\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eThis method DOES NOT recalculate the empirical qualities and quantized qualities. You have to recalculate\n them after combining. The reason for not calculating it is because this function is intended for combining a\n series of recalibration reports, and it only makes sense to calculate the empirical qualities and quantized\n qualities after all the recalibration reports have been combined. This is done to make the tool faster.\n \u003c/li\u003e\n \u003cli\u003eThe reported empirical quality is recalculated (because it is so simple to do).\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "GatherBqsrReports",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

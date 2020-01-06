@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads with bad pairing (and related) properties",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is intended to ensure that only reads that are likely\n to be mapped in the right place, and therefore to be informative, will be used in analysis.\n The following cases will be filtered out:\n \u003c/p\u003e\n \u003cul\u003e\n     \u003cli\u003eis not paired\u003c/li\u003e\n     \u003cli\u003emate is unmapped\u003c/li\u003e\n     \u003cli\u003eis duplicate\u003c/li\u003e\n     \u003cli\u003efails vendor quality check\u003c/li\u003e\n     \u003cli\u003eboth mate and read are in the same strand orientation\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf MateSameStrand\n \u003c/pre\u003e",
+  "name": "MateSameStrandFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

@@ -1,0 +1,19 @@
+{
+  "summary": "Fraction of reads containing spanning deletions",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThe presence of many reads with deletions spanning a given site is often an indication that a variant call made at that site is in fact a false positive. This annotation counts the number of reads that contain deletions spanning the site divided by the total number of reads that cover the site.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eIn its current form, this annotation is not compatible with HaplotypeCaller. It is only meant to be used with UnifiedGenotyper, as its purpose is to compensate for the UnifiedGenotyper\u0027s inability to integrate SNPs and indels in the same model (unlike HaplotypeCaller).\u003c/li\u003e\n     \u003cli\u003eBy default, the UnifiedGenotyper will not call variants where the fraction of spanning deletions is above a certain threshold. This threshold can be adjusted using the `--max_deletion_fraction` argument.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "SpanningDeletions",
+  "annotinfo": "StandardUGAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dDels,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Fraction of Reads Containing Spanning Deletions\u0026quot;\u0026gt;"
+  ]
+}

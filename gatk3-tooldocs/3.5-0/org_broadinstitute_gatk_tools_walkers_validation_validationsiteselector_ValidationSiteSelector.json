@@ -1,0 +1,272 @@
+{
+  "summary": "Randomly select variant records according to specified options",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Allele Frequency selection mode",
+      "name": "--frequencySelectionMode",
+      "synonyms": "-freqMode",
+      "type": "AF_COMPUTATION_MODE",
+      "required": "no",
+      "fulltext": "This argument selects allele frequency selection mode. See the wiki for more information.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "KEEP_AF_SPECTRUM"
+        },
+        {
+          "summary": "",
+          "name": "UNIFORM"
+        }
+      ]
+    },
+    {
+      "summary": "If true, will ignore genotypes in VCF, will take AC,AF from annotations and will make no sample selection",
+      "name": "--ignoreGenotypes",
+      "synonyms": "-ignoreGenotypes",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Argument for the frequency selection mode. (AC/AF/AN) are taken from VCF info field, not recalculated. Typically specified for sites-only VCFs that still have AC/AF/AN information.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "If true, will ignore polymorphic status in VCF, and will take VCF record directly without pre-selection",
+      "name": "--ignorePolymorphicStatus",
+      "synonyms": "-ignorePolymorphicStatus",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Argument for the frequency selection mode. Allows reference (non-polymorphic) sites to be included in the validation set.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "If true, will include filtered sites in set to choose variants from",
+      "name": "--includeFilteredSites",
+      "synonyms": "-ifs",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Do not exclude filtered sites (e.g. not PASS or .) from consideration for validation",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Number of output validation sites",
+      "name": "--numValidationSites",
+      "synonyms": "-numSites",
+      "type": "int",
+      "required": "yes",
+      "fulltext": "The number of sites in your validation set",
+      "defaultValue": "0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_param",
+      "options": []
+    },
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "The output VCF file",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Regular expression to select many samples from the ROD tracks provided. Can be specified multiple times",
+      "name": "--sample_expressions",
+      "synonyms": "-se",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "Sample regexps to subset the input VCF to, prior to selecting variants. -sn NA12* subsets to all samples with prefix NA12",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "File containing a list of samples (one per line) to include. Can be specified multiple times",
+      "name": "--sample_file",
+      "synonyms": "-sf",
+      "type": "Set[File]",
+      "required": "no",
+      "fulltext": "File containing a list of sample names to subset the input vcf to. Equivalent to specifying the contents of the file separately with -sn",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "Include genotypes from this sample. Can be specified multiple times",
+      "name": "--sample_name",
+      "synonyms": "-sn",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "Sample name(s) to subset the input VCF to, prior to selecting variants. -sn A -sn B subsets to samples A and B.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Sample selection mode",
+      "name": "--sampleMode",
+      "synonyms": "-sampleMode",
+      "type": "SAMPLE_SELECTION_MODE",
+      "required": "no",
+      "fulltext": "A mode for selecting sites based on sample-level data. See the wiki documentation for more information.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "NONE"
+        },
+        {
+          "summary": "",
+          "name": "POLY_BASED_ON_GT"
+        },
+        {
+          "summary": "",
+          "name": "POLY_BASED_ON_GL"
+        }
+      ]
+    },
+    {
+      "summary": "GL-based selection mode only: the probability that a site is non-reference in the samples for which to include the site",
+      "name": "--samplePNonref",
+      "synonyms": "-samplePNonref",
+      "type": "double",
+      "required": "no",
+      "fulltext": "An P[nonref] threshold for SAMPLE_SELECTION_MODE\u003dPOLY_BASED_ON_GL. See the wiki documentation for more information.",
+      "defaultValue": "0.99",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Select only a certain type of variants from the input file. Valid types are INDEL, SNP, MIXED, MNP, SYMBOLIC, NO_VARIATION. Can be specified multiple times",
+      "name": "--selectTypeToInclude",
+      "synonyms": "-selectType",
+      "type": "List[Type]",
+      "required": "no",
+      "fulltext": "This argument selects particular kinds of variants (i.e. SNP, INDEL) out of a list. If left unspecified, all types are considered.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file, can be specified multiple times",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "List[RodBinding[VariantContext]]",
+      "required": "yes",
+      "fulltext": "The input VCF file",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n This tool is intended for use in experiments where we sample data randomly from a set of variants, for example\n in order to choose sites for a follow-up validation study.\u003c/p\u003e\n\n \u003cp\u003eSites are selected randomly but within certain restrictions. There are two main sources of restrictions:\u003c/p\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003eSample restrictions:\u003c/b\u003e A user can specify a set of samples, and we will only consider sites which are\n     polymorphic within the given sample subset. These sample restrictions can be given as a set of individual\n     samples, a text file (each line containing a sample name), or a regular expression. A user can additionally\n     specify whether samples will be considered based on their genotypes (a non-reference genotype means that the\n     sample is polymorphic in that variant, and hence that variant will be considered for inclusion in set), or\n     based on their PLs.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003eSampling methods:\u003c/b\u003e\n          \u003col\u003e\n              \u003cli\u003eUniform sampling will just sample uniformly from variants that are polymorphic in selected samples\u003c/li\u003e\n              \u003cli\u003eSampling based on Allele Frequency spectrum will ensure that output sites have the same AF distribution as the input set\u003c/li\u003e\n          \u003c/ol\u003e\n     \u003c/li\u003e\n     \u003cli\u003eVariant type (SNP, Indel, etc.)\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n One or more variant sets to choose from.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A sites-only VCF with the desired number of randomly selected sites.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T ValidationSiteSelectorWalker \\\n   -R reference.fasta \\\n   -V input1.vcf \\\n   -V input2.vcf \\\n   -sn NA12878 \\\n   -o output.vcf \\\n   --numValidationSites 200   \\\n   -sampleMode POLY_BASED_ON_GT \\\n   -freqMode KEEP_AF_SPECTRUM\n \u003c/pre\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T ValidationSiteSelectorWalker \\\n   -R reference.fasta \\\n   -V:foo input1.vcf \\\n   -V:bar input2.vcf \\\n   --numValidationSites 200 \\\n   -sf samples.txt \\\n   -o output.vcf \\\n   -sampleMode  POLY_BASED_ON_GT \\\n   -freqMode UNIFORM \\\n   -selectType INDEL\n \u003c/pre\u003e",
+  "name": "ValidationSiteSelector",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Validation Utilities",
+  "annotfield": ""
+}

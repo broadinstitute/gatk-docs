@@ -1,0 +1,154 @@
+{
+  "summary": "Randomly split variants into different sets",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Fraction of records to be placed in out1 (must be 0 \u003e\u003d fraction \u003c\u003d 1); all other records are placed in out2",
+      "name": "--fractionToOut1",
+      "synonyms": "-fraction",
+      "type": "double",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "0.5",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "number of output VCF files. Only works with SplitToMany \u003d true",
+      "name": "--numOfOutputVCFFiles",
+      "synonyms": "-N",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "-1",
+      "minValue": "2.0",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "20.0",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "File #1 to which variants should be written",
+      "name": "--out1",
+      "synonyms": "-o1",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "File #2 to which variants should be written",
+      "name": "--out2",
+      "synonyms": "-o2",
+      "type": "File",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "the name of the output VCF file will be: \u003cbaseOutputName\u003e.split.\u003cnumber\u003e.vcf. Required with SplitToMany option",
+      "name": "--prefixForAllOutputFileNames",
+      "synonyms": "-baseOutputName",
+      "type": "String",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "split (with uniform distribution) to more than 2 files. numOfFiles and baseOutputName parameters are required",
+      "name": "--splitToManyFiles",
+      "synonyms": "-splitToMany",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool takes a VCF file, randomly splits variants into different sets, and writes the\n results to separate files. By default the tool splits the input into two new sets, but it can be made to output\n more than two separate call sets.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A variant call set to split.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n The new callsets.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T RandomlySplitVariants \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   -o1 output_1.vcf \\\n   -o2 output_2.vcf\n \u003c/pre\u003e",
+  "name": "RandomlySplitVariants",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Manipulation Tools",
+  "annotfield": ""
+}

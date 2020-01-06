@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads with wonky CIGAR strings",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis read filter will filter out the following cases:\u003c/p\u003e\n \u003cul\u003e\n     \u003cli\u003edifferent length and cigar length\u003c/li\u003e\n     \u003cli\u003eHard/Soft clips in the middle of the cigar\u003c/li\u003e\n     \u003cli\u003estarting with deletions (with or without preceding clips)\u003c/li\u003e\n     \u003cli\u003eending in deletions (with or without follow-up clips)\u003c/li\u003e\n     \u003cli\u003efully hard or soft clipped\u003c/li\u003e\n     \u003cli\u003econsecutive indels in the cigar (II, DD, ID or DI)\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eEnable the bad cigar filter\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf BadCigar\n \u003c/pre\u003e",
+  "name": "BadCigarFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

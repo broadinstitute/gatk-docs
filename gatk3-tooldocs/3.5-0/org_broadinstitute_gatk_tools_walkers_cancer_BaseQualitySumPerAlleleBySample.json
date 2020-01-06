@@ -1,0 +1,16 @@
+{
+  "summary": "Sum of evidence in reads supporting each allele for each sample",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eIn the domain of somatic variants, a variant call can be supported by a few high quality reads. The\n BaseQualitySumPerAlleleBySample annotation aims to give the user an estimate of the quality of the evidence supporting\n a variant.\u003c/p\u003e\n\n \u003ch3\u003eNotes\u003c/h3\u003e\n BaseQualitySumPerAlleleBySample is called and used by MuTect2 for variant filtering. This annotation is applied to SNPs\n and INDELs. Qualities are not literal base qualities, but instead are derived from the per-allele likelihoods derived\n from the assembly engine.\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eAt this time, BaseQualitySumPerAlleleBySample can only be called from MuTect2\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "BaseQualitySumPerAlleleBySample",
+  "annotinfo": "StandardSomaticAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "FORMAT (sample genotype-level)"
+}

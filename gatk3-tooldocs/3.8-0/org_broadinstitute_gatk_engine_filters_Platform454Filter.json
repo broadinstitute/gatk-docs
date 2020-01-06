@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads produced by 454 technology",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eReads produced by 454 technology should not be processed by the GATK\u0027s indel realignment tools. This filter is\n applied by those tools to enforce that rule.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf Platform454\n \u003c/pre\u003e",
+  "name": "Platform454Filter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

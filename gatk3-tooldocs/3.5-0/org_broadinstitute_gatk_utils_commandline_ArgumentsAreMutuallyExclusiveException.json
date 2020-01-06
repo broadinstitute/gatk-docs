@@ -1,0 +1,17 @@
+{
+  "summary": "An exception indicating that mutually exclusive options have been passed in the same command line.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "",
+  "name": "ArgumentsAreMutuallyExclusiveException",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "User Exceptions (DevZone)",
+  "annotfield": "",
+  "annotdescript": []
+}

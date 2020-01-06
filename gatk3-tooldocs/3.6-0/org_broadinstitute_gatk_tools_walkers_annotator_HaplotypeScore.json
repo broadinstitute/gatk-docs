@@ -1,0 +1,19 @@
+{
+  "summary": "Consistency of the site with strictly two segregating haplotypes",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eFor diploid organisms, barring chromosomal abnormalities, we expect that any given sample has no more than 2 segregating haplotypes at a given site. If there is evidence for more\n than 2 segregating haplotypes, the read data should be considered suspect and the evidence artifactual. Higher scores are indicative of regions with bad alignments, typically leading to artifactual SNP and indel calls.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cp\u003eHaplotypeCaller does not output this annotation because it already evaluates haplotype segregation internally. This annotation is only informative (and available) for variants called by Unified Genotyper.\u003c/p\u003e",
+  "name": "HaplotypeScore",
+  "annotinfo": "StandardAnnotation, ActiveRegionBasedAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dHaplotypeScore,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Consistency of the site with at most two segregating haplotypes\u0026quot;\u0026gt;"
+  ]
+}

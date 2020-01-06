@@ -1,0 +1,45 @@
+{
+  "summary": "Left-align indels within reads in a bam file",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "READ",
+  "walkertype": "ReadWalker",
+  "arguments": [
+    {
+      "summary": "Output bam",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "GATKSAMFileWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool left-aligns any indels within read cigars in order to standardize representation when there are multiple valid\n representations possible (i.e. where the same indel can be placed at multiple positions and still represent the same haplotype).\n The standard convention is to place an indel at the left-most position possible, but this is not always followed, so\n this tool can be used to correct the representation of indels.\u003c/p\u003e\n\n \u003ch3\u003eNote\u003c/h3\u003e\n \u003cp\u003eThis is only really needed when calling variants with legacy locus-based tools such as UnifiedGenotyper. With more\n sophisticated tools (like HaplotypeCaller) that involve reconstructing haplotypes (eg through reassembly), the problem\n of multiple valid representations is handled internally and does not need to be corrected explicitly.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A bam file with mapped reads.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A bam file in which indels have been left-aligned where appropriate.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -R reference.fasta \\\n   -T LeftAlignIndels \\\n   -I reads.bam \\\n   -o output_with_leftaligned_indels.bam\n \u003c/pre\u003e",
+  "name": "LeftAlignIndels",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "NONE",
+    "to_cov": -1
+  },
+  "group": "Sequence Data Processing Tools",
+  "annotfield": ""
+}

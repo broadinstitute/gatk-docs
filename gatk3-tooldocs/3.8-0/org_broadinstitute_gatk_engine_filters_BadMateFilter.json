@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads whose mate maps to a different contig",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is intended to ensure that only reads that are likely to be mapped in the right place, and therefore\n to be informative, will be used in analysis. If mates in a pair are mapping to different contigs, it is likely that\n at least one of them is in the wrong place. One exception is you are using a draft genome assembly in which the\n chromosomes are fragmented into many contigs; then you may legitimately have reads that are correctly mapped but are\n on different contigs than their mate. This read filter can be disabled from the command line using the -drf argument.\n \u003c/p\u003e\n\n \u003ch4\u003eEnable the bad mate filter\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf BadMate\n \u003c/pre\u003e\n\n \u003ch4\u003eDisable the bad mate filter\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         \u003cb\u003e-drf\u003c/b\u003e BadMate\n \u003c/pre\u003e",
+  "name": "BadMateFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

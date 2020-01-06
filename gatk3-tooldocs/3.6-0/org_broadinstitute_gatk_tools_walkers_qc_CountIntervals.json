@@ -1,0 +1,93 @@
+{
+  "summary": "Count contiguous regions in an interval list",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Any number of RODs",
+      "name": "--check",
+      "synonyms": "-check",
+      "type": "List[RodBinding[Feature]]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, BEAGLE, BED, BEDTABLE, EXAMPLEBINARY, GELITEXT, RAWHAPMAP, REFSEQ, SAMPILEUP, SAMREAD, TABLE, VCF, VCF3",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "Count all occurrences of X or more overlapping intervals; defaults to 2",
+      "name": "--numOverlaps",
+      "synonyms": "-no",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "2",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eWhen the GATK reads in intervals from an intervals list, any intervals that overlap each other get merged into\n a single interval spanning the original ones. For example, if you have the following intervals:\n \u003cul\u003e\u003cli\u003e\n     20:1-2000\n \u003c/li\u003e\u003cli\u003e\n     20:1500-3000\n \u003c/li\u003e\u003c/ul\u003e\n They will be merged into a single interval:\n \u003cul\u003e\u003cli\u003e20:1-3000\u003c/li\u003e\u003c/ul\u003e\n\n This tool allows you to check, for a given list of intervals, how many separate intervals the GATK will actually\n distinguish at runtime.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n One or more ROD files containing intervals to check.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n Number of separate intervals identified by GATK after merging overlapping intervals.\n \u003c/p\u003e\n\n You can use the -numOverlaps argument to find out how many cases you have of a specific number of overlaps.\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T CountIntervals \\\n   -R reference.fasta \\\n   -o output.txt \\\n   -check intervals.list\n \u003c/pre\u003e",
+  "name": "CountIntervals",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 1000
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

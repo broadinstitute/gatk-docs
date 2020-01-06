@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads with blacklisted platform unit tags",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter is useful for running on only a subset of the data as identified by a read group property.\n In the case of the platform unit filter, the goal is usually to blacklist certain runs if we know there was a problem with\n a particular sequencing machine.\u003c/p\u003e",
+  "name": "PlatformUnitFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

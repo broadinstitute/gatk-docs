@@ -1,0 +1,19 @@
+{
+  "summary": "Likelihood-based test for the inbreeding among samples",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis annotation estimates whether there is evidence of inbreeding in a population. The higher the score, the higher the chance that there is inbreeding.\u003c/p\u003e\n\n \u003ch3\u003eStatistical notes\u003c/h3\u003e\n \u003cp\u003eThe calculation is a continuous generalization of the Hardy-Weinberg test for disequilibrium that works well with limited coverage per sample. The output is the F statistic from running the HW test for disequilibrium with PL values. See the \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d8032\"\u003emethod document on statistical tests\u003c/a\u003e for a more detailed explanation of this statistical test.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eThe inbreeding coefficient can only be calculated for cohorts containing at least 10 founder samples.\u003c/li\u003e\n \u003cli\u003eThis annotation is used in variant filtering, but may not be appropriate for that purpose if the cohort being analyzed contains many closely related individuals.\u003c/li\u003e\n \u003cli\u003eThis annotation can take a valid pedigree file to specify founders.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AS_InbreedingCoeff.html\"\u003eAS_InbreedingCoeff\u003c/a\u003e\u003c/b\u003e outputs an allele-specific version of this annotation.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_annotator_ExcessHet.html\"\u003eExcessHet\u003c/a\u003e\u003c/b\u003e estimates excess heterozygosity in a population of samples.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "InbreedingCoeff",
+  "annotinfo": "StandardAnnotation, ActiveRegionBasedAnnotation, ReducibleAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dInbreedingCoeff,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Inbreeding coefficient as estimated from the genotype likelihoods per-sample when compared against the Hardy-Weinberg expectation\u0026quot;\u0026gt;"
+  ]
+}

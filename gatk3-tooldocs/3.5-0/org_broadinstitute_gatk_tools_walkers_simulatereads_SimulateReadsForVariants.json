@@ -1,0 +1,203 @@
+{
+  "summary": "Generate simulated reads for variants",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Base error rate (Phred-scaled)",
+      "name": "--errorRate",
+      "synonyms": "-ER",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Errors will be generated at this rate in the simulated reads. Base qualities are therefore also assigned this value.",
+      "defaultValue": "20",
+      "minValue": "0.0",
+      "maxValue": "2.147483647E9",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Reads corresponding to variants",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "GATKSAMFileWriter",
+      "required": "yes",
+      "fulltext": "The simulated reads will be written to a BAM file.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_out",
+      "options": []
+    },
+    {
+      "summary": "Read depth to generate",
+      "name": "--readDepth",
+      "synonyms": "-DP",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Use this argument to set the desired target read depth. See the readSamplingMode argument for options that\n determine whether coverage distribution will be exactly this value or an approximation.",
+      "defaultValue": "20",
+      "minValue": "0.0",
+      "maxValue": "2.147483647E9",
+      "minRecValue": "1.0",
+      "maxRecValue": "1000.0",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Read lengths (bp)",
+      "name": "--readLength",
+      "synonyms": "-RL",
+      "type": "int",
+      "required": "no",
+      "fulltext": "All simulated reads will be exactly this length.",
+      "defaultValue": "101",
+      "minValue": "1.0",
+      "maxValue": "2.147483647E9",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Sampling mode",
+      "name": "--readSamplingMode",
+      "synonyms": "-RSM",
+      "type": "ReadSamplingMode",
+      "required": "no",
+      "fulltext": "This determines how read sampling is achieved, and affects the coverage distribution of simulated reads.\n CONSTANT sampling will produce uniform depth at all positions, while POISSON sampling will produce a\n distribution of coverages around the requested value.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "CONSTANT"
+        },
+        {
+          "summary": "",
+          "name": "POISSON"
+        }
+      ]
+    },
+    {
+      "summary": "Sequencing platform",
+      "name": "--rgPlatform",
+      "synonyms": "-RGPL",
+      "type": "NGSPlatform",
+      "required": "no",
+      "fulltext": "The corresponding platform identifier will be specified in the simulated read group PL tag. This setting does not\n affect the properties of the simulated reads.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "ILLUMINA"
+        },
+        {
+          "summary": "",
+          "name": "SOLID"
+        },
+        {
+          "summary": "",
+          "name": "LS454"
+        },
+        {
+          "summary": "",
+          "name": "COMPLETE_GENOMICS"
+        },
+        {
+          "summary": "",
+          "name": "PACBIO"
+        },
+        {
+          "summary": "",
+          "name": "ION_TORRENT"
+        },
+        {
+          "summary": "",
+          "name": "CAPILLARY"
+        },
+        {
+          "summary": "",
+          "name": "HELICOS"
+        },
+        {
+          "summary": "",
+          "name": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 200,
+    "start": -200
+  },
+  "description": "\n\n \u003cp\u003eGiven a set of variants, this tool will generate simulated reads that support the input variants.\u003c/p\u003e\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cp\u003eFor practical reasons, only bi-allelic variants that are not too close to the ends of contigs\n (\u003c 1/2 read length) are supported; all others will simply be ignored.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003eA VCF file containing variants.\u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003eA BAM file containing simulated sequence reads that support the input variants, with the requested error rate\n and coverage depth.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T SimulateReadsForVariants \\\n   -R reference.fasta \\\n   -V input_variants.vcf \\\n   -o simulated_reads.bam \\\n   --readDepth 50 \\\n   --errorRate 25\n \u003c/pre\u003e",
+  "name": "SimulateReadsForVariants",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

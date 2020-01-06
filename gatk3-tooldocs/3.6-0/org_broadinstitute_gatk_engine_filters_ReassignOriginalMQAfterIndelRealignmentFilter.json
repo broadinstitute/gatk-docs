@@ -1,0 +1,16 @@
+{
+  "summary": "Revert the MQ of reads that were modified by IndelRealigner",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eIndelRealigner systematically adds +10 to the MQ of the reads it realigns. In some cases, that brings the resulting MQ to a value higher than MQ 60, which is the normal cap for MQ values. Since many downstream tools assume that MQ is \u003c\u003d 60, this may potentially cause problems.\u003c/p\u003e\n\n \u003cp\u003eThis read filter makes it possible to revert the MQ values of all the reads touched by IndelRealigner. It works by subtracting 10 from the MQ of all reads that have an \"OC\" tag, which stands for \"original CIGAR\" and is added by IndelRealigner to any read that it realigns.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003ch4\u003eEnable the filter\u003c/h4\u003e\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf ReassignOriginalMQAfterIndelRealignmentFilter\n \u003c/pre\u003e\n\n\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n\n \u003cp\u003eThere is currently no way to tell programmatically that a file has already been processed with this filter, so you should check the header manually before running this tool. Running it multiple times on the same BAM file would levy an unjustified penalty on realigned reads.\u003c/p\u003e",
+  "name": "ReassignOriginalMQAfterIndelRealignmentFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

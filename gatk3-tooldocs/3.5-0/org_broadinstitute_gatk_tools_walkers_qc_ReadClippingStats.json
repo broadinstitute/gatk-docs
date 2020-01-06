@@ -1,0 +1,77 @@
+{
+  "summary": "Collect read clipping statistics",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "READ",
+  "walkertype": "ReadWalker",
+  "arguments": [
+    {
+      "summary": "Include unmapped reads in the analysis",
+      "name": "--include_unmapped",
+      "synonyms": "-u",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "when this flag is set (default), statistics will be collected on unmapped reads as well. The default behavior\n is to ignore unmapped reads.\"",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Do not print all reads, skip some.",
+      "name": "--skip",
+      "synonyms": "-skip",
+      "type": "int",
+      "required": "no",
+      "fulltext": "print every read whose read number is divisible by SKIP. READ_NUMBER % SKIP \u003d\u003d 0. First read in the file has read number \u003d 1,\n second is 2, third is 3, ... A value of 1 means print every read. A value of 1000 means print every 1000th read.",
+      "defaultValue": "1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool collects statistics about the read length, number of clipping events, and length\n of the clipping in all reads in the dataset.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n One or more BAM files.\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n A simple tabulated text file with read length and clipping statistics for every read (or every given number of reads\n if the \"skip\" option is used).\n\n \u003ch3\u003eCaveat\u003c/h3\u003e\n \u003cp\u003eThis tool ignores \"N\" events in the CIGAR string.\u003c/p\u003e",
+  "name": "ReadClippingStats",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "NONE",
+    "to_cov": -1
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

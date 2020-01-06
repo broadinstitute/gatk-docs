@@ -1,0 +1,163 @@
+{
+  "summary": "Define intervals to target for local realignment",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Input VCF file with known indels",
+      "name": "--known",
+      "synonyms": "-known",
+      "type": "List[RodBinding[VariantContext]]",
+      "required": "no",
+      "fulltext": "Any number of VCF files representing known SNPs and/or indels.  Could be e.g. dbSNP and/or official 1000 Genomes indel calls.\n SNPs in these files will be ignored unless the --mismatchFraction argument is used.",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "maximum interval size; any intervals larger than this value will be dropped",
+      "name": "--maxIntervalSize",
+      "synonyms": "-maxInterval",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Because the realignment algorithm is N^2, allowing too large an interval might take too long to completely realign.",
+      "defaultValue": "500",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "minimum reads at a locus to enable using the entropy calculation",
+      "name": "--minReadsAtLocus",
+      "synonyms": "-minReads",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "4",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "fraction of base qualities needing to mismatch for a position to have high entropy",
+      "name": "--mismatchFraction",
+      "synonyms": "-mismatch",
+      "type": "double",
+      "required": "no",
+      "fulltext": "To disable this behavior, set this value to \u003c\u003d 0 or \u003e 1.  This feature is really only necessary when using an ungapped aligner\n (e.g. MAQ in the case of single-end read data) and should be used in conjunction with \u0027--model USE_SW\u0027 in the IndelRealigner.",
+      "defaultValue": "0.0",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "File",
+      "required": "no",
+      "fulltext": "The target intervals for realignment.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "window size for calculating entropy or SNP clusters",
+      "name": "--windowSize",
+      "synonyms": "-window",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Any two SNP calls and/or high entropy positions are considered clustered when they occur no more than this many basepairs apart. Must be \u003e 1.",
+      "defaultValue": "10",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 50,
+    "start": -1
+  },
+  "description": "\n\n \u003cp\u003e\n The local realignment process is designed to consume one or more BAM files and to locally realign reads such that the number of mismatching bases\n is minimized across all the reads. In general, a large percent of regions requiring local realignment are due to the presence of an insertion\n or deletion (indels) in the individual\u0027s genome with respect to the reference genome.  Such alignment artifacts result in many bases mismatching\n the reference near the misalignment, which are easily mistaken as SNPs.  Moreover, since read mapping algorithms operate on each read independently,\n it is impossible to place reads on the reference genome such that mismatches are minimized across all reads.  Consequently, even when some reads are\n correctly mapped with indels, reads covering the indel near just the start or end of the read are often incorrectly mapped with respect the true indel,\n also requiring realignment.  Local realignment serves to transform regions with misalignments due to indels into clean reads containing a consensus\n indel suitable for standard variant discovery approaches.\n \u003c/p\u003e\n \u003cp\u003e\u003cb\u003eNote that indel realignment is no longer necessary for variant discovery if you plan to use a variant caller that performs a haplotype assembly\n step, such as HaplotypeCaller or MuTect2. However it is still required when using legacy callers such as UnifiedGenotyper or the original MuTect.\u003c/b\u003e\u003c/p\u003e\n     \u003cp\u003eThere are 2 steps to the realignment process:\u003c/p\u003e\n     \u003col\u003e\n     \u003cli\u003eDetermining (small) suspicious intervals which are likely in need of realignment (RealignerTargetCreator)\u003c/li\u003e\n     \u003cli\u003eRunning the realigner over those intervals (see the IndelRealigner tool)\u003c/li\u003e\n     \u003c/ol\u003e\n     \u003cp\u003e\n \u003cp\u003e\n     For more details, see \u003ca href\u003d\"http://www.broadinstitute.org/gatk/guide/article?id\u003d38\"\u003ethe indel realignment method documentation\u003c/a\u003e.\n \u003c/p\u003e\n\n \u003ch3\u003eInputs\u003c/h3\u003e\n \u003cp\u003e\n One or more aligned BAM files and optionally, one or more lists of known indels.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A list of target intervals to pass to the IndelRealigner.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T RealignerTargetCreator \\\n   -R reference.fasta \\\n   -I input.bam \\\n   --known indels.vcf \\\n   -o forIndelRealigner.intervals\n \u003c/pre\u003e\n\n \u003ch3\u003eNotes\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eThe input BAM(s), reference, and known indel file(s) should be the same ones to be used for the IndelRealigner step.\u003c/li\u003e\n     \u003cli\u003eWhen multiple potential indels are found by the tool in the same general region, the tool will choose the most likely\n          one for realignment to the exclusion of the others.  This is a known limitation of the tool.\u003c/li\u003e\n     \u003cli\u003eBecause reads produced from the 454 technology inherently contain false indels, the realigner will not work with them\n (or with reads from similar technologies).\u003c/li\u003e\n     \u003cli\u003eThis tool also ignores MQ0 reads and reads with consecutive indel operators in the CIGAR string.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "RealignerTargetCreator",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MappingQualityZeroFilter.html",
+      "name": "MappingQualityZeroFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadMateFilter.html",
+      "name": "BadMateFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_Platform454Filter.html",
+      "name": "Platform454Filter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MappingQualityUnavailableFilter.html",
+      "name": "MappingQualityUnavailableFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Sequence Data Processing Tools",
+  "annotfield": ""
+}

@@ -1,0 +1,19 @@
+{
+  "summary": "List samples that are non-reference at a given site",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThe output is a list of the samples that are genotyped as having one or more variant alleles. This allows you to easily determine which samples are non-reference (heterozygous or homozygous-variant) and compare them to samples that are homozygous-reference.\u003c/p\u003e",
+  "name": "SampleList",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Annotation Modules",
+  "annotfield": "INFO (variant-level)",
+  "annotdescript": [
+    "INFO\u003d\u0026lt;ID\u003dSamples,Number\u003d.,Type\u003dString,Description\u003d\u0026quot;List of polymorphic samples\u0026quot;\u0026gt;"
+  ]
+}

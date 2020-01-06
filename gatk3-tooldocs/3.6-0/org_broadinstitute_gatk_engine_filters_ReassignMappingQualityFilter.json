@@ -1,0 +1,33 @@
+{
+  "summary": "Set the mapping quality of all reads to a given value",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [
+    {
+      "summary": "Default read mapping quality to assign to all reads",
+      "name": "--default_mapping_quality",
+      "synonyms": "-DMQ",
+      "type": "int",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "60",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n  \u003cp\u003e\n     If a BAM file contains erroneous or missing mapping qualities (MAPQ), this read transformer will set all your\n     mapping qualities to a given value (see arguments list for default value).\n  \u003c/p\u003e\n\n \u003ch3\u003eSee also\u003c/h3\u003e\n\n \u003cp\u003eReassignOneMappingQualityFilter: reassigns a single MAPQ value, as opposed to all those found in the BAM file.\u003c/p\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n\n \u003cp\u003eNote that due to the order of operations involved in applying filters, it is possible that other read filters\n (determined either at command-line or internally by the tool you are using) will be applied to your data before\n this read transformation can be applied. If one of those other filters acts on the read mapping quality (MAPQ),\n then you may not obtain the expected results. Unfortunately it is currently not possible to change the order of\n operations from command line. To avoid the problem, we recommend applying this filter separately from any other\n analysis, using PrintReads.\u003c/p\u003e\n\n\n \u003ch3\u003eInput\u003c/h3\u003e\n  \u003cp\u003e\n\t    BAM file(s)\n  \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n  \u003cp\u003e\n      BAM file(s) with the mapping qualities of all reads reassigned to the specified value\n  \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n  \u003cpre\u003e\n  java -jar GenomeAnalysisTK.jar \\\n      -T PrintReads \\\n      -R reference.fasta \\\n      -I input.bam \\\n      -o output.file \\\n      -rf ReassignMappingQuality \\\n      -DMQ 35\n  \u003c/pre\u003e",
+  "name": "ReassignMappingQualityFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

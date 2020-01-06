@@ -1,0 +1,104 @@
+{
+  "summary": "Print read alignments in Pileup-style format",
+  "parallel": [
+    {
+      "arg": "-nct",
+      "name": "NanoSchedulable",
+      "link": "https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nct"
+    },
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "ROD file containing metadata",
+      "name": "--metadata",
+      "synonyms": "-metadata",
+      "type": "List[RodBinding[Feature]]",
+      "required": "no",
+      "fulltext": "This enables annotating the pileup to show overlaps with metadata from a ROD file.\n For example, if you provide a VCF and there is a SNP at a given location covered by the pileup, the pileup\n output at that position will be annotated with the corresponding source ROD identifier.",
+      "defaultValue": "[]",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, BEAGLE, BED, BEDTABLE, EXAMPLEBINARY, GELITEXT, RAWHAPMAP, REFSEQ, SAMPILEUP, SAMREAD, TABLE, VCF, VCF3",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "An output file created by the walker.  Will overwrite contents if file exists",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "PrintStream",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Add an extra verbose section to the pileup output",
+      "name": "--showVerbose",
+      "synonyms": "-verbose",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "In addition to the standard pileup output, adds \u0027verbose\u0027 output too. The verbose output contains the number of spanning deletions,\n and for each read in the pileup it has the read name, offset in the base string, read length, and read mapping quality.  These per\n read items are delimited with an \u0027@\u0027 character.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis tool emulates the \u0027samtools pileup\u0027 command. It prints the alignment in a format that is very similar to\n the Samtools pileup format (see the\n \u003ca href\u003d\"http://samtools.sourceforge.net/pileup.shtml\"\u003ePileup format documentation\u003c/a\u003e for more details about\n the original format). There is one line per genomic position, listing the chromosome name, coordinate, reference\n base, read bases, and read qualities. In addition to these default fields, additional information can be added to\n the output as extra columns; see options detailed below.\u003c/p\u003e\n\n \u003ch4\u003eEmulated command:\u003c/h4\u003e\n \u003cpre\u003e\n  samtools pileup -f in.ref.fasta -l in.site_list input.bam\n \u003c/pre\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A BAM file and the interval to print.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n  Alignment of reads formatted in the Pileup style.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T Pileup \\\n   -R reference.fasta \\\n   -I my_reads.bam \\\n   -L chr1:257-267\n   -o output.txt\n \u003c/pre\u003e\n \u003ch4\u003eExpected output\u003c/h4\u003e\n \u003cpre\u003e\n     chr1 257 A CAA \u0027\u0026\u003d\n     chr1 258 C TCC A:\u003d\n     chr1 259 C CCC )A\u003d\n     chr1 260 C ACC (\u003d\u003c\n     chr1 261 T TCT \u002744\n     chr1 262 A AAA \u0027?:\n     chr1 263 A AGA 1\u00276\n     chr1 264 C TCC 987\n     chr1 265 C CCC (@(\n     chr1 266 C GCC \u0027\u0027\u003d\n     chr1 267 T AAT 7%\u003e\n \u003c/pre\u003e",
+  "name": "Pileup",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {
+    "by": "BY_SAMPLE",
+    "to_cov": 1000
+  },
+  "group": "Diagnostics and Quality Control Tools",
+  "annotfield": ""
+}

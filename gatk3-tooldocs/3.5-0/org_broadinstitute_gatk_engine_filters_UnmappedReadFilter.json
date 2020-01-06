@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out unmapped reads",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n\n \u003cp\u003eThis filter recognizes the SAM flag corresponding to being unmapped. It is intended to ensure that only\n reads that are likely to be mapped in the right place, and therefore to be informative, will be used in analysis.\u003c/p\u003e\n\n \u003ch3\u003eUsage example\u003c/h3\u003e\n\n \u003cpre\u003e\n     java -jar GenomeAnalysisTk.jar \\\n         -T ToolName \\\n         -R reference.fasta \\\n         -I input.bam \\\n         -o output.file \\\n         -rf UnmappedRead\n \u003c/pre\u003e",
+  "name": "UnmappedReadFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

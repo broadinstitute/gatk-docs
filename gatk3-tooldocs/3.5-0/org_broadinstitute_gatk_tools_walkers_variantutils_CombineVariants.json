@@ -1,0 +1,305 @@
+{
+  "summary": "Combine variant records from different sources",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "http://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Assume input VCFs have identical sample sets and disjoint calls",
+      "name": "--assumeIdenticalSamples",
+      "synonyms": "-assumeIdenticalSamples",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "This option allows you to perform a simple merge (concatenation) to combine the VCFs, drastically reducing\n runtime. Note that in many cases where you think you want to use this option, you may want to check out the\n CatVariants tool instead, because CatVariants provides the same functionality, but does so even more efficiently.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Exclude sites where no variation is present after merging",
+      "name": "--excludeNonVariants",
+      "synonyms": "-env",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Exclude sites that do not contain any called ALT alleles in the merged callset. The evaluation is made after the\n merging procedure is complete.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Treat filtered variants as uncalled",
+      "name": "--filteredAreUncalled",
+      "synonyms": "-filteredAreUncalled",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "If enabled, this flag causes filtered variants (i.e. variant records where the FILTER field is populated by\n something other than PASS or a dot) to be omitted from the output.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Determines how we should handle records seen at the same site in the VCF, but with different FILTER fields",
+      "name": "--filteredrecordsmergetype",
+      "synonyms": "-filteredRecordsMergeType",
+      "type": "FilteredRecordMergeType",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "Union - leaves the record if any record is unfiltered.",
+          "name": "KEEP_IF_ANY_UNFILTERED"
+        },
+        {
+          "summary": "Requires all records present at site to be unfiltered. VCF files that don\u0027t contain the record don\u0027t influence this.",
+          "name": "KEEP_IF_ALL_UNFILTERED"
+        },
+        {
+          "summary": "If any record is present at this site (regardless of possibly being filtered), then all such records are kept and the filters are reset.",
+          "name": "KEEP_UNCONDITIONAL"
+        }
+      ]
+    },
+    {
+      "summary": "Determines how we should merge genotype records for samples shared across the ROD files",
+      "name": "--genotypemergeoption",
+      "synonyms": "-genotypeMergeOptions",
+      "type": "GenotypeMergeType",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "Make all sample genotypes unique by file. Each sample shared across RODs gets named sample.ROD.",
+          "name": "UNIQUIFY"
+        },
+        {
+          "summary": "Take genotypes in priority order (see the priority argument).",
+          "name": "PRIORITIZE"
+        },
+        {
+          "summary": "Take the genotypes in any order.",
+          "name": "UNSORTED"
+        },
+        {
+          "summary": "Require that all samples/genotypes be unique between all inputs.",
+          "name": "REQUIRE_UNIQUE"
+        }
+      ]
+    },
+    {
+      "summary": "Use the INFO content of the record with the highest AC",
+      "name": "--mergeInfoWithMaxAC",
+      "synonyms": "-mergeInfoWithMaxAC",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "By default, the INFO field of the merged variant record only contains the INFO field attributes for which all\n original overlapping records had the same values. Discordant attributes are therefore discarded. This flag allows you to\n override that behavior and simply copy over the INFO field contents of whichever record had the highest AC value.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Emit a sites-only file",
+      "name": "--minimalVCF",
+      "synonyms": "-minimalVCF",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "If this flag is enabled, the INFO, FORMAT and sample-level (genotype) fields will not be emitted to the output file.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Minimum number of input files the site must be observed in to be included",
+      "name": "--minimumN",
+      "synonyms": "-minN",
+      "type": "int",
+      "required": "no",
+      "fulltext": "Sites that are present in fewer than this number of inputs will be ignored. This is a convenient way to build\n a collection of common variants and exclude rare variants.",
+      "defaultValue": "1",
+      "minValue": "-Infinity",
+      "maxValue": "Infinity",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Emit interesting sites requiring complex compatibility merging to file",
+      "name": "--printComplexMerges",
+      "synonyms": "-printComplexMerges",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "Ordered list specifying priority for merging",
+      "name": "--rod_priority_list",
+      "synonyms": "-priority",
+      "type": "String",
+      "required": "no",
+      "fulltext": "Refers to the merging priority behavior described in the tool documentation regarding the choice of which record\n gets emitted when taking the union of variants that contain genotypes. The list must be passed as a\n comma-separated string listing the names of the variant input files. The list must be complete and include all\n variant inputs that are being provided to the tool. Use name tags for best results.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Key name for the set attribute",
+      "name": "--setKey",
+      "synonyms": "-setKey",
+      "type": "String",
+      "required": "no",
+      "fulltext": "Key used in the INFO key\u003dvalue tag emitted describing which set(s) the combined record came from\n (e.g. set\u003dcontrol). This provides the option to override the default naming, so instead of set\u003dcontrol you could\n have it be origin\u003dcontrol, or any other word you want that is not already an INFO field attribute. Set this to\n \u0027null\u0027 if you don\u0027t want the set attribute emitted at all.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Do not output the command line to the header",
+      "name": "--suppressCommandLineHeader",
+      "synonyms": "-suppressCommandLineHeader",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "By default, this tool writes the command line that was used in the header of the output VCF file. This flag\n enables you to override that behavior . This is most often useful when combining variants for dozens or\n hundreds of smaller VCFs iteratively, to avoid cluttering the header with a lot of command lines.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "VCF files to merge together",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "List[RodBindingCollection[VariantContext]]",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 50,
+    "start": -50
+  },
+  "description": "\n\n \u003cp\u003eCombineVariants reads in variants records from separate ROD (Reference-Ordered Data) sources and combines them into\n a single VCF. Any number of sources can be input. This tool aims to fulfill two main possible use cases, reflected\n by the two combination options (MERGE and UNION), for merging records at the variant level (the first 8 fields of\n the VCF) or at the genotype level (the rest).\u003c/p\u003e\n\n \u003cul\u003e\n \u003cli\u003e\u003cb\u003eMERGE:\u003c/b\u003e combines multiple variant records present at the same site in the different input sources into a\n single variant record in the output. If sample names overlap, then they are \"uniquified\" by default, which means a\n suffix is appended to make them unique. \u003cem\u003eNote that in version 3.3, the automatic uniquifying was disabled\n (unintentionally), and required setting `-genotypeMergeOptions UNIQUIFY` manually.\u003c/em\u003e\u003c/li\u003e\n\n \u003cli\u003e\u003cb\u003eUNION:\u003c/b\u003e assumes that each ROD source represents the same set of samples (although this is not enforced).\n It uses the priority list (if provided) to emit a single record instance at every position represented in the input RODs.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003cp\u003eBy default, the input sets will be named variants, variants2, variants3, and so on. You can override this by\n providing an explicit name tag for each input, using the syntax \" -V:format,name\". Each input tagged in this\n way will be labeled as such in the output (i.e., set\u003dname rather than set\u003dvariants2). For example, you could specify\n a set of control samples as \" -V:vcf,control my_control_samples.vcf\", and the resulting VCF records would contain\n the annotation \"set\u003dcontrol\" in the INFO field. It is strongly recommended to provide explicit names in this way\n when a rod priority list is provided.\u003c/p\u003e\n\n \u003cp\u003eCombineVariants will emit a record for every site that was present in any of your input VCF files, and will annotate\n (in the set attribute in the INFO field) whether the record had a PASS or FILTER status in each input ROD . In effect,\n CombineVariants always produces a union of the input VCFs.  However, any part of the Venn of the merged VCFs\n can be extracted using JEXL expressions on the set attribute using SelectVariants.  If you want to extract just\n the records in common between two VCFs, you would first run CombineVariants on the two files to generate a single\n VCF and then run SelectVariants to extract the common records with `-select \u0027set \u003d\u003d \"Intersection\"\u0027`, as worked out\n in the detailed example in the documentation guide.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n Two or more variant sets to combine.\n \u003c/p\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A combined VCF.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n \u0026nbsp;\n \u003ch4\u003eMerge two separate callsets\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T CombineVariants \\\n   -R reference.fasta \\\n   --variant input1.vcf \\\n   --variant input2.vcf \\\n   -o output.vcf \\\n   -genotypeMergeOptions UNIQUIFY\n \u003c/pre\u003e\n\n \u003ch4\u003eGet the union of calls made on the same samples \u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T CombineVariants \\\n   -R reference.fasta \\\n   --variant:foo input1.vcf \\\n   --variant:bar input2.vcf \\\n   -o output.vcf \\\n   -genotypeMergeOptions PRIORITIZE \\\n   -priority foo,bar\n \u003c/pre\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eThis tool is not intended to manipulate GVCFS! To combine GVCF files output by HaplotypeCaller, use CombineGVCFs.\u003c/li\u003e\n \u003cli\u003eTo join intermediate VCFs produced by running jobs in parallel by interval (e.g. by chromosome), use CatVariants.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eAdditional notes\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003e Using this tool\u0027s multi-threaded parallelism capability is particularly useful\n when converting from VCF to BCF2, which can be time-consuming. In this case each thread spends CPU time\n doing the conversion, and the GATK engine is smart enough to merge the partial BCF2 blocks together\n efficiently.  However, since this merge runs in only one thread, you can quickly reach diminishing\n returns with the number of parallel threads.  In our hands, `-nt 4` works well but `-nt 8` tends to be be too much.\u003c/li\u003e\n \u003cli\u003eSince GATK 2.1, when merging multiple VCF records at a site, the combined VCF record has the QUAL of the first\n VCF record with a non-MISSING QUAL value.  The previous behavior was to take the max QUAL, which could result\n in strange downstream confusion\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "CombineVariants",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Evaluation and Manipulation Tools",
+  "annotfield": ""
+}

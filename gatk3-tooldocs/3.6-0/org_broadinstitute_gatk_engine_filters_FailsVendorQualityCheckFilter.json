@@ -1,0 +1,16 @@
+{
+  "summary": "Filter out reads that fail the vendor quality check",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003eThis filter recognizes the SAM flag corresponding to the vendor quality check.\u003c/p\u003e",
+  "name": "FailsVendorQualityCheckFilter",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Read Filters",
+  "annotfield": ""
+}

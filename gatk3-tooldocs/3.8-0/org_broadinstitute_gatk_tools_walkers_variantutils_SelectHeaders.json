@@ -1,0 +1,144 @@
+{
+  "summary": "Selects headers from a VCF source",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "https://software.broadinstitute.org/gatk/documentation/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Exclude header. Can be specified multiple times",
+      "name": "--exclude_header_name",
+      "synonyms": "-xl_hn",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "Note that header exclusion takes precedence over inclusion, so that if a header is in both lists it will be excluded.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Regular expression to select many headers from the tracks provided. Can be specified multiple times",
+      "name": "--header_expression",
+      "synonyms": "-he",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Include header. Can be specified multiple times",
+      "name": "--header_name",
+      "synonyms": "-hn",
+      "type": "Set[String]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "If set the interval file name minus the file extension, or the command line intervals, will be added to the headers",
+      "name": "--include_interval_names",
+      "synonyms": "-iln",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "Note that interval name inclusion takes precedence over other header matching. If set other interval lines may be excluded but the intervals will still be added.",
+      "defaultValue": "false",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "File to which variants should be written",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "stdout",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "BCF2, VCF, VCF3",
+      "kind": "required_in",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n Often, a VCF containing many headers will need to be subset in order to facilitate certain formatting guidelines.\n SelectHeaders can be used for this purpose. Given a single VCF file, one or more headers can be extracted from the\n file (based on a complete header name or a pattern match).\n \u003cp/\u003e\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A set of VCFs.\n \u003c/p\u003e\n \u003cp/\u003e\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cp\u003e\n A VCF with the selected headers.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n \u003ch4\u003eSelect only the FILTER, FORMAT, and INFO headers\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T SelectHeaders \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   -o output.vcf \\\n   -hn FILTER \\\n   -hn FORMAT \\\n   -hn INFO\n \u003c/pre\u003e\n\n \u003ch4\u003eSelect only the FILTER, FORMAT, and INFO headers and add in the reference file names\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T SelectHeaders \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   -o output.vcf \\\n   -hn FILTER \\\n   -hn FORMAT \\\n   -hn INFO \\\n   -irn \\\n   -iln\n \u003c/pre\u003e\n\n \u003ch4\u003eSelect only the FILTER, FORMAT, and INFO headers, plus any headers with \"SnpEff\"\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T SelectHeaders \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   -o output.vcf \\\n   -hn FILTER \\\n   -hn FORMAT \\\n   -hn INFO \\\n   -he \u0027.*SnpEff.*\u0027\n \u003c/pre\u003e",
+  "name": "SelectHeaders",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Manipulation Tools",
+  "annotfield": ""
+}

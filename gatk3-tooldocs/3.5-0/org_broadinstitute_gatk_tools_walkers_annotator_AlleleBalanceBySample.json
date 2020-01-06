@@ -1,0 +1,19 @@
+{
+  "summary": "Allele balance per sample",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e This is an experimental annotation that attempts to estimate whether the data supporting a heterozygous genotype call fits allelic ratio expectations, or whether there might be some bias in the data.\u003c/p\u003e\n \u003ch3\u003eCalculation\u003c/h3\u003e\n \u003cp\u003e $$ AB \u003d \\frac{# ALT alleles}{total # alleles} $$ \u003c/p\u003e\n \u003cp\u003e Ideally, the value of AB should be close to 0.5, so half of the alleles support the ref allele and half of the alleles support the alt allele. Divergence from the expected ratio may indicate that there is some bias in favor of one allele. Note the caveats below regarding cancer and RNAseq analysis. \u003c/p\u003e\n \u003ch3\u003eCaveats\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003eThis annotation will only work properly for biallelic heterozygous calls.\u003c/li\u003e\n     \u003cli\u003eThis annotation cannot currently be calculated for indels.\u003c/li\u003e\n     \u003cli\u003eThe reasoning underlying this annotation only applies to germline variants in DNA sequencing data. In somatic/cancer analysis, divergent ratios are expected due to tumor heterogeneity. In RNAseq analysis, divergent ratios may indicate differential allele expression.\u003c/li\u003e\n     \u003cli\u003eAs stated above, this annotation is experimental and should be interpreted with caution as we cannot guarantee that it is appropriate. Basically, use it at your own risk.\u003c/li\u003e\n \u003c/ul\u003e\n \u003ch3\u003eRelated annotations\u003c/h3\u003e\n \u003cul\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_AlleleBalance.html\"\u003eAlleleBallance\u003c/a\u003e\u003c/b\u003e is a generalization of this annotation over all samples.\u003c/li\u003e\n     \u003cli\u003e\u003cb\u003e\u003ca href\u003d\"https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_annotator_DepthPerAlleleBySample.html\"\u003eDepthPerAlleleBySample\u003c/a\u003e\u003c/b\u003e calculates depth of coverage for each allele per sample.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "AlleleBalanceBySample",
+  "annotinfo": "ExperimentalAnnotation",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "Variant Annotations",
+  "annotfield": "FORMAT (sample genotype-level)",
+  "annotdescript": [
+    "FORMAT\u003d\u0026lt;ID\u003dAB,Number\u003d1,Type\u003dFloat,Description\u003d\u0026quot;Allele balance for each het genotype\u0026quot;\u0026gt;"
+  ]
+}

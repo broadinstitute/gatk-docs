@@ -1,0 +1,221 @@
+{
+  "summary": "Apply a score cutoff to filter variants based on a recalibration table",
+  "parallel": [
+    {
+      "arg": "-nt",
+      "name": "TreeReducible",
+      "link": "http://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_engine_CommandLineGATK.html#-nt"
+    }
+  ],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "Don\u0027t output filtered loci after applying the recalibration",
+      "name": "--excludeFiltered",
+      "synonyms": "-ef",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "If specified, the variant recalibrator will ignore all input filters. Useful to rerun the VQSR from a filtered output file.",
+      "name": "--ignore_all_filters",
+      "synonyms": "-ignoreAllFilters",
+      "type": "boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "If specified, the recalibration will be applied to variants marked as filtered by the specified filter name in the input VCF file",
+      "name": "--ignore_filter",
+      "synonyms": "-ignoreFilter",
+      "type": "String[]",
+      "required": "no",
+      "fulltext": "For this to work properly, the -ignoreFilter argument should also be applied to the VariantRecalibration command.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "The raw input variants to be recalibrated",
+      "name": "--input",
+      "synonyms": "-input",
+      "type": "List[RodBinding[VariantContext]]",
+      "required": "yes",
+      "fulltext": "These calls should be unfiltered and annotated with the error covariates that are intended to use for modeling.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "The VQSLOD score below which to start filtering",
+      "name": "--lodCutoff",
+      "synonyms": "-lodCutoff",
+      "type": "Double",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "advanced_param",
+      "options": []
+    },
+    {
+      "summary": "Recalibration mode to employ: 1.) SNP for recalibrating only SNPs (emitting indels untouched in the output VCF); 2.) INDEL for indels; and 3.) BOTH for recalibrating both SNPs and indels simultaneously.",
+      "name": "--mode",
+      "synonyms": "-mode",
+      "type": "Mode",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": [
+        {
+          "summary": "",
+          "name": "SNP"
+        },
+        {
+          "summary": "",
+          "name": "INDEL"
+        },
+        {
+          "summary": "",
+          "name": "BOTH"
+        }
+      ]
+    },
+    {
+      "summary": "The output filtered and recalibrated VCF file in which each variant is annotated with its VQSLOD value",
+      "name": "--out",
+      "synonyms": "-o",
+      "type": "VariantContextWriter",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_out",
+      "options": []
+    },
+    {
+      "summary": "The input recal file used by ApplyRecalibration",
+      "name": "--recal_file",
+      "synonyms": "-recalFile",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "The input tranches file describing where to cut the data",
+      "name": "--tranches_file",
+      "synonyms": "-tranchesFile",
+      "type": "File",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "The truth sensitivity level at which to start filtering",
+      "name": "--ts_filter_level",
+      "synonyms": "-ts_filter_level",
+      "type": "Double",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    }
+  ],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n This tool performs the second pass in a two-stage process called VQSR; the first pass is performed by the\n \u003ca href\u003d\u0027https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_variantrecalibration_VariantRecalibrator.html\u0027\u003eVariantRecalibrator\u003c/a\u003e tool.\n In brief, the first pass consists of creating a Gaussian mixture model by looking at the distribution of annotation\n values over a high quality subset of the input call set, and then scoring all input variants according to the model.\n The second pass consists of filtering variants based on score cutoffs identified in the first pass.\n\u003c/p\u003e\n\n \u003cp\u003e\n Using the tranche file and recalibration table generated by the previous step, the ApplyRecalibration tool looks at each variant\u0027s VQSLOD value\n and decides which tranche it falls in. Variants in tranches that fall below the specified truth sensitivity filter level\n have their FILTER field annotated with the corresponding tranche level. This will result in a call set that is filtered\n to the desired level but retains the information necessary to increase sensitivity if needed.\u003c/p\u003e\n\n \u003cp\u003eTo be clear, please note that by \"filtered\", we mean that variants failing the requested tranche cutoff are \u003cb\u003emarked\n as filtered\u003c/b\u003e in the output VCF; they are \u003cb\u003enot discarded\u003c/b\u003e.\u003c/p\u003e\n\n \u003cp\u003eVQSR is probably the hardest part of the Best Practices to get right, so be sure to read the\n \u003ca href\u003d\u0027https://www.broadinstitute.org/gatk/guide/article?id\u003d39\u0027\u003emethod documentation\u003c/a\u003e,\n \u003ca href\u003d\u0027https://www.broadinstitute.org/gatk/guide/article?id\u003d1259\u0027\u003eparameter recommendations\u003c/a\u003e and\n \u003ca href\u003d\u0027https://www.broadinstitute.org/gatk/guide/article?id\u003d2805\u0027\u003etutorial\u003c/a\u003e to really understand what these\n tools and how to use them for best results on your own data.\u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eThe raw input variants to be filtered.\u003c/li\u003e\n \u003cli\u003eThe recalibration table file that was generated by the VariantRecalibrator tool.\u003c/li\u003e\n \u003cli\u003eThe tranches file that was generated by the VariantRecalibrator tool.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eOutput\u003c/h3\u003e\n \u003cul\u003e\n \u003cli\u003eA recalibrated VCF file in which each variant of the requested type is annotated with its VQSLOD and marked as filtered if the score is below the desired quality level.\u003c/li\u003e\n \u003c/ul\u003e\n\n \u003ch3\u003eUsage example for filtering SNPs\u003c/h3\u003e\n \u003cpre\u003e\n java -Xmx3g -jar GenomeAnalysisTK.jar \\\n   -T ApplyRecalibration \\\n   -R reference.fasta \\\n   -input NA12878.HiSeq.WGS.bwa.cleaned.raw.subset.b37.vcf \\\n   --ts_filter_level 99.0 \\\n   -tranchesFile path/to/output.tranches \\\n   -recalFile path/to/output.recal \\\n   -mode SNP \\\n   -o path/to/output.recalibrated.filtered.vcf\n \u003c/pre\u003e\n\n \u003ch3\u003eCaveats\u003c/h3\u003e\n\n \u003cul\u003e\n \u003cli\u003eThe tranche values used in the example above is only a general example. You should determine the level of sensitivity\n that is appropriate for your specific project. Remember that higher sensitivity (more power to detect variants, yay!) comes\n at the cost of specificity (more false negatives, boo!). You have to choose at what point you want to set the tradeoff.\u003c/li\u003e\n \u003cli\u003eIn order to create the tranche reporting plots (which are only generated for SNPs, not indels!) Rscript needs to be\n in your environment PATH (this is the scripting version of R, not the interactive version).\n See \u003ca target\u003d\"r-project\" href\u003d\"http://www.r-project.org\"\u003ehttp://www.r-project.org\u003c/a\u003e for more info on how to download and install R.\u003c/li\u003e\n \u003c/ul\u003e",
+  "name": "ApplyRecalibration",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Variant Discovery Tools",
+  "annotfield": ""
+}

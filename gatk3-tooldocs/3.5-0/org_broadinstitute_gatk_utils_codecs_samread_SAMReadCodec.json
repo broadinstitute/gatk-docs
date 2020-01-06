@@ -1,0 +1,16 @@
+{
+  "summary": "Decodes a simple SAM text string.",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "",
+  "walkertype": "",
+  "arguments": [],
+  "refwindow": {},
+  "description": "\n\n \u003cp\u003e\n Reads in the SAM text version of a BAM file as a ROD.  For testing only\n \u003c/p\u003e\n\n \u003cp\u003e\n See also: @see \u003ca href\u003d\"http://samtools.sourceforge.net\"\u003eSAMTools\u003c/a\u003e for format specification\n \u003c/p\u003e\n\n \u003ch2\u003eFile format example\u003c/h2\u003e\n \u003cpre\u003e\n     SL-XBC:1:10:628:923#0\t16\tEscherichia_coli_K12\t1\t37\t76M\t\u003d\t1\t0\tAGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGCTTCTGA\tB@\u003e87\u003c;A@?@957:\u003e\u003e@AA@B\u003e@A9AB@B\u003e@A@@@@@A;\u003dAAB@BBBBBCBBBB@\u003eA\u003e:ABB@BAABCB\u003dCA@CB\n \u003c/pre\u003e",
+  "name": "SAMReadCodec",
+  "annotinfo": "",
+  "readfilters": [],
+  "downsampling": {},
+  "group": "ROD Codecs",
+  "annotfield": ""
+}

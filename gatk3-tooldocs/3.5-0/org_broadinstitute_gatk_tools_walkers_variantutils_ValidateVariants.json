@@ -1,0 +1,125 @@
+{
+  "summary": "Validate a VCF file with an extra strict set of criteria",
+  "parallel": [],
+  "activeregion": {},
+  "partitiontype": "LOCUS",
+  "walkertype": "LocusWalker",
+  "arguments": [
+    {
+      "summary": "dbSNP file",
+      "name": "--dbsnp",
+      "synonyms": "-D",
+      "type": "RodBinding[VariantContext]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "optional_in",
+      "options": []
+    },
+    {
+      "summary": "skip validation on filtered records",
+      "name": "--doNotValidateFilteredRecords",
+      "synonyms": "-doNotValidateFilteredRecords",
+      "type": "Boolean",
+      "required": "no",
+      "fulltext": "By default, even filtered records are validated.",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    },
+    {
+      "summary": "which validation type to exclude from a full strict validation",
+      "name": "--validationTypeToExclude",
+      "synonyms": "-Xtype",
+      "type": "List[ValidationType]",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_param",
+      "options": []
+    },
+    {
+      "summary": "Input VCF file",
+      "name": "--variant",
+      "synonyms": "-V",
+      "type": "RodBinding[VariantContext]",
+      "required": "yes",
+      "fulltext": "Variants from this VCF file are used by this tool as input.\n The file must at least contain the standard VCF header lines, but\n can be empty (i.e., no variants are contained in the file).",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "\u003ca href\u003dhtsjdk_variant_bcf2_BCF2Codec.html\u003eBCF2\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCFCodec.html\u003eVCF\u003c/a\u003e, \u003ca href\u003dhtsjdk_variant_vcf_VCF3Codec.html\u003eVCF3\u003c/a\u003e",
+      "kind": "required_in",
+      "options": []
+    },
+    {
+      "summary": "just emit warnings on errors instead of terminating the run at the first instance",
+      "name": "--warnOnErrors",
+      "synonyms": "-warnOnErrors",
+      "type": "Boolean",
+      "required": "no",
+      "fulltext": "",
+      "defaultValue": "NA",
+      "minValue": "NA",
+      "maxValue": "NA",
+      "minRecValue": "NA",
+      "maxRecValue": "NA",
+      "rodTypes": "NA",
+      "kind": "optional_flag",
+      "options": []
+    }
+  ],
+  "refwindow": {
+    "stop": 100,
+    "start": 0
+  },
+  "description": "\n\n \u003cp\u003e\n This tool is designed to validate much of the information inside a VCF file.\n In addition to standard adherence to the VCF specification, this tool performs extra strict validations to ensure\n the information contained within the file is correct. These include:\n \u003c/p\u003e\u003cp\u003e\n \u003cdl\u003e\n   \u003cdt\u003eREF\u003c/dt\u003e\u003cdd\u003ethe correctness of the reference base(s).\u003c/dd\u003e\n   \u003cdt\u003eCHR_COUNTS\u003c/dt\u003e\u003cdd\u003eaccuracy of AC \u0026 AN values.\u003c/dd\u003e\n   \u003cdt\u003eIDS\u003c/dt\u003e\u003cdd\u003etests against rsIDs when a dbSNP file is provided. Notice that for this one to work, you need\n    to provide a reference to the dbsnp variant containing file using the \u003ccode\u003e--dbsnp\u003c/code\u003e as show in examples below.\u003c/dd\u003e\n   \u003cdt\u003eALLELES\u003c/dt\u003e\u003cdd\u003eand that all alternate alleles are present in at least one sample.\u003c/dd\u003e\n \u003c/dl\u003e\n\n \u003c/p\u003e\n\n \u003cp\u003e\n     By default it will apply all the strict validations unless you indicate which one you want you want to exclude\n     using \u003ccode\u003e-Xtype|--validationTypeToExclude \u0026lt;\u003ci\u003ecode\u003c/i\u003e\u0026gt;\u003c/code\u003e, where \u003ci\u003ecode\u003c/i\u003e is one of the listed above. You\n     can exclude as many types as you want\n \u003cp\u003e\n     Yo can exclude all strict validations with the special code \u003ccode\u003e\u003cb\u003eALL\u003c/b\u003e\u003c/code\u003e. In this case the tool will only\n     test the adherence to the VCF specification.\n \u003c/p\u003e\n\n \u003ch3\u003eInput\u003c/h3\u003e\n \u003cp\u003e\n A variant set to validate using \u003ccode\u003e-V\u003c/code\u003e or \u003ccode\u003e--variant\u003c/code\u003e as shown below.\n \u003c/p\u003e\n\n \u003ch3\u003eUsage examples\u003c/h3\u003e\n\n \u003ch4\u003eTo perform VCF format tests and all strict validations\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T ValidateVariants \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   --dbsnp dbsnp.vcf\n \u003c/pre\u003e\n\n \u003ch4\u003eTo perform VCF format tests and all strict validations with the VCFs containing alleles \u003c\u003d 208 bases\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T ValidateVariants \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   --dbsnp dbsnp.vcf\n   --reference_window_stop 208\n \u003c/pre\u003e\n\n \u003ch4\u003eTo perform only VCF format tests\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T ValidateVariants \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   \u003cb\u003e--validationTypeToExclude ALL\u003c/b\u003e\n \u003c/pre\u003e\n\n \u003ch4\u003eTo perform all validations except the strict \u003ci\u003eALLELE\u003c/i\u003e validation\u003c/h4\u003e\n \u003cpre\u003e\n java -jar GenomeAnalysisTK.jar \\\n   -T ValidateVariants \\\n   -R reference.fasta \\\n   -V input.vcf \\\n   \u003cb\u003e--validationTypeToExclude ALLELES\u003c/b\u003e\n \u003c/pre\u003e",
+  "name": "ValidateVariants",
+  "annotinfo": "",
+  "readfilters": [
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_MalformedReadFilter.html",
+      "name": "MalformedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_BadCigarFilter.html",
+      "name": "BadCigarFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_UnmappedReadFilter.html",
+      "name": "UnmappedReadFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_NotPrimaryAlignmentFilter.html",
+      "name": "NotPrimaryAlignmentFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_FailsVendorQualityCheckFilter.html",
+      "name": "FailsVendorQualityCheckFilter"
+    },
+    {
+      "filename": "org_broadinstitute_gatk_engine_filters_DuplicateReadFilter.html",
+      "name": "DuplicateReadFilter"
+    }
+  ],
+  "downsampling": {},
+  "group": "Validation Utilities",
+  "annotfield": ""
+}
